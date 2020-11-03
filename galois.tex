@@ -301,7 +301,7 @@ tyder endast på att kardinaliteten av basen, eller \textit{dimensionen} för ve
   Vi antar att $[L:K]$ och $[K:F]$ är ändliga. Låt $\{v_1, \ldots, v_m\}$ vara basen för $L$ över $K$ och $\{w_1, \ldots, w_n\}$ vara basen för $K$ över $F$.
   Vi påstår att $B = \{v_iw_j \; | \; 1 \leq i \leq m, \; 1 \leq j \leq n\}$ är basen för $L$ över $F$ som då slutför beviset.
 
-  Eftersom $\{v_1, \ldots, v_m\}$ är basen för $K$ över $F$ så spänner den upp $K$ och därför gäller, för $x \in L$ och $a_1, \ldots, a_m \in K$, att 
+  Eftersom $\{v_1, \ldots, v_m\}$ är basen för $L$ över $K$ så spänner den upp $K$ och därför gäller, för $x \in L$ och $a_1, \ldots, a_m \in K$, att 
   \begin{equation}
     x = \sum_{i = 1}^m a_i v_i.
   \end{equation}
@@ -313,14 +313,18 @@ tyder endast på att kardinaliteten av basen, eller \textit{dimensionen} för ve
   \end{equation}
   Ekvation (6) i (5) mynnar ut i att
   \[x = \sum_{i = 1}^m \sum_{j = 1}^n b_{ji}w_jv_i\]
-  och vi drar slutsatsen att $B$ spänner upp $L$ över $F$. Anta nu det existerar ett $c_ji \in F$ så att 
+  och vi drar slutsatsen att $B$ spänner upp $L$ över $F$. Anta nu det existerar ett $c_{ji} \in F$ så att 
   \[\sum_{i = 1}^m \sum_{j = 1}^n c_{ji}w_jv_i = 0.\]
   Vi skriver om detta som 
   \[\sum_{i = 1}^m \biggl( \sum_{j = 1}^n c_{ji}w_j \biggl) v_i = 0\]
-  och använder informationen att 
+  och använder informationen att $c_{ji}w_j \in K$ och att $\{v_1, \ldots, v_m\}$ är basen för $L$ över $K$ för att härleda
+  \[\sum_{j = 1}^n c_{ji}w_j = 0.\]
+  Eftersom $\{w_1, \ldots, w_n\}$ är basen för $K$ över $F$ så gäller det att $c_{ji} = 0$ för alla $j$ och $i$. Vi drar slutsatsen att 
+  $B$ verkligen är basen för $L$ över $F$ och beviset är således slutfört. 
 \end{proof}
 
 
 \section{Galoisteorins fundamentalsats}
+Det är här den matematiska vackerheten och syftet med hela texten uppträder.
 \section{Lösbara grupper och lösningarna till polynom}
 \end{document}
