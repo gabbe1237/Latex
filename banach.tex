@@ -80,7 +80,11 @@ colback=myblue!60}}{th}
 % ---------------------------------------------
 % ---------------FÖRSTA SIDAN------------------
 % ---------------------------------------------
-\title{\LARGE{\textbf{Banach-Tarski paradoxen}}}
+% \title{Banach-Tarski paradoxen}
+\title{%
+  Banach-Tarski paradoxen \\
+  \small{En introduktion till det abstrakta.}
+}
 \author{Gabriel Rajkowski}
 \date{\today}
 
@@ -91,14 +95,14 @@ colback=myblue!60}}{th}
 \clearpage
 \tableofcontents
 \section{Inledning}
-Syfte: Ta upp grunderna inom mängdlära, linjär algebra och gruppteori (med hubudfokus på gruppteori) 
+Syfte: Ta upp grunderna inom mängdlära, linjär algebra och gruppteori (med huvudfokus på gruppteori) 
 så att läsaren ska känna sig tillräckligt matematisk mogen för att läsa vidare om mer avancerade grejer inom abstrakt algebra.
-Syftet är även att bevisa Banach-Tarski paradoxen och ta upp detaljerna som andra källor, wikipedia, inte tar upp.
+Syftet är även att bevisa Banach-Tarski paradoxen och ta upp detaljerna som andra källor, till exempel wikipedia, inte tar upp.
 
 Frågeställningar: Går det att duplicera en cirkel istället för en sfär (ganska trivial)?
-Går det att göra om en 2-sfär (2D-sphere, "3D sfär") till en 3-sfär ("4D sfär")
+Går det att göra om en 2-sfär (2-sphere, "3D sfär") till en 3-sfär ("4D sfär")
 (ganska trivial)? Fungerar Banach-Tarski paradoxen i högre dimensioner (ganska trivial)?
-Denna ovannämnda Frågeställningar skulle jag kunna besvara på direkt i sektionen
+Dessa ovannämnda frågeställningar skulle jag kunna besvara på direkt i sektionen
 om Banach-Tarski paradoxen direkt efter beviset. En annan lämplig frågeställning skulle 
 kunna vara "Går det att förstå paradoxen utan att använda matematik?". Här 
 skulle jag kunna visa ett oformellt, men intuitivt, bevis av paradoxen utan att 
@@ -112,11 +116,11 @@ Mängdläran studerar mängder och är en av matematikens grundstenar.
 Mängläraren är egentligen inte en del av
 matematiken utan snarare en förutsättning för matematiken, vilket gör den intressant att studera.
 
-En \textit{mängd} (eng. \textit{set}) är helt enkelt en samling av objekt eller \textit{element} där repetiition 
+En \textit{mängd} (eng. \textit{set}) är helt enkelt en samling av objekt eller \textit{element} där repetition 
 inte förekommer och ordningen inte har någon betydelse.
 Dessa element kan vara vad som helst, vänner, bilar, nummer eller så kan dem själva vara mängder. 
 Ett exempel på en mängd är 
-\[S = \{\clubsuit, \diamondsuit, \spadesuit, \heartsuit\},\]
+\[S = \{\clubsuit, \diamondsuit, \spadesuit, \heartsuit\}\]
 och vi skriver
 \[\clubsuit, \diamondsuit, \spadesuit, \heartsuit \in S\]
 för att indikera att $\clubsuit, \diamondsuit, \spadesuit, \heartsuit$ tillhör $S$.
@@ -159,7 +163,7 @@ sig själv. Definitionen medför även att om
 $A \subseteq B$ och $B \subseteq A$ så måste $A = B$, vilket vi kommer att avnända vid sxenare tillifällen för bevisföring. 
 
 \begin{exmp}
-Mängden $A = \{1, 2\}$ en 
+Mängden $A = \{1, 2\}$ är en 
 äkta delmängd av $B = \{1, 2, 3, 4\}$ eftersom alla element som finns i $A$ finns även i $B$ och 
 $A \neq B$. Därimot så
 är $B$ inte en delmängd av $A$ eftersom $B$ innehåller element som inte finns i $A$.
@@ -301,7 +305,7 @@ Operationerna som har tagits upp är de vanligaste och endast dessa kommer
 att användas framöver. Två saker till bör dock defineras innan detta del avsnitt avslutas. 
 
 \begin{mydef}{}{}
-  Två mängder $A$ och $B$ är \textit{disjunkta} om $A \cap B = \emptyset$. Om $\mathpzc{A}$ är 
+  Två mängder $A$ och $B$ är \textit{disjunkta} (eng. \textit{disjoint}) om $A \cap B = \emptyset$. Om $\mathpzc{A}$ är 
   en mängd vars element är mängder så är $\mathpzc{A}$ \textit{parvis disjunkt} om $\bigcap \mathpzc{A} = 
   \emptyset$.
 \end{mydef}
@@ -332,7 +336,7 @@ om det var disjunkta.
   \item $\{ \{1, 2, 3\} \}$
 \end{itemize}
 Medan $ P = \{ \{\}, \{1, 2\}, \{4, 3, 2\} \}$ inte är en partition av $A$ på grund av några anledningar, $P$ innehåller en tom mängd, mängden $\{4, 3, 2\}$ är inte en delmängd till $A$
-och $P$ är inte heller parvis disjunk, $\bigcup P = \{2\} \neq \emptyset$. Notera att det endast räcker med att nämna en av dessa anledningar för att visa att $P$ inte är en partition av $A$.
+och $P$ är inte heller parvis disjunk, $\bigcap P = \{2\} \neq \emptyset$. Notera att det endast räcker med att nämna en av dessa anledningar för att visa att $P$ inte är en partition av $A$.
 \end{exmp}
 
 \subsection{Tuplar och ordnade par}
@@ -403,13 +407,13 @@ För att åstadkomma paradoxen så ställer vi frågan om $S$ innehåller sig sj
 Vi antar först att $S \in S$.
 För att $S$ ska vara ett element av $S$ så 
 måste $S$, per definition, vara en mängd och $S \notin S$.
-Vi antog dock att $S \in S$, vilket betyder att $S \notin S$. Vi kontruerade dock $S$ på ett sådant sätt att om $S \notin S$ så betyder det samtidigt att $S \in S$ och vi hamnar i ett
+Vi antog dock att $S \in S$, vilket betyder att $S \notin S$. Vi konstruerade dock $S$ på ett sådant sätt att om $S \notin S$ så betyder det samtidigt att $S \in S$ och vi hamnar i ett
 cirkelresonemang på liknande vis som vid "påståendet" "detta påstående är falskt".
 
 För att undvika dessa paradoxer så har tanken om mängdlära som ett axiomatiskt system växt fram. 
 Idag finns det flera sådana system, till exempel Zermelo–Fraenkel systemet (ZF). Det vanligaste 
 systemet är Zermelo–Fraenkel systemet kombinerat med Urvalsaxiomet (ZFC). Detta avnsitt har inte använts sig 
-av ett sådant system eftersom det inte var nödvändigt. 
+av ett sådant system eftersom det inte varit nödvändigt. 
 Urvalsaxiomet (eng. Axiom of Choice, AC) kommer dock att 
 tas upp och diskuteras i detalj senare i texten.
 
@@ -427,7 +431,8 @@ För att förstå viktiga koncept inom gruppteori så måste vi definera en funk
 En funktion enligt denna definition är alltså en regel som till varje element i definitionsmängden kopplar alla element i värdemängden. Om definitionsmängden och värdemängden endast innehåller
 tal så brukar man kunna beskriva denna regel med en matematisk formell, till exempel $f(x) = x^2$.
 
-Intuitivt så är en funktion $f(x) = x^2$ en slags "maskin". Man stoppar in ett element från definitionsmängden i funktionen och på ett magiskt sätt så kommer det ut ett annat tal. Formellt så assocerar,
+Intuitivt så är funktionen $f(x) = x^2$ en slags "maskin". Man stoppar in ett element från definitionsmängden i funktionen och på ett magiskt sätt 
+så kommer det ut ett annat tal. Formellt så associerar,
 eller \textit{mappar}, en funktion ett element från definitionsmängden till ett korresponderande element från målmängden.
 
 
@@ -640,7 +645,7 @@ till en bijektion också är en bijektion men för säkerhets skull så bevisar 
 \section{Linjär algebra}
 Detta avsnitt är en liten introduktion till linjär algebra. Linjär algebra studerar vektorer, vektorrum 
 (linjära rum), linjära ekvationssystem och linjära transformationer. För oss är det endast nödvändigt 
-att studera linjära transformationer så att vi kan rotera olika punkter i $\mathbb{R}^3$. För att förstå 
+att förstå linjära transformationer så att vi kan rotera olika punkter i $\mathbb{R}^3$. För att förstå 
 vad en linjär transformation är så måste vi först ta upp grunderna inom linjär algebra. 
 
 % lär dig lite mer om linjär algebra. 
@@ -771,7 +776,7 @@ Matrisen
 I denna matris så är $1, 2, 3, x, y$ och $z$ element i $\underset{2 \times 3}{A}.$
 Det är inte nödvändigt att ange dimensionerna nedanför variablen, det är valfritt. 
 
-För att uttrycka ett element i denna matris så anger man i vilket rad och kolumn 
+För att uttrycka ett element i denna matris så anger man i vilken rad och kolumn 
 elementet befinner sig i som ett nedre index. Till exempel så är 
 $A_{21} = x$ och $A_{13} = 3$.
 \end{exmp}
@@ -818,7 +823,7 @@ c \cdot A =
   \end{bmatrix}.
 \]
 För att multiplicera två matriser med varandra så blir det lite jobbigare. 
-Istället för att definera multiplikation på liknande sätt som addition så har man valt att defiinera det lite annorlunda. Det har helt enkelt visat sig vara väldigt praktiskt med just
+Istället för att definera multiplikation på liknande sätt som addition så har man valt att definera det lite annorlunda. Det har helt enkelt visat sig vara väldigt praktiskt med just
 denna definition.
 
 Vi väljer två "slumpmässiga" matriser $A$ och $B$, säg
@@ -913,7 +918,7 @@ beräkna $B \times A$ och jämföra resultatet med $A \times B$. Detta lämnas s
   \right].
   \]
   Varje kolumn i identitetsmatrisen har fått en beteckning, det gröna området 
-  betecknas med $\vec{e}_1$, det orangea med $\vec{e}_2$ och det blåa med $\vec{e}_n.$ Notera att 
+  betecknas med $\vec{e}_1$, det orangea med $\vec{e}_2$ och det blåa med $\vec{e}_n$ och därför är 
   $I_n = [\vec{e}_1, \vec{e}_2, \ldots, \vec{e}_n].$
 \end{mydef}
 
@@ -1025,7 +1030,7 @@ I figuren ovan ser vi visuellt hur vektorn $v$ transformeras av $T$.
 En \textit{linjär} transformation är inget mer än en vanlig transformation som måste uppfylla två villkor. 
 
 \hypertarget{linjarT}{}
-\begin{mydef}{Linjär transformation}{}
+\begin{mydef}{Linjära transformationer}{}
   En \textit{linjär transformation} mellan $\mathbb{R}^n$ och $\mathbb{R}^m$ (mer generellt
   mellan två vektorrum) är en transformation $T: \mathbb{R}^n \rightarrow \mathbb{R}^m$
   där följande villkor uppfylls
@@ -1335,12 +1340,12 @@ magma är alldeles för generell för att vara intresann. På samma sätt kan ma
 många resultat men som samtidigt blir alldeles för specifik för att lösa generella problem. Man vill alltså hitta en balans mellan dessa två extremfall och det man blir kvar med då är grupper och 
 ringar. Ibland används även dessa extremfall ändå, till exempel så används monoider i datavetenskap vid användning av abstrakta datatyper. 
 
-Denna text får tyvärr inte plats med alla dessa interesanta algebraiska strukturer. I slutet va denna text kommer vi dock att hänvisa till andra fantastiska källor där man
+Denna text får tyvärr inte plats med alla dessa interesanta algebraiska strukturer. I slutet av denna text kommer vi dock att hänvisa till andra fantastiska källor där man
 kan lära sig mycket om abstrakt algebra och även häftiga tillämpningar av grupper. I denna text kommer vi alltså att ägna åt oss grupper. 
 
 Gruppteori är inte bara användbart för att generalisera vissa talsystem, utan används även som en abstrakt \textit{notation} för symmetri (vanligtvisst brukar man 
 missförstå grupper och säga att de beskriver symmetrier av ett givet \textit{objekt}. Detta kallas dock för gruppverkan, vilket är ett sätt att tillämpa notationer för symmetri på ett givet objekt).
-Detta gör att grupper blir tillämpliga i många olika området, allt från relationer mellan polynom och dess röter (Galois teori) coh lösningarna av en Rubiks kub.
+Detta gör att grupper blir tillämpliga i många olika områden, allt från relationer mellan polynom och dess röter (Galois teori) och lösningarna av en Rubiks kub.
 
 Innan vi börjar våran abstrakta grupp resa så kollar vi på följande talsystem
 \[ \mathbb{Z} = \{0, 1, -1, 2, -2, \ldots\}. \]
@@ -1763,7 +1768,7 @@ Det finns alltså ingen anledning till att rotera mer än tolv gånger.
 Vi skapar nu en mängd innehållande alla dessa permutationer, 
 \linebreak
 $C_{12} = \{e, \sigma, \sigma^2, \ldots, \sigma^{11}\}$. Varje element i $C_{12}$ kan
-uttryckas som $\sigma^2$ för ett heltal $n$ och därför är denna grupp cyklisk med grupp generatorn $\sigma$.
+uttryckas som $\sigma^n$ för ett heltal $n$ och därför är denna grupp cyklisk med grupp generatorn $\sigma$.
 
 Notera nu att 
 %kanske ta bort detta nedan. jag använder mig av addition för att förklara vad det är...
@@ -1985,7 +1990,7 @@ Det visar sig faktiskt att alla delgrupper till gruppen $(\mathbb{Z}, +)$
   Vi visar först att $b \mathbb{Z} \subseteq H.$   
   Eftersom $H$ är en grupp och $b \in H$ så måste 
   även $nb \in H$ för ett naturligt tal $n$ enligt gruppaxiomet "Slutenhet". 
-  Vidare har vi även att $-nb \in G$ enligt gruppaxiomet "Inverser".
+  Vidare har vi även att $-nb \in H$ enligt gruppaxiomet "Inverser".
   Eftersom 
   $b \mathbb{Z} = \{bz \; | \; z \in \mathbb{Z}\}$ så gäller $b \mathbb{Z} \subseteq H.$
 
@@ -2087,9 +2092,9 @@ Homomorfism är alltså ett sätt att jämföra två gruppers algebraiska strukt
   Låt $G$ och $G'$ vara grupper och $\varphi : G \rightarrow G'$ en homomorfism.
   \textit{Kärnan} av $\varphi$ betecknas $ker(\varphi)$
   och ges av 
-  \[ker(\varphi) = \{g \in G \; | \; \varphi(g) = e_{G'}\}.\]
+  \[ker(\varphi) \equiv \{g \in G \; | \; \varphi(g) = e_{G'}\}.\]
   \textit{Bilden} av $\varphi$ betecknas med $Im(\varphi)$ och ges av 
-  \[Im(\varphi) = \{\varphi(g) \; | \; g \in G\}.\]
+  \[Im(\varphi) \equiv \{\varphi(g) \; | \; g \in G\}.\]
   På engelska kallas kärnar för \textit{kernel} och bilden för \textit{image}, varifrån 
   förkortningarna härstammar.
 \end{mydef}
@@ -2125,7 +2130,7 @@ $Im(\varphi) \le G'$ och $ker(\varphi) \le G$. Eftersom det redan är uppenbart 
 $Im(\varphi) \subseteq G'$
 %kanske bevisa detta nedan ändå, eller??
 och att $ker(\varphi) \subseteq G$ så behöver man alltså bara visa att kärnan och bilden bildar 
-grupper. Detta utelämnas dock i denna text och läsaren får med glädje visa detta på egen hand.
+grupper. Detta utelämnas dock i denna text och läsaren får gärna visa detta på egen hand.
 
 Det som är viktigt med detta resultat är att vi kan tänka på alla injektiva homomorfier som
 surjektiva också genom att begränsa målmängden till endast bilden. Säg till exempel att 
@@ -2135,16 +2140,14 @@ Helt visuellt så betyder detta att vi tar bort det gula området
 (som innehåller alla element som inte är mappade till något i definitionsmängden) i figuren ovan.
 
 
-%normala delgrupper här?? Kanske inte ens ha med dem.
-
 \subsubsection{Grupp isomorfism}
 \begin{mydef}{Isomorfism}{}
   En \textit{grupp isomorfism} är en grupp homomorfism som är bijektiv. 
   Om två grupper, $G$ och $G'$, är 
   isomorfa skriver vi $G \cong G'$.
 \end{mydef}
-Notera att varje isomorfism är en homomorfism men 
-varje homomorfism behöver inte vara en isomorfism. 
+Notera att varje isomorfism är en homomorfism men att
+varje homomorfism inte behöver vara en isomorfism. 
 Eftersom en isomorfism är en bijektion så är två gruppers algebraiska struktur identiska 
 om de är isomorfa. Detta betyder att två isomorfa grupper endast skiljer sig åt symbol mässigt. 
 Man kan alltså ändra sina symboler i den ena gruppen för att få den andra, vilket är den informella 
@@ -2188,8 +2191,7 @@ För att bevisa denna viktiga sats så observerar vi följande.
 \begin{enumerate}
   \item Alla delgrupper till $S_n$ är permutationsgrupper eftersom $S_n$ 
   innehåller alla möjliga permutationer på $n$ element.
-  \item Att påstå att varje grupp kan "tänkas" som en permutationsgrupp är ekvivalent 
-  med att påstå att varje grupp är isomorfisk med en permutationsgrupp.
+  \item När vi säger att varje grupp kan "tänkas" som en permutationsgrupp så menar vi egentligen att varje grupp är isomorfisk med en permutationsgrupp. 
 \end{enumerate}
 Med hjälp av 1 och 2 kan vi omformulera Cayles sats så att den blir lättare att bevisa. 
 \begin{mytheo}{Cayleys sats}{}
@@ -2242,9 +2244,9 @@ Med hjälp av 1 och 2 kan vi omformulera Cayles sats så att den blir lättare a
 \begin{mydef}{}{Sidoklasser}
   Låt $(H, \circ)$ vara en delgrupp till $(G, \circ)$ och $a$ vara ett element i $G$. 
   Då är
-  \[a \circ H = \{a \circ h \; | \; h \in H\}\]
+  \[a \circ H \equiv \{a \circ h \; | \; h \in H\}\]
   en \textit{vänstersidoklass} till $H$ med avseende på $a$ och 
-  \[H \circ a = \{h \circ a \; | \; h \in H\}\]
+  \[H \circ a \equiv \{h \circ a \; | \; h \in H\}\]
   en \textit{högersidoklass} till $H$ med avseende på $a$. Ibland brukar $\circ$ utelämnas 
   och då skrivs $aH$ respektive $Ha$ istället.
 \end{mydef}
@@ -2260,7 +2262,7 @@ skrivas istället för $a \circ b$.
 
 \hypertarget{lemma4.1}{}
 \begin{mylemma}{}{}
-  Låt $G$ vara en grupp och $H$ en delgrupp till denna. Då gäller $hH = H = Hh$ samt 
+  Låt $G$ vara en grupp och $H$ en delgrupp till denna. Då gäller $hH = H = Hh$ 
   för $h \in H$.
 \end{mylemma}
 \begin{proof}
@@ -2278,15 +2280,15 @@ skrivas istället för $a \circ b$.
 
 \hypertarget{lemma4.2}{}
 \begin{mylemma}{}{}
-  Låt $H < G$.
-  Mängden av alla vänster (höger) sidoklasser av $H$ utgör en partition av $G$.
+  Låt $G$ vara en grupp och $H$ en delgrupp till denna. 
+  Mängden av alla vänster (höger) sidoklasser av $H$ utgör då en partition av $G$.
 \end{mylemma}
 \begin{proof}
   Vi visar först alla vänstersidoklasser av $H$ utgör en partition av $G$. 
   Eftersom alla element i $gH$ för $g \in G$ är på formen $gh$ för $h \in H$ så måste $gh \in G$
   och alltså gäller $gH \subseteq G$.
 
-  Vi visar nu att två slumpmässiga vänstersidoklasser av $H$ är disjunkta.
+  Vi visar nu att två slumpmässiga vänstersidoklasser av $H$ antigen är disjunkta eller identiska.
   Låt
   $g, g' \in G, g \neq g'$ och anta att $gH$ och $g'H$ är olika. För att bevisa att 
   $gH \cap g'H = \emptyset$ så antar vi motsatsen, $gH \cap g'H \neq \emptyset$.
@@ -2294,18 +2296,17 @@ skrivas istället för $a \circ b$.
   och därför gäller
   \begin{align*}
     x &= gh, \; h \in H \\
-    x &= g'h' \; h \in H.
+    x &= g'h' \; h' \in H.
   \end{align*}
   Detta medför att $gh = g'h' \iff g = (g'h')h^{-1} = g'(h'h^{-1})$ på grund av assosiativitet.
-  $h'h^{-1}$ är ett element i $H$ vilket betyder att $g \in g'H$ och enligt 
-  \hyperlink{lemma4.1}{lemma 4.8.1} så är $gH = g'H$, vilket är en motsägelse och därför 
-  gäller $gH \cap g'H = \emptyset$.
+  $gH$ kan därför skrivas som $gH = g'((h'h^{-1})H)$ och eftersom $h'h^{-1} \in H$ så är 
+  $gH = g'H$ enligt \hyperlink{lemma4.1}{lemma 4.8.1}. Detta är dock en motsägelse eftersom vi antog att $gH$ och $g'H$ var olika och därför gäller $gH \cap g'H = \emptyset$.
 
-  %ta kanske bort denna del. Onödigt. 
-  Det är uppebart att $g \in gH$ för alla $g \in G$ och därför gäller 
-  \[G = \bigcup \{gH \; |\; g \in G\}.\]
+  Det är uppebart att
+  \[G = \bigcup \{gH \; |\; g \in G\}\]
+  eftersom $H$ är en delgrupp till $G$ och därför måste $gh$ tillhöra $G$.
   Samma princip kan användas för att bevisa detta för mängden av alla
-  \linebreak högersidoklasser.
+  högersidoklasser.
 \end{proof}
 
 \hypertarget{lag}{}
@@ -2429,7 +2430,7 @@ att för $x \in X$ så är $\sigma_g(x) = g \cdot x$ en permutation av $X$.
   På samma sätt kan man visa att $\sigma_g(\sigma_{g^{-1}}(x)) = x.$
   \[\sigma_g(\sigma_{g^{-1}}(x)) = g \cdot (g^{-1} \cdot x) = (g g^{-1}) \cdot x = x.\]
 \end{proof}
-Vi kan börja se varför axiomen inom gruppverkan är så viktiga. Utan dem skulle vi inte 
+Vi kan börja se varför axiomen för gruppverkan är så viktiga. Utan dem skulle vi inte 
 kunna associera element med permutationer och hela syftet med gruppverkan skulle försvinna. 
 
 För att ta detta ett steg vidare kan vi nu skapa permutations gruppen 
@@ -2527,15 +2528,14 @@ och ibland brukar även visa texter definera gruppverkan precis så som vi defin
 grupprepresentation.
 
 Om vi minns tillbaka till Cayles sats, som påstår att varje grupp är isomorfisk med en delgrupp
-av $Sym(G)$, så inser vi att det finns ett till sätt att bevisa den med hjälp av 
+av $Sym(G)$, så kanske man inser att det finns ett till sätt att bevisa den med hjälp av 
 gruppverkan och permutationsrepresentationer. Eftersom de två är ekvivalenta så kan vi 
 först visa att $G$ verkar på sig själv enligt $g \cdot g' = g \circ g'$ 
 som då kommer skapa en homomorfism
 $\varphi: G \rightarrow Sym(G)$ som defineras av $\varphi(g) = \sigma_g$
 där $\sigma_g(g') = g \cdot g' = g \circ g'$. Sedan återstår det 
 bara att visa att $\varphi$ är en injektion eftersom $G$ blir då isomorfisk med $Im(\varphi)$, 
-som är en delgrupp av $Sym(G)$. Alla steg till beviset är upplagda för läsaren som nu 
-borde kunna bevisa och förstå detta på egen hand. 
+som är en delgrupp av $Sym(G)$. Alla steg till beviset är nu upplagda och läsaren får fylla i detaljerna.
 %kanske strunta i stegen. Blir kanske bättre om läsaren får klura ut detta på egen hand. 
 
 %skriv om faithful groups. 
@@ -2593,7 +2593,7 @@ borde kunna bevisa och förstå detta på egen hand.
 Med den förståelsen vi nu har om gruppverkan så kan vi ägna vår tid åt banor
 \begin{mydef}{Banor}{}
   Om $G$ verkar på mängden $X$ och $x \in X$ är \textit{banan} för $x$ mängden 
-  \[\orbit_x = \{g \cdot x \; | \; g \in G\}.\]
+  \[\orbit_x \equiv \{g \cdot x \; | \; g \in G\}.\]
 \end{mydef}
 Tidigare har vi definerat funktionen $\sigma_g(x) = g \cdot x$ och även bevisat i 
 \hyperlink{sats4.9.1}{sats 4.9.1} att 
@@ -2614,7 +2614,7 @@ $\sigma_g$.
 \begin{exmp}
   Gruppen $G = \{e, \tau_{12}, \tau_{13}\}$ under komposition $\circ$ verkar på 
   mängden $M = \{1, 2, 3\}$ genom funktionen $g \cdot x = g(x), \; g \in G, x \in M$. 
-  Banan för 2 är då $\orbit_2 = \{1, 2\}$ och banan för 1 är $\orbit_2 = \{1, 2, 3\}$.
+  Banan för 2 är då $\orbit_2 = \{1, 2\}$ och banan för 1 är $\orbit_1 = \{1, 2, 3\}$.
 \end{exmp}
 
 \begin{mytheo}{}{}
@@ -2653,6 +2653,9 @@ $\sigma_g$.
 \end{proof}
 
 \section{Oändligheten}
+Här ska jag skriva om uppräkneliga mängder, ouppräkneliga mängder och Hilberts hotel. Dessa är nödvändiga för beviset av paradoxen. Hilberts hotel
+kommer såklart inte användas vid beviset eftersom det skulle vara oformellt. Jag kommer därimot referera till den. Hilberts hotel kommer även användas om
+frågeställningen "Går det att förstå paradoxen utan matematik?" väljs. 
 
 \begin{center}
   \begin{tikzpicture}[scale=1.4]
@@ -2683,21 +2686,6 @@ $\sigma_g$.
   \end{tikzpicture}
 \end{center}
 
-\begin{mydef}{}{}
-  In any right triangle, the area of the square whose 
-  side is the hypotenuse is equal to the sum of the areas of
-  the squares whose sides are the two legs.    
-\end{mydef}
-
-\begin{tcolorbox}[enhanced,center upper,size=fbox,drop shadow southeast,sharp corners, 
-  colframe=black, colback=gray!30!white]
-\begin{definition}
-  In any right triangle, the area of the square whose 
-  side is the hypotenuse is equal to the sum of the areas of
-   the squares whose sides are the two legs.
-\end{definition}
-\end{tcolorbox}
-
 \section{Banach-Tarski paradoxen}
 
 \subsection{Urvalsaxiomet}
@@ -2706,7 +2694,12 @@ $\sigma_g$.
 \subsection{Banach-Tarski paradoxen i högre dimensioner}
 
 \section{Diskussion}
+Här ska jag skriva om varför paradoxen fungerar och vad detta ger för konsekvenser för oss i det verkliga livet. AC (urvalsaxiomet) kommer även att 
+diskuteras i denna del då jag kommer diskutera om axiomet verkligen ska vara ett axiom eller inte och om AC är "korrekt" eller inte. Såklart så finns 
+det inte några rätta eller felaktiga svar på dessa frågor men det blir roligt att iallfall diskutera kring detta.
+
 \section{Slutsats}
+Vet inte vad jag ska skriva här... För kanske över några punkter från diskussionen till denna del.
 \end{document}
 
 %------------------VIKTIGT------------------
