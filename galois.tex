@@ -1,3 +1,4 @@
+% 4.11   2.14    lemma 6.8    lemma 6.9
 \documentclass{article}
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 \setlength{\parindent}{0pt}
@@ -94,6 +95,7 @@ colback=myblue!60}}{th}
 \section{Komplement till del I}
 Denna del ägnar sig åt saker som inte togs upp i del I på grund av de inte fick plats eller som inte var nödvändiga men som kommer att komma 
 till hands i denna del.
+
 \subsection{Linjär algebra}
 En stor sak som undveks i del I var vektorrum. Det visar sig faktiskt att vektorrum blir väldigt praktiska och går hand i hand med andra 
 algebraiska strukturer såsom kroppar och dess utvidgningar. I detta delavsnitt kommer vi att studera grunderna för vektorrum så att de senare kan användas till 
@@ -132,20 +134,56 @@ brukar kallas för vektorer.
     \[a_1v_1 + \cdots + a_n v_n = 0\]
     lösningen $a_1 = \cdots = a_n = 0$.
     \item $K$ \textit{spänner upp} $V$. För alla $v \in V$ så existerar det $b_1, \ldots b_m \in F$ och $v_1, \ldots v_m \in K$ så att 
-    $v = b_1 v_1 + \cdots b_m v_m$.
+    $v = b_1 v_1 + \cdots + b_m v_m$.
   \end{enumerate}
 \end{mydef}
 
 \subsection{Gruppteori}
+Detta avsnitt kommer ägna sig åt normala delgrupper och kvotgrupper. Dessa blir mycket nödvändiga för oss när vi ska bevisa textens viktigaste sats. 
+Mer specifikt kommer vi vara intresserade av kedjor av normala delgrupper och om deras kvotgrupp är abelsk eller icke. Denna 
+del kommer även underlätta senare koncept inom ringteori.
+
+\begin{mydef}{Normala delgrupper}{}
+  Låt $N$ vara en delgrupp till $G$. Vi säger att $N$ är 
+  en \textit{normal delgrupp} till $G$ om $N$ är 
+  \textit{invariant under kojugering}, för alla $n \in N$ och 
+  alla $g \in G$ så är $ghg^{-1} \in N$.
+\end{mydef}
+Med normala delgrupper kan vi partitionera upp hela gruppen med 
+höger (vänster) sidoklasser på endast ett sätt. Detta 
+är anledningen till varför normala delgrupper är viktiga. 
 
 \section{Ringar, kroppar och polynom}
 \subsection{Ringar}
-Ha kanske med denna del om den är nödvändig i framtiden. 
+Precis som vektorrum så går det att använda ringar till våran fördel genom hela texten, speciellt då vi kommer till
+Galoisteorins fundamentalsats.  
+\begin{mydef}{Ringar}{}
+  En \textit{ring} är en mängd med två operationer plus, $+$, och multiplikation $\cdot$, som uppfyller följande \textit{ringaxiom}.
+  \begin{enumerate}[I)]
+    \item Ringen $R$ bildar en abelsk grupp,
+    \item ringen $R$ bildar en \textit{monoid} under multiplikation, det vill säga 
+    \begin{enumerate}
+      \item $(a \cdot b) \cdot c = a \cdot (b \cdot c)$,
+      \item det finns ett \textit{multiplikativt enhetselement} $1 \in R$ så att $1 \cdot a = a \cdot 1,$
+    \end{enumerate}
+    \item multiplikation är distributiv över addition, $a \cdot (b+c) = (a \cdot b) + (a \cdot c)$ och $(b + c) \cdot a = (b \cdot a) + (c \cdot a),$
+  \end{enumerate}
+  för alla $a, b, c \in R$. Om multiplikation är kommutativ över $R$ så säger vi att $R$ är en \textit{kommutativ ring}. 
+\end{mydef}
+Ibland definiras en ring utan axiom II b) men i denna text finns denna med och därför, om inte något annat nämns, så antas en ring ha ett multiplikativt enhetselement. 
+En ring utan detta axiom brukar kallas för en rng som uttalas \textit{rung}.
+
+\begin{mydef}{Ideal}{}
+  Låt $R$ vara en kommutativ ring och $I$ vara en delmängd till denna. Vi säger att $I$ är ett \textit{ideal} om $I$ är en additativ delgrupp till $R$
+  och om $a \in I$ samt $r \in R$ så är $a \cdot r \in I$.
+\end{mydef}
+
 \subsection{Kroppar}
 För att börja med Galoisteori så måste vi först ha en plats där vi kan utföra vanlig aritmetik, en \textit{kropp}. Galoisteori kan ses som en studie 
 av dessa platser som tillåter grundläggande aritmetik och dess relation till polynom. Vi skall i detta delavsnitt och i avsnittet "kroppsutvidgningar" 
 presentera de huvudsakliga faktan om 
 sådana strukturer. 
+
 
 \begin{mydef}{Kroppar}{}
     En \textit{kropp} är en mängd $F$ under två binära operationer, addition ($+$) och multiplikation ($\cdot$), som uppfyller följande \textit{kroppsaxiom}.
@@ -274,6 +312,7 @@ Låt $f(X)$ vara ett polynom med heltals koeffcienter. Då är $f(X)$ irreducibe
 Denna definition vrider lite på perspektivet. Vanligtvist brukar man börja med en mängd och "jobba sig ner" till något mindre, en delmängd. Här är filosofin bakom detta lite 
 annorlunda, man börjar med en mängd för att "jobba sig uppåt" till något större. 
 
+\subsection{Graden för en kroppsutvidgning}
 Det första som skall observeras är följande. I dessa punkter är $K$ en kroppsutvidgning till $F$ och $a, b \in F$ samt $x, y \in K$.
 
 \begin{enumerate}[I)]
@@ -305,7 +344,7 @@ tyder endast på att kardinaliteten av basen, eller \textit{dimensionen} för ve
   \begin{equation}
     x = \sum_{i = 1}^m a_i v_i.
   \end{equation}
-  Vi använder nu faktumet att $\{w_1, \ldots, w_n\}$ spänner upp $L$ för att få, för 
+  Vi använder nu faktumet att $\{w_1, \ldots, w_n\}$ spänner upp $K$ över $F$ för att få, för 
   \linebreak
   $b_{1i}, \ldots, b_{ni} \in F$,
   \begin{equation}
@@ -323,7 +362,45 @@ tyder endast på att kardinaliteten av basen, eller \textit{dimensionen} för ve
   $B$ verkligen är basen för $L$ över $F$ och beviset är således slutfört. 
 \end{proof}
 
+\subsection{Algebraiska kroppsutvidgningar}
+\begin{mydef}{Algebraiska kroppsutvidgningar och element}{}
+  Låt $K$ vara en kroppsutvidgning till $F$. Ett element $\alpha \in K$ är \textit{algebraisk} över $F$ om det existerar ett polynom $f(X) \in F[X]$ 
+  så att $f(\alpha) = 0.$ Vi säger då att $\alpha$ är en lösning till $f(X)$ eller att $\alpha$ är en rot till $f(X).$ Om $\alpha$ inte är algebraiskt så säger 
+  vi att det är \textit{transcendentalt.}
+  Om varje element i $K$ är algebraiskt så säger vi att $K$ är en \textit{algebraisk kroppsutvidgning} till $F$.
+\end{mydef}
+Varje element $\alpha$ i en kropp är självklart algebraisk över denna kropp då $\alpha$ är en rot till $X - \alpha \in F[X]$. Uppkommande lemma visar att 
+viktigare ett intressantare resultat. 
 
+\begin{mylemma}{}{}
+  Varje kroppsutvidgning är algebraisk.
+\end{mylemma}
+
+\begin{proof}
+  Låt $K$ vara en kroppsutvidgning till $F$ med graden $n$ och $\alpha \in K$. Observera att mängden
+  \[A = \{1, \alpha, \alpha^2, \ldots, \alpha^n\} \]
+  är en delmängd till $K$ och har kardinaliteten $n+1$. Den högsta möjliga mängden innehållande linjärt \textit{oberoende} element från $K$ kan dock endast vara $n$. 
+  Detta betyder att $A$ är linjärt \textit{beroende} över $F$. Med detta kan vi konstatera att ekvationen
+  \[b_0 + \alpha^1 b_1 + \alpha^2 b_2 + \cdots + \alpha^n b_n = 0\]
+  gäller för $b_i \in F$ där några är skiljda från noll. Vi har alltså att $\alpha$ är en lösning till polynomet 
+  \[f(X) = b_0 + X^1 b_1 + X^2 b_2 + \cdots + X^n b_n\]
+  vilket slutför beviset.
+\end{proof}
+
+\subsection{Enkla kroppsutvidgningar och minimala polynom}
+\begin{mydef}{}{}
+  Låt $K$ vara en kroppsutvidgning till $F$ och $\alpha_1, \ldots, \alpha_n \in K$. Vi skriver  
+  \[F(\alpha_1, \ldots, \alpha_n)\]
+  för den minsta delkroppen till $K$ som innehåller $F$ och elementen $\alpha_1, \ldots, \alpha_n$. Vi säger att $K$ är en \textit{enkel kroppsutvidgning} till $F$
+  om $K = F(\beta), \; \beta \in K.$ Vi säger då att $K$ har erhållits genom att ha \textit{adjungerat} $\beta$.
+\end{mydef}
+Med denna definition kan vi nu alltid skapa kroppsutvidgningar genom att bara lägga till element i en kropp. 
+
+\begin{mydef}{Minimala polynom}{}
+  Låt $K$ vara en kroppsutvidgning till $F$ och $\alpha$ vara ett element i $K$ som är algebraiskt över $F$. Det \textit{minimala polynomet} av $\alpha$ över $F$
+  är det moniska polynomet (ett nollskilt polynom med en högstagradskoefficient som är 1) $f(X)$ med lägsta grad i $F[X]$ så att $\alpha$ är en lösning till den. 
+\end{mydef}
+(exempel)
 \section{Galoisteorins fundamentalsats}
 Det är här den matematiska vackerheten och syftet med hela texten uppträder.
 \section{Lösbara grupper och lösningarna till polynom}
