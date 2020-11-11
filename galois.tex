@@ -41,6 +41,15 @@
      boxed title style={colframe=black!30!black, boxrule=0.8pt,
 colback=myblue!60}}{th}
 
+\newtcbtheorem[number within=subsection]{myprop}{Proposition}%
+    {colback=myblue!15,colframe=black!30!black,
+     enhanced,
+     coltitle=black!75!black, boxrule=0.8pt,
+     attach boxed title to top left=
+       {xshift=2ex,yshift=-2mm,yshifttext=-1mm},
+     boxed title style={colframe=black!30!black, boxrule=0.8pt,
+colback=myblue!60}}{th}
+
 \newtcbtheorem[number within=subsection]{mykol}{Korollarium}%
     {colback=myblue!15,colframe=black!30!black,
      enhanced,
@@ -147,11 +156,64 @@ del kommer även underlätta senare koncept inom ringteori.
   Låt $N$ vara en delgrupp till $G$. Vi säger att $N$ är 
   en \textit{normal delgrupp} till $G$ om $N$ är 
   \textit{invariant under kojugering}, för alla $n \in N$ och 
-  alla $g \in G$ så är $ghg^{-1} \in N$.
+  alla $g \in G$ så är $ghg^{-1} \in N$. Vi skriver då $N \triangleleft G.$
 \end{mydef}
-Med normala delgrupper kan vi partitionera upp hela gruppen med 
-höger (vänster) sidoklasser på endast ett sätt. Detta 
-är anledningen till varför normala delgrupper är viktiga. 
+Motivationen bakom denna till synes konstiga definition finner man i kvotgrupper. En definerande egenskap hos normala delgrupper tas upp i följande proposition.
+
+\hypertarget{prop1}{}
+\begin{myprop}{}{}
+  Låt $N$ vara en normal delgrupp till $G$ och $g \in G$. Vänstersidoklassen till $N$ är då lika med högersidoklassen till $N$ med avseende på $g$, 
+  $gN = Ng.$
+\end{myprop}
+\begin{proof}
+  Om $n \in N$ så är $gn \in gN$. Notera nu att 
+  \begin{equation*}
+    gn = gn(g^{-1}g) = \underbrace{(gng^{-1})}_{ \substack{N \triangleleft G  \implies \\ gng^{-1} \in N}} g.
+  \end{equation*}
+  Detta visar att $gN \subseteq Ng.$ Ett godtyckligt element i $Ng$ är på formen $ng$. Observera att 
+  \begin{equation*}
+    ng = n(g^{-1})^{-1} = g \underbrace{g^{-1} {n(g^{-1})^{-1}}}_{\substack{N \triangleleft G  \implies \\ g^{-1} {n(g^{-1})^{-1} \in N}}}.
+  \end{equation*}
+  Detta visar att $Ng \subseteq gN$ vilket slutför beviset.
+\end{proof}
+
+\begin{mydef}{Kvotgrupper}{}
+  Låt $N$ vara en normal delgrupp till $G$. \textit{Kvotgruppen} $G/N$, som utläses "$G$ modulo (mod) $N$", är gruppen innehållande alla 
+  sidoklasser till $N$, 
+  \[G/N \equiv \{gN \; | \; g \in G\},\]
+  där gruppoperationen defineras som $(aN) (bN) = (ab)N$. 
+\end{mydef}
+Denna definition använder sig av vänstersidoklasser men, enligt \hyperlink{prop1}{proposition 3.2.1}, så kan man lika gärna använda sig 
+av högersidoklasser. Notera att för $a' \in aN, a \in G$ så är $a'N = aN$ enligt resultat från del I. Det vi har kvar att visa är att $(a'N) (b'N) = (ab)N
+\iff (a'b')N = (ab)N$, det vill säga att det inte spelar någon roll vilka representanter framför $N$, $a' \in aN, b' \in bN$, vi väljer, 
+resultatet av operationen bör fortfarande vara i samma sidoklass som $ab$. Vi säger då att operationen är \textit{väldefinierad}.
+ Om detta inte skulle gälla så skulle man kunna konstatera $G/N$ på flera olika sätt, vilket 
+vi naturligtvist inte vill.  
+
+Vi vet från del I att mängden av sidklasser utgör en partition av en grupp och därför kan vi rita följande figur.
+
+\begin{center}
+  \begin{tikzpicture}[->]
+    \node at (0, 2.5) {$G$};
+    \draw (-4,2) rectangle (4,-2);
+    \foreach \i [count=\xi] in {-4, -2.4,...,0}{
+      \draw (\i, 2) rectangle (-\i, -2);
+    }
+    \node at (-3.2, -2.3) {$N$};
+    \node at (-1.6, -2.3) {$aN$};
+    \node at (0, -2.3) {$bN$};
+    \node at (1.6, -2.3) {$cN$};
+    \node at (3.2, -2.3) {$(ab)N$};
+    \node at (-1.6, 0.5) {$a$};
+    \node at (-1.6, -0.5) {$a_1$};
+    \node at (0, 0.5) {$b$};
+    \node at (0, -0.5) {$b_1$};
+    \node[scale=1.5] at (4.8, 0) {$\cdots$};
+    \path[every node/.style={font=\sffamily\small}]
+    (-1.6, 0.5) edge[bend right] node [left] {} (1, 1);
+    \node at (0, -3.2) {$G/N = \{N, aN, bN, cN, (ab)N, \ldots\}$};
+  \end{tikzpicture}
+\end{center}
 
 \section{Ringar, kroppar och polynom}
 \subsection{Ringar}
