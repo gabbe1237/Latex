@@ -156,9 +156,10 @@ del kommer även underlätta senare koncept inom ringteori.
   Låt $N$ vara en delgrupp till $G$. Vi säger att $N$ är 
   en \textit{normal delgrupp} till $G$ om $N$ är 
   \textit{invariant under kojugering}, för alla $n \in N$ och 
-  alla $g \in G$ så är $ghg^{-1} \in N$. Vi skriver då $N \triangleleft G.$
+  alla $g \in G$ så är $gng^{-1} \in N$. Vi skriver då $N \triangleleft G.$
 \end{mydef}
-Motivationen bakom denna till synes konstiga definition finner man i kvotgrupper. En definerande egenskap hos normala delgrupper tas upp i följande proposition.
+Motivationen bakom denna till synes konstiga definition finner man i kvotgrupper. 
+En definerande egenskap hos normala delgrupper tas upp i följande proposition.
 
 \hypertarget{prop1}{}
 \begin{myprop}{}{}
@@ -185,44 +186,79 @@ Motivationen bakom denna till synes konstiga definition finner man i kvotgrupper
 \end{mydef}
 Denna definition använder sig av vänstersidoklasser men, enligt \hyperlink{prop1}{proposition 3.2.1}, så kan man lika gärna använda sig 
 av högersidoklasser. Notera att för $a' \in aN, a \in G$ så är $a'N = aN$ enligt resultat från del I. Det vi har kvar att visa är att $(a'N) (b'N) = (ab)N
-\iff (a'b')N = (ab)N$, det vill säga att det inte spelar någon roll vilka representanter framför $N$, $a' \in aN, b' \in bN$, vi väljer, 
-resultatet av operationen bör fortfarande vara i samma sidoklass som $ab$. Vi säger då att operationen är \textit{väldefinierad}.
- Om detta inte skulle gälla så skulle man kunna konstatera $G/N$ på flera olika sätt, vilket 
-vi naturligtvist inte vill.  
+\iff (a'b')N = (ab)N$, det vill säga att det inte spelar någon roll vilka representanter framför $N$, $a' \in aN, b' \in bN$, vi väljer. Resultatet av 
+operationen bör vara oberoende av vilka representanter vi väljer, annars skulle det kunna finnas flera svar till en och samma sak. Med 
+andra ord måste vi visa att operationen är \textit{väldefinerad}.
 
-Vi vet från del I att mängden av sidklasser utgör en partition av en grupp och därför kan vi rita följande figur.
+För att visa detta kan vi låta $a' \in aN$ och $b' \in bN$. Vi kan skriva dessa som $a' = an_1$ och $b' = bn_2$ för $n_1, n_2 \in N$. Med denna 
+omskrivning kan vi konstatera att
+\[(a'b')N = (an_1bn_2)N.\]
+Eftersom assosiativitet gäller så är 
+\[(an_1bn_2)N = an_1b(n_2N).\]
+Vidare har vi även att $n_2 \in N$ vilket enligt resultat från del I ger 
+\[an_1b(n_2N) = an_1bN.\]
+Enligt \hyperlink{prop1}{proposition 3.2.1} har vi att 
+\[an_1bN = ab(n_1N) = (ab)N.\]
+
+Vi vet från del I att mängden av sidklasser utgör en partition av en grupp och därför är följande figur lämplig.
 
 \begin{center}
-  \begin{tikzpicture}[->]
+  \begin{tikzpicture}[scale=0.8]
     \node at (0, 2.5) {$G$};
-    \draw (-4,2) rectangle (4,-2);
-    \foreach \i [count=\xi] in {-4, -2.4,...,0}{
+    \draw (-3,2) rectangle (3,-2);
+    \foreach \i [count=\xi] in {-3, -1.5,..., 0}{
       \draw (\i, 2) rectangle (-\i, -2);
     }
-    \node at (-3.2, -2.3) {$N$};
-    \node at (-1.6, -2.3) {$aN$};
-    \node at (0, -2.3) {$bN$};
-    \node at (1.6, -2.3) {$cN$};
-    \node at (3.2, -2.3) {$(ab)N$};
-    \node at (-1.6, 0.5) {$a$};
-    \node at (-1.6, -0.5) {$a_1$};
-    \node at (0, 0.5) {$b$};
-    \node at (0, -0.5) {$b_1$};
-    \node[scale=1.5] at (4.8, 0) {$\cdots$};
-    \path[every node/.style={font=\sffamily\small}]
-    (-1.6, 0.5) edge[bend right] node [left] {} (1, 1);
-    \node at (0, -3.2) {$G/N = \{N, aN, bN, cN, (ab)N, \ldots\}$};
+    \node at (-2.25, -2.3) {$N$};
+    \node at (-0.75, -2.3) {$aN$};
+    \node at (0.75, -2.3) {$bN$};
+    \node at (2.25, -2.3) {$cN$};
+    \node at (0, -3.3) {$G/N = \{N, aN, bN, cN\}.$};
+
+    \draw[fill = red!20] (-3, 2) rectangle (-1.5, -2);
+    \draw[fill = red!30] (-1.5, 2) rectangle (0, -2);
+    \draw[fill = red!40] (0, 2) rectangle (1.5, -2);
+    \draw[fill = red!50] (1.5, 2) rectangle (3, -2);
   \end{tikzpicture}
 \end{center}
+Man kan alltså tänka sig att en kvotgrupp $G/N$ delar upp $G$ i mindre delar vars storlek är $|N|$. 
 
+\begin{exmp}
+  Vi vet att $\mathbb{Z}$ är en grupp under addition och att $3 \mathbb{Z}$ är en normal delgrupp till $\mathbb{Z}$, ty $z + n + (-z) \in 3 \mathbb{Z}$
+  för $z \in \mathbb{Z}, n \in 3 \mathbb{Z}$. Alla möjliga sidoklasser till $3 \mathbb{Z}$ är $3 \mathbb{Z} + 1$ och $3 \mathbb{Z} + 2$ och därför är 
+  $\mathbb{Z} / 3\mathbb{Z} = \{3 \mathbb{Z}, \; 3 \mathbb{Z} + 1, \; 3 \mathbb{Z} + 2\}$. Man brukar beteckna $3 \mathbb{Z}$ med $[0]$, 
+  $3 \mathbb{Z} + 1$ med $[1]$ och $3 \mathbb{Z} + 2$ med $[2]$. Med dessa beteckningar blir $\mathbb{Z} / 3\mathbb{Z} = \{[0], [1], [2]\}$. 
+  Med hjälp av figuren 
+  nedan, som visar Cayleytabellen för denna grupp respektive den cykliska gruppen av ordning tre, så kan vi konstatera att
+  \[\mathbb{Z} / 3\mathbb{Z} \cong C_3 \cong (\mathbb{Z}_3, +).\]
+  \begin{center}
+    \begin{tabular}{c | c c c}
+      $+$ & $[0]$ & $[1]$ & $[2]$  \\
+      \cline{1-4}
+      $[0]$ & $[0]$ & $[1]$ & $[2]$ \\
+      $[1]$ & $[1]$  & $[2]$ & $[e]$\\
+      $[2]$ & $[2]$ & $[e]$  & $[1]$\\
+    \end{tabular} 
+    \qquad
+    \begin{tabular}{c | c c c}
+      $\circ$ & $e$ & $\sigma$ & $\sigma^2$ \\
+      \cline{1-4}
+      $e$ & $e$ & $\sigma$ & $\sigma^2$ \\
+      $\sigma$ & $\sigma$ & $\sigma^2$  & $e$\\
+      $\sigma^2$ & $\sigma^2$ & $e$ & $\sigma$
+    \end{tabular}
+  \end{center}
+  Till exempel så är $[2] + [1] = (3 \mathbb{Z} + 2) + (3 \mathbb{Z} + 1) = 3\mathbb{Z} + 3 = 3 \mathbb{Z} = [0].$
+\end{exmp}
+Man kan enkelt visa att en kvotgrupp faktiskt bildar en grupp och därför lämnas detta som en övning till läsaren.
 \section{Ringar, kroppar och polynom}
 \subsection{Ringar}
 Precis som vektorrum så går det att använda ringar till våran fördel genom hela texten, speciellt då vi kommer till
-Galoisteorins fundamentalsats.  
+Galoisteorins fundamentalsats.
 \begin{mydef}{Ringar}{}
   En \textit{ring} är en mängd med två operationer plus, $+$, och multiplikation $\cdot$, som uppfyller följande \textit{ringaxiom}.
   \begin{enumerate}[I)]
-    \item Ringen $R$ bildar en abelsk grupp,
+    \item Ringen $R$ bildar en abelsk grupp under addition,
     \item ringen $R$ bildar en \textit{monoid} under multiplikation, det vill säga 
     \begin{enumerate}
       \item $(a \cdot b) \cdot c = a \cdot (b \cdot c)$,
@@ -232,13 +268,70 @@ Galoisteorins fundamentalsats.
   \end{enumerate}
   för alla $a, b, c \in R$. Om multiplikation är kommutativ över $R$ så säger vi att $R$ är en \textit{kommutativ ring}. 
 \end{mydef}
-Ibland definiras en ring utan axiom II b) men i denna text finns denna med och därför, om inte något annat nämns, så antas en ring ha ett multiplikativt enhetselement. 
-En ring utan detta axiom brukar kallas för en rng som uttalas \textit{rung}.
+Ibland definieras en ring utan axiom II b) men i denna text finns denna med och därför, om inte något annat nämns, så antas en ring ha ett multiplikativt enhetselement. 
+En ring utan detta axiom brukar kallas för en rng som uttalas \textit{rung}. Eftersom vi endast är intresserade av kommutativa ringar så kommer vi 
+att benämna varje kommutativ ring för en ring. 
 
 \begin{mydef}{Ideal}{}
-  Låt $R$ vara en kommutativ ring och $I$ vara en delmängd till denna. Vi säger att $I$ är ett \textit{ideal} om $I$ är en additativ delgrupp till $R$
-  och om $a \in I$ samt $r \in R$ så är $a \cdot r \in I$.
+  Låt $R$ vara en ring och $I$ vara en delmängd till denna. Vi säger att $I$ är ett \textit{ideal} om $I$ är en additativ delgrupp till $R$
+  och om $i \in I$ samt $r \in R$ så är $i \cdot r \in I$. 
 \end{mydef}
+Det följer från definitionen att $ab \in I$ för alla $a, b \in I$ och $I$ är därför sluten under multiplikation. Detta faktum tillsammans 
+med att ett ideal är sluten under addition och att ett ideal är en delmängd betyder att det är en \textit{delring}.
+Notera även att ett ideal egentligen är en rng då $1 \notin I$. Om detta var fallet skulle 
+$r = 1r \in I$ för alla $R$ och $I$ skulle därför inte vara en delmängd till $R$. 
+
+Anledningen till varför det är intressant att studera ideal är av precis samma anledning till varför det är intressant att studera normala delgrupper, 
+vi kan nämligen skapa kvotringar med hjälp av ideal.
+
+\begin{mydef}{Kvotringar}{}
+  Låt $I$ vara ett ideal till $R$. \textit{Kvotringen} $R/I$, som utläses "$R$ modulo (mod) $I$, är ringen innehållande alla sidoklasser till $I$, 
+  \[R/I \equiv \{I + r \; | \; r \in R\}.\]
+\end{mydef}
+
+Vi vet från att ha studerat kvotgrupper att kvotgruppen $(R/I, +)$ skapar en grupp med operationen 
+\[ (I + r_1) + (I + r_2) = I + (r_1 + r_2).\]
+Vi har även observerat att denna operation är väldefinerad om en normal delgrupp väljs. I detta fall jobbar vi med ringar, det vill säga 
+$(R, +)$ är abelsk, och därför är även operationen väldefinerad med ideal. Notera att $(R/I, +)$ är abelsk eftersom $(R, +)$ är abelsk.
+
+Vi kan definera multiplikation av elementen i kvotringen $R/I$ på ett liknande sätt:
+\[(I + r_1) \cdot (I + r_2) = I + (r_1 \cdot r_2). \]
+För att visa att detta är väldefinerat så låter vi $r_1' \in I + r_1$ och $r_2' \in I + r_2$ för $r_1, r_2 \in R$. Vi kan skriva 
+om $r_1'$ som $r_1' = i_1 + r_1$ och $r_2'$ som $r_2' = i_2 + r_2$ för $i_1, i_2 \in I$. Med denna omskrivning kan vi observera följande.
+\[(I + r_1') \cdot (I + r_2') = (I + (i_1 + r_1)) \cdot (I + (i_2 + r_2))\]
+och per definition får vi 
+\[(I + (i_1 + r_1)) \cdot (I + (i_2 + r_2)) = I + ((i_1 + r_1) \cdot (i_2 + r_2)).\]
+Eftersom multiplikation är distributiv över addition fås (i följande rad har $\cdot$ utelämnats)
+\[I + ((i_1 + r_1) \cdot (i_2 + r_2)) = I + (\underbrace{i_1  i_2 + i_1  r_2 + r_1  i_2}_{\in I} + r_1  r_2).\]
+Den delen som är understrycken tillhör $I$ eftersom det är ett ideal. Vi kallar denna del för $i_3$. Detta ger
+\[I + (i_3 + r_1 \cdot r_2) = (I + i_3) + (I + r_1 \cdot r_2).\]
+Tidigare resultat från del I ger 
+\[(I + i_3) + (I + (r_1 \cdot r_2)) = I + (r_1 \cdot r_2)\]
+och operationen är således väldefinerad. 
+
+VISA ATT DETTA ÄR EN RING... !!!
+
+\begin{mydef}{Ring homomorfism och isomorfism}{}
+  Låt $R$ och $S$ vara ringar. En \textit{ring homomorfism} $\varphi: R \rightarrow S$ är en funktion så att 
+  \begin{enumerate}[I)]
+    \item $\varphi(r_1 + r_2) = \varphi(r_1) + \varphi(r_2)$,
+    \item $\varphi(r_1 \cdot r_2) = \varphi(r_1) \cdot \varphi(r_2)$
+  \end{enumerate}
+  för alla $r_1, r_2 \in R$. En bijektiv ring homomorfism kallas för en \textit{ring isomorfism}.
+\end{mydef}
+En ring homomorfism är alltså en grupp homomorfism men för "både addition och multiplikation".
+
+\begin{mydef}{Kärnan och bilden av en homomorfism}{}
+  Låt $R$ och $S$ vara ringar och $\varphi: R \rightarrow S$ en homomorfism. \textit{Kärnan} av $\varphi$
+  defineras som 
+  \[ker(\varphi) \equiv \{r \in R \; | \; \varphi(r) = 0\}.\]
+  \textit{Bilden} av $\varphi$ defineras som 
+  \[Im(\varphi) \equiv \{\varphi(r) \; | \; r \in R\}.\]
+\end{mydef}
+Detta togs även upp i del I.
+\begin{mytheo}{First isomorphism theorem}{}
+a  
+\end{mytheo}
 
 \subsection{Kroppar}
 För att börja med Galoisteori så måste vi först ha en plats där vi kan utföra vanlig aritmetik, en \textit{kropp}. Galoisteori kan ses som en studie 
