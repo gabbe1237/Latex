@@ -262,7 +262,7 @@ Galoisteorins fundamentalsats.
     \item ringen $R$ bildar en \textit{monoid} under multiplikation, det vill säga 
     \begin{enumerate}
       \item $(a \cdot b) \cdot c = a \cdot (b \cdot c)$,
-      \item det finns ett \textit{multiplikativt enhetselement} $1 \in R$ så att $1 \cdot a = a \cdot 1,$
+      \item det finns ett \textit{multiplikativt enhetselement} $1 \in R$ så att $1 \cdot a = a \cdot 1 = a,$
     \end{enumerate}
     \item multiplikation är distributiv över addition, $a \cdot (b+c) = (a \cdot b) + (a \cdot c)$ och $(b + c) \cdot a = (b \cdot a) + (c \cdot a),$
   \end{enumerate}
@@ -273,7 +273,7 @@ En ring utan detta axiom brukar kallas för en rng som uttalas \textit{rung}. Ef
 att benämna varje kommutativ ring för en ring. 
 
 \begin{mydef}{Ideal}{}
-  Låt $R$ vara en ring och $I$ vara en delmängd till denna. Vi säger att $I$ är ett \textit{ideal} om $I$ är en additativ delgrupp till $R$
+  Låt $R$ vara en ring och $I$ vara en delmängd till denna. Vi säger att $I$ är ett \textit{ideal} till $R$ om $I$ är en additativ delgrupp till $R$
   och om $i \in I$ samt $r \in R$ så är $i \cdot r \in I$. 
 \end{mydef}
 Det följer från definitionen att $ab \in I$ för alla $a, b \in I$ och $I$ är därför sluten under multiplikation. Detta faktum tillsammans 
@@ -309,7 +309,14 @@ Tidigare resultat från del I ger
 \[(I + i_3) + (I + (r_1 \cdot r_2)) = I + (r_1 \cdot r_2)\]
 och operationen är således väldefinerad. 
 
-VISA ATT DETTA ÄR EN RING... !!!
+I de följande punkterna är $I$ ett ideal till $R$ och $r_1, r_2, r_3 \in R$. 
+\begin{enumerate}[I)]
+  \item $(R/I, +)$ är en abelsk grupp. Detta lämnades som en övning till läsaren i avsnittet om gruppteori.
+  \item $((I + r_1) \cdot (I + r_2)) \cdot (I + r_3) = I + (r_1 r_2 r_3) = (I + r_1) \cdot ((I + r_2) \cdot (I + r_3)).$
+  \item Det multiplikativa enhetselementet är $I + 1$ eftersom $(I + 1) \cdot (I + r_1) = I + r_1.$
+  \item $(I + r_1) \cdot (I + (r_2 + r_3)) = I + (r_1r_2 + r_1r_3) = (I + (r_1r_2)) + (I + (r_1r_3)).$
+\end{enumerate}
+Detta visar att $R/I$ bildar en monoid under multiplikation och att multiplikation är distributiv över addition. En kvotring är alltså en ring.
 
 \begin{mydef}{Ring homomorfism och isomorfism}{}
   Låt $R$ och $S$ vara ringar. En \textit{ring homomorfism} $\varphi: R \rightarrow S$ är en funktion så att 
@@ -328,10 +335,20 @@ En ring homomorfism är alltså en grupp homomorfism men för "både addition oc
   \textit{Bilden} av $\varphi$ defineras som 
   \[Im(\varphi) \equiv \{\varphi(r) \; | \; r \in R\}.\]
 \end{mydef}
-Detta togs även upp i del I.
-\begin{mytheo}{First isomorphism theorem}{}
-a  
+Detta togs även upp i del I men bör repeteras för det nästkommande. 
+\begin{mytheo}{"Första isomorfiska satsen"}{}
+  Låt $R$ och $S$ vara ringar och $\varphi: R \rightarrow S$ en homomorfism. Kärnan av $\varphi$ är då ett ideal till $R$ och bilden av $\varphi$ är en 
+  delring till $S$ och 
+  \[R/ker(\varphi) \cong Im(\varphi).\]
 \end{mytheo}
+
+\begin{center}
+  \begin{tikzpicture}
+    \draw[-latex] (0, 0) -- (2, 0) node at (-0.3, 0) {$R$} node at (1, 0.3) {$\pi$} node at (2.85, 0) {$R/ker(\varphi)$};
+    \draw[-latex, dashed] (3, -0.3) -- (3, -2) node at (3, -2.3) {$Im(\varphi)$} node at (3.3, -1) {$\psi$};
+    \draw[-latex] (0, -0.2) -- (2.4, -2.16) node at (1, -1.4) {$\varphi$};
+  \end{tikzpicture}
+\end{center}
 
 \subsection{Kroppar}
 För att börja med Galoisteori så måste vi först ha en plats där vi kan utföra vanlig aritmetik, en \textit{kropp}. Galoisteori kan ses som en studie 
