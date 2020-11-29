@@ -1,4 +1,4 @@
-% 4.11   2.14    lemma 6.8    lemma 6.9
+% 4.11   2.14  2.11 3.13  lemma 6.8    lemma 6.9 
 \documentclass{article}
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
 \setlength{\parindent}{0pt}
@@ -256,7 +256,7 @@ Man kan enkelt visa att en kvotgrupp faktiskt bildar en grupp och därför lämn
 Precis som vektorrum så går det att använda ringar till våran fördel genom hela texten, speciellt då vi kommer till
 Galoisteorins fundamentalsats.
 \begin{mydef}{Ringar}{}
-  En \textit{ring} är en mängd med två operationer plus, $+$, och multiplikation $\cdot$, som uppfyller följande \textit{ringaxiom}.
+  En \textit{ring} är en mängd med två binära operationer plus, $+$, och multiplikation $\cdot$, som uppfyller följande \textit{ringaxiom}.
   \begin{enumerate}[I)]
     \item Ringen $R$ bildar en abelsk grupp under addition,
     \item ringen $R$ bildar en \textit{monoid} under multiplikation, det vill säga 
@@ -335,12 +335,59 @@ En ring homomorfism är alltså en grupp homomorfism men för "både addition oc
   \textit{Bilden} av $\varphi$ defineras som 
   \[Im(\varphi) \equiv \{\varphi(r) \; | \; r \in R\}.\]
 \end{mydef}
-Detta togs även upp i del I men bör repeteras för det nästkommande. 
+Detta togs även upp i del I men bör repeteras för det nästkommande. Innan vi går vidare 
+så noterar vi att $\varphi(0) = 0$ och att $\varphi(1) = 1$ för en homomorfism $\varphi$. Om detta inte var fallet skulle $\varphi(0) = x$ för ett nollskilt $x$. 
+Följande rad visar att detta är omöjligt.
+\[x = \varphi(0) = \varphi(0 + 0 + \cdots) = \varphi(0) + \varphi(0) + \cdots =  x + x + \cdots \neq x.\]
+Ett liknande argument kan användas för att visa att $\varphi(1) = 1$.
+
+\hypertarget{isomorfiska}{}
 \begin{mytheo}{"Första isomorfiska satsen"}{}
   Låt $R$ och $S$ vara ringar och $\varphi: R \rightarrow S$ en homomorfism. Kärnan av $\varphi$ är då ett ideal till $R$ och bilden av $\varphi$ är en 
   delring till $S$ och 
   \[R/ker(\varphi) \cong Im(\varphi).\]
 \end{mytheo}
+\begin{proof}
+  Eftersom $\varphi$ är en homomorfism och $(R, +)$ är en grupp så är även $(ker(\varphi), +)$ en grupp. 
+
+  För $i \in ker(\varphi)$ och $r \in R$ så är $\varphi(i \cdot r) = \varphi(i) \cdot \varphi(r)$ eftersom $\varphi$ är en homomorfism. 
+  Per definition är $\varphi(i) = 0$. Detta ger att $\varphi(i) \cdot \varphi(r) = 0 \cdot \varphi(r) = 0$ vilket medför att $i \cdot r \in ker(\varphi)$.
+  Detta visar att $ker(\varphi)$ är ett ideal till $R$.
+
+  Vi visar nu att $Im(\varphi)$ är både sluten under addition och multiplikation. Detta kommer då visa att $Im(\varphi)$ är en delring till $S$.
+  Låt $a, b \in S$. Observera att 
+  \[\varphi(a) + \varphi(b) = \varphi(a + b)\]
+  och att 
+  \[\varphi(a) \cdot \varphi(b) = \varphi(a \cdot b).\]
+  Eftersom $+$ och $\cdot$ är \textit{binära} operationer så är $a + b \in S$ och $a \cdot b \in S$. Detta visar att $Im(\varphi)$ är en delring till $S$.
+
+  Låt $\psi: R/ker(\varphi) \rightarrow Im(\varphi)$ vara en homomorfism definerad som $\psi: ker(\varphi) + r \mapsto \varphi(r)$ för $r \in R$ 
+  (det är enkelt att visa att $\psi$ faktiskt är en homomorfism och läsaren får gå igenom beviset själv). Vi visar först 
+  att $\psi$ är väldefinerad, det vill säga $\psi(ker(\varphi) + r') = \varphi(r)$ för $r' \in ker(\varphi) + r.$ Omskrivningen 
+  $r' = r_1 + r$ där $\varphi(r_1) = 0$ ger att 
+  \[\psi(ker(\varphi) + r') = \psi(ker(\varphi) + (r_1+r)).\]
+  Vi kan utveckla detta och få
+  \[\psi(ker(\varphi) + (r_1+r)) = \psi((ker(\varphi) + r_1) + (ker(\varphi) + r))\]
+  och eftersom $\psi$ är en homomorfism så blir 
+  \[\psi((ker(\varphi) + r_1) + (ker(\varphi) + r)) = \psi(ker(\varphi) + r_1) + \psi(ker(\varphi) + r)\]
+  och per definition får vi
+  \[\psi(ker(\varphi) + r_1) + \psi(ker(\varphi) + r) = \varphi(r_1) + \varphi(r) = \varphi(r)\]
+  och $\psi$ är således väldefinerad.
+
+  Det är tydligt att $\psi$ är surjektiv till följd av dess konstruktion. Vi visar nu att $\psi$ är injektiv. Antag att 
+  \[\psi(ker(\varphi) + r_1) = \psi(ker(\varphi) + r_2).\]
+  Detta är ekvivalent med 
+  \[\varphi(r_1) = \varphi(r_2)\]
+  och eftersom $\varphi$ är en homomorfism och $\varphi(0) = 0$ får vi att 
+  \[\varphi(r_1 - r_2) = 0.\]
+  Vi kan konstatera att $r_1 - r_2 \in ker(\varphi)$ vilket gör att omskrivningen $r_1 = r_3 + r_2$ är lämplig för $r_3 \in ker(\varphi)$.
+  Detta medför att 
+  \[ker(\varphi) + r_1 = ker(\varphi) + (r_3 + r_2) = ker(\varphi) + r_2.\]
+  Detta visar att $\psi$ är en isomorfism och beviset är slutfört.
+\end{proof}
+
+Denna sats kan sammanfattas i ett diagram som egentligen tillhör kategoriteori och inte algebra.
+I diagramet nedan är homomorfismer indikerade med pilar och en streckad pil betyder att det existerar en homomorfism. 
 
 \begin{center}
   \begin{tikzpicture}
@@ -349,6 +396,42 @@ Detta togs även upp i del I men bör repeteras för det nästkommande.
     \draw[-latex] (0, -0.2) -- (2.4, -2.16) node at (1, -1.4) {$\varphi$};
   \end{tikzpicture}
 \end{center}
+
+Homomorfismen $\pi$ i diagramet ovan är egentligen irrelevant för oss. Poängen med den är att visa att det finns två vägar som leder oss 
+till $Im(\varphi)$. Antigen tar man den raka vägen genom $\varphi$ eller så tar man först $\pi$ och sedan $\psi$ och eftersom 
+de båda vägarna leder oss till samma slutresultat kan vi konstatera att $\varphi = \psi \circ \pi$ och vi säger att 
+diagramet är kommutativt. Satsen ovan bevisar just 
+att det faktiskt existerar en $\psi$ som har sådana egenskaper. 
+
+Denna sats är inte unik för ringar och kan tillämpas på grupper också. Nedan följer några roliga exempel på hur man kan visa att 
+två grupper är isomorfa med denna sats. 
+\begin{exmp}
+  Visa att 
+  \[R/\{1, -1\} \cong \mathbb{R}^+\]
+  där $R$ är gruppen av alla nollskilda reella tal under multiplikation och där $\mathbb{R}^+$ är gruppen av alla positiva reella tal under mutliplikation.
+
+  Definera $\varphi: R \rightarrow \mathbb{R}^+$ genom $\varphi(x) = |x|.$
+  Denna är en homomorfism eftersom 
+  \[\varphi(x \cdot y) = |x \cdot y| = |x| \cdot |y| = \varphi(x) \cdot \varphi(y).\]
+  Observera att $Im(\varphi) = \mathbb{R}^+$ och att $ker(\varphi) = \{1, -1\}$ eftersom $1$ är enhetselementet i $\mathbb{R}^+$. Vi får då att 
+  \[R / \{1, -1\} \cong Im(\varphi) = \mathbb{R}^+.\] 
+\end{exmp}
+
+\begin{ovning}{1}
+  Låt $\mathbb{R}^2$ vara gruppen av alla reella ordnade par under komponentvis addition $((a, b) + (c, d) = (a + c, b + d))$ och $\mathbb{R}$
+  vara gruppen av alla reella tal under addition. Definera 
+  \[H = \biggl\{x \cdot (\sqrt 5, -\pi) \; | \; x \in \mathbb{R} \biggr\}.\]
+  Visa att $\mathbb{R}^2 / H \cong \mathbb{R}.$
+\end{ovning}
+
+Ledning: Åtgå ifrån funktionen $f: \mathbb{R}^2 \rightarrow \mathbb{R}$ som defineras av $f(x, y) = \pi x + \sqrt 5 y$. 
+Här finns även en liten genväg som man kan ta genom att skriva upp $f$ i matris form. 
+
+
+\begin{ovning}{2}
+  Visa att en homomorfism $\varphi$ är injektiv om och endast om $ker(\varphi) = \{0\}.$ Hur kan detta användas för att bevisa att 
+  $\psi$ är injektiv i den första isomorfiska satsen?
+\end{ovning}
 
 \subsection{Kroppar}
 För att börja med Galoisteori så måste vi först ha en plats där vi kan utföra vanlig aritmetik, en \textit{kropp}. Galoisteori kan ses som en studie 
@@ -391,7 +474,22 @@ så kan den anses vara "cyklisk".
   polynomet och betecknas $\grad f(X)$. (För polynomet ovan är $\grad f(X) = n$.)
 \end{mydef}
 Trots att $\mathbb{Z}$ inte är en kropp så kommer vi fortfarande beteckna $\mathbb{Z}[X]$ som mängden av polynom med heltals koeffcienter
-för att slippa skriva mycket.
+för att slippa skriva mycket. Notera att $F[X]$ bildar en ring eftersom $F$ är en kropp.
+
+\hypertarget{pid}{}
+\begin{myprop}{}{}
+  Om $F$ är en kropp så är $F[X]$ ett \textit{principalidealdomän} (PID), dvs. varje ideal $I$ till $F[X]$ är på formen 
+  $I = (f(X)) \equiv \{f(X)g(X) \; | \; g(X) \in F[X]\}$ för $f(X) \in F[X].$
+\end{myprop}
+\begin{proof}
+  Låt $I$ vara ett ideal till $F[X]$. Om $I = \{0\}$ så är $I = (0)$ och propositionen gäller för detta fall. Låt $I \neq \{0\}$.
+  Då måste det finnas ett polynom i $I$ så att graden för denna är minimal bland alla icke konstanta polynom. Vi kallar detta polynom 
+  för $f(X).$ Uppenbarligen är $(f(X)) \subseteq I$ eftersom $I$ är sluten under multiplikation. Låt $g(X) \in I$. 
+  Genom att dela $f(X)$ med $g(X)$ fås en kvot och rest: 
+  \[g(X) = q(X)f(X) + r(X) \iff r(X) = g(X) - q(X)f(X).\]
+  Notera att $r(X) \in I$ och eftersom $\grad f(X)$ är minimal i $I$ så måste $r(X) = 0.$ Detta betyder att $I \subseteq (f(X))$, vilket 
+  slutför beviset.
+\end{proof}
 
 \begin{mydef}{Irreducibla polynom}{}
   Låt $f(X)$ vara ett polynom över kroppen $F$. Vi säger att $f(X)$ är \textit{irreducibelt} över $F$ om det inte kan faktoriseras som $f(X) = g(X)h(X)$
@@ -452,7 +550,9 @@ Låt $f(X)$ vara ett polynom med heltals koeffcienter. Då är $f(X)$ irreducibe
   \[\frac{n}{p} f(X) = h_1'(X) h_2(X).\]
   Detta strider mot antagandet att $n$ är minimal och vi kan konstatera att $n=1$. Detta slutför beviset för lemmat.
 \end{proof}
-
+\textbf{Kommentar: }I ovanstående bevis delade vi upp "om och endast om" ($\iff$) påståendet i två delar, 
+$\Rightarrow$ och $\Leftarrow$ och bevisade dem separat. Eftersom detta tar relativt mycket plats så kommer vi i kommande bevis relaterade till "om och endast om"
+skriva $\Rightarrow:$ och $\Leftarrow:$ istället för att skriva upp fallen separat. 
 \begin{mytheo}{Eisensteins kriterium}{}
   Låt
   \[f(X) = a_0 + a_1X + \cdots + a_nX^n\]
@@ -537,15 +637,16 @@ tyder endast på att kardinaliteten av basen, eller \textit{dimensionen} för ve
 \subsection{Algebraiska kroppsutvidgningar}
 \begin{mydef}{Algebraiska kroppsutvidgningar och element}{}
   Låt $K$ vara en kroppsutvidgning till $F$. Ett element $\alpha \in K$ är \textit{algebraisk} över $F$ om det existerar ett polynom $f(X) \in F[X]$ 
-  så att $f(\alpha) = 0.$ Vi säger då att $\alpha$ är en lösning till $f(X)$ eller att $\alpha$ är en rot till $f(X).$ Om $\alpha$ inte är algebraiskt så säger 
-  vi att det är \textit{transcendentalt.}
+  så att $f(\alpha) = 0.$ Vi säger då att $\alpha$ är en lösning till $f(X)$ eller att $\alpha$ är en rot till $f(X).$ Om $\alpha$ inte är algebraisk så säger 
+  vi att den är \textit{transcendental.}
   Om varje element i $K$ är algebraiskt så säger vi att $K$ är en \textit{algebraisk kroppsutvidgning} till $F$.
 \end{mydef}
 Varje element $\alpha$ i en kropp är självklart algebraisk över denna kropp då $\alpha$ är en rot till $X - \alpha \in F[X]$. Uppkommande lemma visar att 
 viktigare ett intressantare resultat. 
 
+\hypertarget{algebraiskkropp}{}
 \begin{mylemma}{}{}
-  Varje kroppsutvidgning är algebraisk.
+  Varje ändlig kroppsutvidgning är algebraisk.
 \end{mylemma}
 
 \begin{proof}
@@ -564,7 +665,7 @@ viktigare ett intressantare resultat.
   Låt $K$ vara en kroppsutvidgning till $F$ och $\alpha_1, \ldots, \alpha_n \in K$. Vi skriver  
   \[F(\alpha_1, \ldots, \alpha_n)\]
   för den minsta delkroppen till $K$ som innehåller $F$ och elementen $\alpha_1, \ldots, \alpha_n$. Vi säger att $K$ är en \textit{enkel kroppsutvidgning} till $F$
-  om $K = F(\beta), \; \beta \in K.$ Vi säger då att $K$ har erhållits genom att ha \textit{adjungerat} $\beta$.
+  om $K = F(\beta), \; \beta \in K.$ Vi säger då att $K$ har erhållits genom att ha \textit{adjungerat} $\beta$ till $F$.
 \end{mydef}
 Med denna definition kan vi nu alltid skapa kroppsutvidgningar genom att bara lägga till element i en kropp. 
 
@@ -573,6 +674,138 @@ Med denna definition kan vi nu alltid skapa kroppsutvidgningar genom att bara l�
   är det moniska polynomet (ett nollskilt polynom med en högstagradskoefficient som är 1) $f(X)$ med lägsta grad i $F[X]$ så att $\alpha$ är en lösning till den. 
 \end{mydef}
 (exempel)
+
+Nedan följer några viktiga egenskaper hos minimala polynom.
+\hypertarget{minpol}{}
+\begin{mytheo}{}{}
+  Låt $F$ vara en kropp och $\alpha$ ett element i en kroppsutvidgning till $F$ så att $\alpha$ är algebraisk över $F$. Då gäller följande 
+  \begin{enumerate}[(i)]
+    \item Funktionen $\varphi: F[X] \rightarrow F(\alpha)$ som ges av $\varphi: g(X) \mapsto g(\alpha)$ är en homomorfism med $ker(\varphi) = (f(X)),$
+    \item minimala polynomet $f(X)$ av $\alpha$ över $F$ existerar,
+    \item det minimala polynomet $f(X)$ av $\alpha$ över $F$ är irreducibel över $F$.
+    \item om $g(X) \in F[X]$ så är $g(\alpha) = 0$ om och endast om minimala polynomet $f(X)$ av $\alpha$ över $F$ delar $g(X),$
+    \item det minimala polynomet $f(X)$ till $\alpha$ över $F$ är unik, 
+    \item om $g(X) \in F[X]$ är ett moniskt polynom så att $g(\alpha) = 0$ så är $g(X)$ minimala polynomet till $\alpha$ över $F$ om och endast 
+    om $g(X)$ är irreducibel över $F$.
+  \end{enumerate}
+\end{mytheo}
+
+\begin{proof}
+  (i) Notera att 
+  \[\varphi(g_1(X) + g_2(X)) = g_1(\alpha) + g_2(\alpha) = \varphi(g_1(X)) + \varphi(g_2(X))\]
+  och att 
+  \[\varphi(g_1(X) g_2(X)) = g_1(\alpha) g_2(\alpha) = \varphi(g_1(X)) \varphi(g_2(X)).\]
+  Detta visar att $\varphi$ är en homomorfism. Enligt \hyperlink{isomorfiska}{den första isomorfiska satsen} vet vi då att $ker(\varphi)$ är ett ideal 
+  till $F[X]$. Vidare vet vi även att $F[X]$ är en PID enligt \hyperlink{pid}{proposition 4.3.1}, vilket gör att 
+  \[ker(\varphi) = (f(X)).\]
+  Detta leder oss rakt in på (ii).
+
+  (ii) Eftersom $\alpha$ är algebraisk över $F$ så är $ker(\varphi) \neq \emptyset$. Från (i) har vi att $ker(\varphi) = (f(X))$
+  och i beviset av \hyperlink{pid}{proposition 4.3.1} vet vi även att $f(X)$ har den lägsta graden i $ker(\varphi)$ bland alla icke konstanta polynom. 
+  Eftersom alla element i $F$ har en invers så kan vi dela $f(X)$ med högstagradskoefficienten utan att förändra $(f(X))$. Vi vet även att 
+  $f(X) \in ker(\varphi)$, det vill säga $\varphi(f(X)) = f(\alpha) = 0$. Detta betyder att $f(X)$ är det minimala polynomet av $\alpha$.
+
+  (iii) Antag motsatsen. Då gäller $f(X) = h(X)g(X)$ där graden för $h(X)$ och $g(X)$ är mindre än graden för $f(X)$. Då gäller 
+  \[0 = f(\alpha) = g(\alpha) h(\alpha)\]
+  och eftersom $F$ är en kropp (mer specifikt är varje kropp ett \textit{integritetsområde}, för $a$ och $b$ tillhörande detta område och 
+  $ab = 0$ så måste $a = 0$ eller $b = 0$. Försök att bevisa att varje kropp är ett integritetsområde!) så måste antigen 
+  $g(\alpha) = 0$ eller $h(\alpha) = 0$. Detta strider dock mot antagandet att $f(X)$ har den lägsta graden med $\alpha$ som lösning. 
+
+  (iv) Detta följer direkt från (ii): $g(\alpha) = 0 \iff g(X) \in ker(\varphi) = (f(X))$ detta gäller om och endast om $f(X) \; | \; g(X).$ 
+  
+  (v) Antag motsatsen. Då existerar det ett moniskt polynom $g(X) \in F[X]$ så att $g(\alpha) = 0$ som har samma grad som $f(X)$. 
+  Eftersom $g(X) \in ker(\varphi)$ så måste 
+  \[g(X) = q(X) f(X)\]
+  och eftersom $g(X)$ och $f(X)$ har samma grad så måste $q(X)$ vara ett konstant polynom. Vidare vet vi även att $g(X)$ och $f(X)$ är moniska 
+  och därför är $q(X) = 1$, det vill säga $g(X) = f(X)$.
+
+  (vi) $\Rightarrow:$ Det minimala polynomet av $\alpha$ över $F$ är irreducibel över $F$ enligt (iii). 
+  $\Leftarrow:$ Enligt (iv) kan $g(X)$ skrivas som 
+  \[g(X) = q(X)f(X)\]
+  och eftersom $g(X)$ är irreducibel och $f(X)$ inte konstant så måste $q(X)$ vara konstant. Faktumet att $g(X)$ är monisk leder till att 
+  $q(X) = 1$ och vi har att $g(X) = f(X).$
+\end{proof}
+
+\hypertarget{Bézouts identitet}{}
+\begin{mylemma}{Bézouts identitet för polynom}{}
+  Låt $F$ vara en kropp och $f(X), \; g(X) \in F[X]$. Den största gemensamma delaren till $f(X)$ och $g(X)$, dvs. gcd$(f(X), g(X)) = d(X)$, kan skrivas som 
+  \[d(X) = a(X)f(X) + b(X)g(X).\]
+\end{mylemma}
+
+\begin{proof}
+  Notera först att 
+  \[A = \{ a(X)f(X) + b(X)g(X) \; | \; a(X), b(X) \in F[X] \}\]
+  är ett ideal till $F[X]$ och $A$ kan således skrivas som $A = (d(X)),$ ty $F[X]$ är en PID. Detta betyder i sin tur att 
+  $d(X) = a(X)f(X) + b(X)g(X)$. Vi visar nu att $d(X)$ faktiskt är den största gemensamma delaren till $f(X)$ och $g(X)$.
+  
+  Om $c(X)$ delar både $f(X)$ och $g(X)$ så gäller $f(X) = n(X)c(X)$ och $g(X) = m(X)c(X)$ vilket betyder att 
+  $d(X) = a(X)n(X)c(X) + b(X)m(X)c(X)$ och $c(X)$ delar alltså $d(X)$. Vi konstaterar att $d(X)$ är den största gemensamma delaren som 
+  slutför beviset.
+\end{proof}
+
+\hypertarget{5.3.2}{}
+\begin{mytheo}{}{}
+  Låt $F$ vara en kropp och $\alpha$ ett element i en kroppsutvidgning till $F$. Den enkla kroppsutvidgningen $F(\alpha)$ till $F$ är en 
+  ändlig kroppsutvidgning om och endast om $\alpha$ är algebraisk över $F$. Då detta är uppfyllt gäller även, för det minimala polynomet $f(X)$ av $\alpha$, att
+  \begin{equation}
+    [F(\alpha) : F] = \grad f(X).
+  \end{equation}
+  Vidare gäller även 
+  \begin{equation}
+    F[X]/(f(X)) \cong F(\alpha).
+  \end{equation}
+\end{mytheo}
+\begin{proof}
+  (7) 
+  
+  $\Rightarrow:$ Om $F(\alpha)$ är en ändlig kroppsutvidgning så gäller \hyperlink{algebraiskkropp}{lemma 5.2.1} och $F(\alpha)$ är således algebraisk. 
+  
+  $\Leftarrow:$ Antag att $\alpha$ är algebraisk över $F$. Notera att om $b \in F(\alpha)$ så kan $b$ skrivas som $b = g(\alpha)$ för $g(X) \in F[X].$
+  Genom att dela $f(X)$ med $g(X)$ fås en kvot och rest: 
+  \[g(X) = q(X)f(X) + r(X).\]
+  Då gäller 
+  \[b = g(\alpha) = r(\alpha)\]
+  eftersom $f(\alpha) = 0$. Vidare vet vi att graden för $r(X)$ kan maximalt vara $n-1$ för $n = \grad f(X)$. Detta betyder att $B = \{1, \alpha, \ldots, \alpha^{n-1}\}$
+  spänner upp $F(\alpha)$. Notera även att $B$ måste vara linjärt oberoende eftersom $n-1 < \grad f(X) = n.$ Detta medför att $B$ är basen för $F(\alpha)$ över $F$, 
+  det vill säga 
+  \[ [F(\alpha): F] = |B| = n = \grad f(X) \]
+  och eftersom $\grad f(X)$ är ändlig så är $F(\alpha)$ också en ändlig kroppsutvidgning. 
+
+  (8) Enligt \hyperlink{minpol}{sats 5.3.1} (i) är $\varphi: F[X] \rightarrow F(\alpha)$ definerad av $\varphi: g(X) \mapsto g(\alpha)$ 
+  en homomorfism med $\ker(\varphi) = (f(X)).$ Vi visar nu att $Im(\varphi) = \{g(\alpha) \; | \; g(X) \in F[X]\}$ är en kropp, 
+  dvs. att det finns multiplikativa inverser i $Im(\varphi)$. 
+
+  Genom att dela $f(X)$ med $g(X) \in F[X]$ fås en kvot och rest: 
+  \[g(X) = q(X)f(X) + r(X)\]
+  vilket ger att 
+  \[g(\alpha) = r(\alpha)\]
+  och eftersom $\grad \; r(X) < \grad f(X)$ så måste $g(X)$ och $f(X)$ vara relativt prima. Enligt \hyperlink{Bézouts identitet}{Bézouts identitet}
+  får vi därför 
+  \[1 = a(X)f(X) + b(X)g(X)\]
+  vilket ger att 
+  \[1 = b(\alpha)g(\alpha)\]
+  och därför är $b(\alpha)$ inversen till $g(\alpha)$ och $Im(\varphi)$ är således en kropp. Det är uppenbart att $Im(\varphi) = F(\alpha)$
+  och enligt \hyperlink{isomorfiska}{den första isomorfiska satsen} så gäller 
+  \[F[X]/(f(X)) \cong F(\alpha)\]
+  vilket slutför beviset.
+\end{proof}
+Vi noterar följande som bevisades i satsen ovan: 
+\hypertarget{kol5.3.1}{}
+\begin{mykol}{}{}
+  Låt $\alpha$ vara algebraisk över kroppen $F$ och $f(X)$ vara det minimala polynomet av $\alpha$ med grad $n$. 
+  Då är $\{1, \alpha, \ldots, \alpha^{n-1}\}$ en bas till $F(\alpha)$ över $F$. 
+\end{mykol}
+\begin{exmp}
+  Bestäm $[\mathbb{Q}(\sqrt{2}): \mathbb{\mathbb{Q}}]$ och basen för $\mathbb{Q}(\sqrt{2})$ över $\mathbb{Q}$.
+
+  Enligt \hyperlink{minpol}{sats 5.3.1} (vi) så är $f(X) = X^2-1$ det minimala polynomet till $\sqrt{2}$ eftersom det är monsikt och irreducibelt över $\mathbb{Q}$. 
+  Eftersom graden för $f(X)$ är 2 så är, enligt \hyperlink{5.3.2}{sats 5.3.2}, $[\mathbb{Q}(\sqrt{2}): \mathbb{\mathbb{Q}}] = 2.$ Basen för $\mathbb{Q}(\sqrt{2})$ över $\mathbb{Q}$
+  är enligt \hyperlink{kol5.3.1}{korollarium 5.3.1} $B = \{1, \sqrt{2}\}$. Detta betyder att varje element i $\mathbb{Q}(\sqrt{2})$ kan uttryckas 
+  på formen $a + b\sqrt{2}$ för $a, b \in \mathbb{Q}.$
+
+\end{exmp}
+
+mer exempel, t.ex. Q(s2, s3) och R(i) lämnas som en övning.
 \section{Galoisteorins fundamentalsats}
 Det är här den matematiska vackerheten och syftet med hela texten uppträder.
 \section{Lösbara grupper och lösningarna till polynom}
