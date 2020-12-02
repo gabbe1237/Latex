@@ -19,6 +19,8 @@
 \usepackage{relsize}
 \usepackage{mdframed}
 \usepackage[utf8]{inputenc}
+\usetikzlibrary{positioning}
+
 
 \usetikzlibrary{calc,patterns,angles,quotes}
 \definecolor{myblue}{rgb}{2.55, 1.50, 0.20}
@@ -86,17 +88,61 @@ colback=myblue!60}}{th}
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{exmp}[thm]{Exempel}
 \begin{document}
-\title{%
+
+
+\begin{figure}
+
+  % center everything in the figure
+  \centering
+  % horizontal node distance
+  \newcommand{\mydistance}{.6cm}
+  \begin{tikzpicture}[node distance=2cm, scale=1]
+    \draw[fill=myblue!60] (-6,2) rectangle (6,-8);
+  % \title{Untergruppenverband der $A_4$}
+  \node(A4)                           {$A_4$};
+  \node(V4)       [below right=2cm and 2cm of A4] {$V_4$};
+  \node(C31)      [below left=2cm and 0cm of A4]  {$C_3$};
+  \node(C32)      [left=\mydistance of C31]       {$C_3$};
+  \node(C33)      [left=\mydistance of C32]       {$C_3$};
+  \node(C34)      [left=\mydistance of C33]       {$C_3$};
+  \node(C22)      [below=2cm of V4]       {$C_2$};
+  \node(C21)      [left=\mydistance of C22]       {$C_2$};
+  \node(C23)      [right=\mydistance of C22]      {$C_2$};
+  \node(1)            [below=6cm of A4]     {$\left\{1\right\}$};
+  \draw(A4)       -- (V4);
+  \foreach \x\y in {1,2,3,4} {
+      \draw (A4) -- (C3\x);
+      \draw (C3\x) -- (1);
+  
+  }
+  \foreach \x\y in {1/2,2/3,3/4} {
+      \draw(V4) -- (C2\x);
+  \draw (C3\x) -- (C3\y);
+  \draw (C2\x) -- (1);
+  }
+  \draw(C21)      -- (C22);
+  \draw(C22)      -- (C23);
+  \end{tikzpicture}
+  % \caption{Untergruppenverband}
+  \end{figure}
+
+  \title{%
   Galoisteori och de olösbara polynomen \\
   \small{En introduktion till det abstrakta - Del II}
 }
 \author{Gabriel Rajkowski}
 \date{\today}
-
 \maketitle
+\begin{center}
+  \begin{tabular}{l r}
+  Skola: & Europaskolan \\ 
+  Program: & Scienceprogramet \\ 
+  Handledare: & Johan Wild
+  \end{tabular}
+\end{center}
 
 \thispagestyle{empty}
-
+  
 \clearpage
 \tableofcontents
 \section{Inledning}
@@ -407,14 +453,14 @@ Denna sats är inte unik för ringar och kan tillämpas på grupper också. Neda
 två grupper är isomorfa med denna sats. 
 \begin{exmp}
   Visa att 
-  \[R/\{1, -1\} \cong \mathbb{R}^+\]
-  där $R$ är gruppen av alla nollskilda reella tal under multiplikation och där $\mathbb{R}^+$ är gruppen av alla positiva reella tal under mutliplikation.
+  \[\mathbb{R}^*/\{1, -1\} \cong \mathbb{R}^+\]
+  där $\mathbb{R}^*$ är gruppen av alla nollskilda reella tal under multiplikation och där $\mathbb{R}^+$ är gruppen av alla positiva reella tal under mutliplikation.
 
-  Definera $\varphi: R \rightarrow \mathbb{R}^+$ genom $\varphi(x) = |x|.$
+  Definera $\varphi: \mathbb{R}^* \rightarrow \mathbb{R}^+$ genom $\varphi(x) = |x|.$
   Denna är en homomorfism eftersom 
   \[\varphi(x \cdot y) = |x \cdot y| = |x| \cdot |y| = \varphi(x) \cdot \varphi(y).\]
   Observera att $Im(\varphi) = \mathbb{R}^+$ och att $ker(\varphi) = \{1, -1\}$ eftersom $1$ är enhetselementet i $\mathbb{R}^+$. Vi får då att 
-  \[R / \{1, -1\} \cong Im(\varphi) = \mathbb{R}^+.\] 
+  \[\mathbb{R}^* / \{1, -1\} \cong Im(\varphi) = \mathbb{R}^+.\] 
 \end{exmp}
 
 \begin{ovning}{1}
@@ -530,8 +576,8 @@ Låt $f(X)$ vara ett polynom med heltals koeffcienter. Då är $f(X)$ irreducibe
   så att faktoriseringen går att utföra. Vi påstår att $n = 1$ som då kommer att slutföra beviset. Vi antar motsatsen, att $n$ inte är 1. Eftersom 
   $n$ delar alla nämnare hos $g_1(X)$ och $g_2(X)$ så kan det inte vara ett primtal och därför måste ett primtal dela $n$. Kalla detta primtal för $p$, då 
   måste även $p$ dela högerledet, $h_1(X)h_2(X)$, eftersom $p$ delar vänsterledet. Anta att 
-  \[h_1(X) = a_0 + a_1X + \cdots + a_lX^l, \quad h_2(X) = b_0 + b_1X + \cdots + b_mX^m\]
-  för Vi påstår att $p$ antigen delar alla $a_i$ eller alla $b_i$. Antag motsatsen. Det finns nu två olika motsatser som kan antas.
+  \[h_1(X) = a_0 + a_1X + \cdots + a_lX^l, \quad h_2(X) = b_0 + b_1X + \cdots + b_mX^m.\]
+  Vi påstår att $p$ antigen delar alla $a_i$ eller alla $b_i$. Antag motsatsen. Det finns nu två olika motsatser som kan antas.
   \begin{enumerate}[I)]
     \item Antigen delar $p$ några $a_i$ \textit{eller} några $b_i$,
     \item $p$ delar några $a_i$ \textit{och} några $b_i$.
@@ -789,6 +835,17 @@ Nedan följer några viktiga egenskaper hos minimala polynom.
   \[F[X]/(f(X)) \cong F(\alpha)\]
   vilket slutför beviset.
 \end{proof}
+Vi minns från \hyperlink{isomorfiska}{den första isomorfiska satsen} att $\psi:R/\ker(\varphi) \rightarrow Im(\varphi)$ som definerades som 
+$\psi: \ker(\varphi) + r \mapsto \varphi(r)$ var den som skapade isomorfismen $R/\ker(\varphi) \cong Im(\varphi)$. Det är även 
+den som skapar isomorfismen $F[X]/(f(X)) \cong F(\alpha)$. Om vi använder denna får vi att
+\[\psi: \ker(\varphi) + g(X) \mapsto \varphi(g(X)) = g(\alpha)\]
+för alla $g(X) \in F[X]$. Detta ger oss följande egenskaper: 
+\begin{align*}
+  \psi: (f(X)) + a &\mapsto a \\
+  \psi: (f(X)) + X &\mapsto \alpha
+\end{align*}
+för alla $a \in F.$
+
 Vi noterar följande som bevisades i satsen ovan: 
 \hypertarget{kol5.3.1}{}
 \begin{mykol}{}{}
@@ -805,7 +862,81 @@ Vi noterar följande som bevisades i satsen ovan:
 
 \end{exmp}
 
-mer exempel, t.ex. Q(s2, s3) och R(i) lämnas som en övning.
+\begin{exmp}
+  Bestäm $[\mathbb{Q}(\sqrt{2}, \sqrt{3}): \mathbb{\mathbb{Q}}]$ och basen för $\mathbb{Q}(\sqrt{2}, \sqrt{3})$ över $\mathbb{Q}$.
+  Ha kanske med $[\mathbb{Q}(\sqrt{2} + \sqrt{3}): \mathbb{\mathbb{Q}}]$ eller liknande!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+\end{exmp}
+
+\section{Splittringskroppar och normala utvidgningar}
+\begin{mydef}{}{}
+  Låt $f(X)$ vara ett polynom över en kropp $F$. Vi säger att en kropp $K$ är en \textit{splittringskropp} för $f(X)$ över $F$ om följande villkor uppfylls. 
+  \begin{enumerate}[(i)]
+    \item $f(X)$ \textit{splittar} till linjära faktorer över $K$, det vill säga 
+    \[f(X) = c \prod_{i=1}^n (X- \alpha_i) = c(X-\alpha_1)(X-\alpha_2)\cdots (X-\alpha_n),\]
+    \item om $F \subseteq L \subseteq K$ och $f(X)$ splittar över $L$ så är $L = K.$
+  \end{enumerate}
+\end{mydef}
+
+\begin{mylemma}{}{}
+  Låt $f(X)$ vara ett polynom över kroppen $F$ och låt $L$ vara dess splittringskropp. Då är 
+  \[K = F(\alpha_1, \alpha_2, \ldots, \alpha_n)\]
+  en splittringskropp för $f(X)$ över $F$ där $\alpha$ är rötterna till $f(X)$.
+\end{mylemma}
+
+\begin{proof}
+  Det är uppenbart att $f(X)$ splittar över 
+  \[K = F(\alpha_1, \alpha_2, \ldots, \alpha_n)\]
+  om $f(X)$ splittar över $L$ med rötterna $\alpha_1, \alpha_2, \ldots, \alpha_n$. Det som återstår att visa är att 
+  $K$ är den minimala kroppen som $f(X)$ splittar över. 
+
+  Antag att $F \subseteq K' \subseteq K$ så att $f(X)$ splittar över $K'$. Då gäller 
+  \[f(X) = c(X- \beta_1)(X - \beta_2)\cdots (X - \beta_2)\]
+  för $\beta_i \in K'.$ Men eftersom $K' \subseteq K$ så måste $\alpha_i = \beta_i$ eftersom det endast existerar en faktorisering för polynom 
+  (detta gäller eftersom alla polynom ringar är EF-ringar. Mer specifikt är en PID (och Euklidiska domäner) EF-ringar. Vi hoppar dock över detaljerna och tar detta 
+  faktum som givet.) Detta medför att $K' = K$ eftersom $K$ är den minsta kroppen med elementen $\alpha_i$.
+\end{proof}
+
+\begin{mylemma}{}{}
+  Låt $\varphi: F \rightarrow K$ vara en homomorfism mellan två kroppar och $f(X)$ ett irreducibelt polynom över $F[X]$. Definiera $f^{\varphi}(X)$
+  som polynomet över $K$ som erhållits genom att verka med $\varphi$ på koeffcienterna i $f(X)$. Låt $\alpha$ vara ett element i en kroppsutvidgning till $F$
+  och $\beta \in K$ ett i en kroppsutvidgning till $K$ och låt dessa vara lösningarna till
+  $f(X)$ respektive $f^{\varphi}(X)$. Då existerar det en isomorfism $\psi:F(\alpha) \rightarrow K(\beta)$ 
+  så att $\psi(a) = \varphi(a)$ för alla $a \in F$ och $\psi(\alpha) = \psi(\beta).$
+\end{mylemma}
+
+\begin{proof}
+  Isomorfismen $\varphi: F \rightarrow K$ gör att $\varphi^*: F[X] \rightarrow K[X]$ definierad som 
+  \[\varphi^*: \sum_{i = 0}^n a_iX \mapsto \sum_{i = 0}^m \varphi(a_i)X\]
+  blir en isomorfism. Notera att $f^{\varphi} = \varphi^*(f(X)).$ Notera även att $f^{\varphi}(X)$ är irreducibel över $K$ eftersom $f(X)$ är irreducibel över $F$.
+  Isomorfismen $\varphi^*$ mappar även $(f(X))$ till $(f^{\varphi}(X))$ vilket ger oss att
+  \[\tilde{\varphi}: F[X]/(f(X)) \rightarrow K[X]/(f^{\varphi})\]
+  definierad som 
+  \[\tilde{\varphi}: (f(X)) + g(X) \mapsto (f^{\varphi}(X)) + \varphi(g(X))\]
+  blir en isomorfism. Vi observerar följande egenskaper hos $\tilde{\varphi}$:
+  \[\tilde{\varphi}(f(X) + X) = (f^{\varphi}(X)) + X\]
+  (eftersom $\varphi(1) = 1$)
+  \[\tilde{\varphi}(f(X) + a) = (f^{\varphi}(X)) + \varphi(a)\]
+  för $a \in F$. Enligt \hyperlink{5.3.2}{sats 5.3.2} har vi även isomorfismerna 
+  \begin{align*}
+    \psi_1: F[X]/(f(X)) &\rightarrow F(\alpha) \\
+    \psi_2: K[X]/(f^{\varphi}(X)) &\rightarrow K(\beta)
+  \end{align*}
+  med egenskaperna
+  \begin{align*}
+    \psi_1((f(X)) + a) &= a           & \psi_1((f(X)) + X) &= \alpha \\
+    \psi_2((f^{\varphi}(X)) + b) &= b & \qquad \psi_2((f^{\varphi}(X)) + X) &= \beta
+  \end{align*}
+  för $a \in F$ och $b \in K.$ Notera att $\psi_2 \circ \tilde{\varphi} \circ \psi_1^{-1}$ är en isomorfism (enligt resultat från del I är 
+  kompositionen av två bijektioner också en bijektion. Att operationerna blir bevarade är enkelt att visa och läsaren får fylla i detaljerna)
+  från $F(\alpha)$ till $K(\beta)$ som uppfyller 
+  \[(\psi_2 \circ \tilde{\varphi} \circ \psi_1^{-1}) (a) = \]
+\end{proof}
+
+% mer exempel, t.ex. Q(s2, s3) och R(i) lämnas som en övning.
 \section{Galoisteorins fundamentalsats}
 Det är här den matematiska vackerheten och syftet med hela texten uppträder.
 \section{Lösbara grupper och lösningarna till polynom}
