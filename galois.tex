@@ -900,12 +900,20 @@ Vi noterar följande som bevisades i satsen ovan:
   faktum som givet.) Detta medför att $K' = K$ eftersom $K$ är den minsta kroppen med elementen $\alpha_i$.
 \end{proof}
 
+\begin{mydef}{}{}
+  Låt $\varphi: F_1 \rightarrow F_2$ och $\psi: F_1(\alpha) \rightarrow F_2(\beta)$ vara isomorfismer mellan kroppar där $F_1 \subseteq F_1(\alpha)$
+  och $F_2 \subseteq F_2(\beta)$. 
+  Vi säger att $\psi$ \textit{förlänger} (eng. \textit{extends})
+  $\varphi$ om $\psi(a) = \varphi(a)$ för alla $a \in F_1$ och vi skriver $\psi |_{F_1} = \varphi.$
+\end{mydef}
+
+\hypertarget{6.0.2}{}
 \begin{mylemma}{}{}
   Låt $\varphi: F \rightarrow K$ vara en homomorfism mellan två kroppar och $f(X)$ ett irreducibelt polynom över $F[X]$. Definiera $f^{\varphi}(X)$
   som polynomet över $K$ som erhållits genom att verka med $\varphi$ på koeffcienterna i $f(X)$. Låt $\alpha$ vara ett element i en kroppsutvidgning till $F$
   och $\beta \in K$ ett i en kroppsutvidgning till $K$ och låt dessa vara lösningarna till
   $f(X)$ respektive $f^{\varphi}(X)$. Då existerar det en isomorfism $\psi:F(\alpha) \rightarrow K(\beta)$ 
-  så att $\psi(a) = \varphi(a)$ för alla $a \in F$ och $\psi(\alpha) = \psi(\beta).$
+  som förlänger $\varphi$ och $\psi(\alpha) = \psi(\beta).$
 \end{mylemma}
 
 \begin{proof}
@@ -933,8 +941,45 @@ Vi noterar följande som bevisades i satsen ovan:
   för $a \in F$ och $b \in K.$ Notera att $\psi_2 \circ \tilde{\varphi} \circ \psi_1^{-1}$ är en isomorfism (enligt resultat från del I är 
   kompositionen av två bijektioner också en bijektion. Att operationerna blir bevarade är enkelt att visa och läsaren får fylla i detaljerna)
   från $F(\alpha)$ till $K(\beta)$ som uppfyller 
-  \[(\psi_2 \circ \tilde{\varphi} \circ \psi_1^{-1}) (a) = \]
+  \begin{align*}
+    (\psi_2 \circ \tilde{\varphi} \circ \psi_1^{-1}) (a) &= (\psi_2 \circ \tilde{\varphi}) ( (f(X)) + a) = \psi_2 ((f^{\varphi}(X)) + \varphi(a)) = \varphi(a), \\
+    (\psi_2 \circ \tilde{\varphi} \circ \psi_1^{-1}) (\alpha) &= (\psi_2 \circ \tilde{\varphi}) ((f(X)) + X) = \psi_2((f^{\varphi}(X)) + X) = \beta.
+  \end{align*}
+  Isomorfismen $\psi_2 \circ \tilde{\varphi} \circ \psi_1^{-1}$ uppfyller alltså våra önskade villkor och beviset är slutfört.
 \end{proof}
+
+\begin{mytheo}{}{}
+  Låt $\varphi: F_1 \rightarrow F_2$ vara en isomorfism mellan två kroppar och $f(X)$ ett polynom i $F_1[X]$. Beteckna 
+  $f^{\varphi}(X)$ för polynomet över $F_2[X]$ som erhållits genom att ha verkat med $\varphi$ på koeffcienterna i $f(X)$. Låt 
+  $K_1$ vara en splittringskropp för $f(X)$ och $K_2$ en splittringskropp för $f^{\varphi}(X).$ Då existerar det en isomorfism $\Psi: K_1 \rightarrow K_2$
+  som förlänger $\varphi.$
+\end{mytheo}
+
+\begin{proof}
+  Låt $n = \grad f(X)$. Vi använder induktion för att bevisa satsen. För $n = 1$ så är $K_1 = F_1$ och $K_2 = F_2$. Vi kan då välja 
+  $\Psi$ till $\varphi$ och satsen gäller för detta fall. 
+
+  Vi antar att satsen gäller för ett heltal $n$. Det finns nu två fall för $f(X)$, antigen är den irreducibel över $F_1$ eller inte. Vi hanterar dessa fall separat
+  med avseende på att visa att satsen gäller för $\grad f(X) = n+1$:
+
+  (i) $f(X)$ är irreducibel över $F_1$. 
+
+  Eftersom $K_1$ är en splittringskropp för $f(X)$ så kan vi hitta en rot $\alpha \in K_1$ till $f(X)$. Detta gör att faktoriseringen 
+  \[f(X) = (X-\alpha)g(X)\]
+  går att åstadkomma för ett polynom $g(X)$ med koeffcienter från $F_1(\alpha)$ och med graden $n$. Eftersom $K_1$ har erhållits genom att ha adjungerat $\alpha$ 
+  och alla rötter till $g(X)$ så är $K_1$ en splittringskropp för $g(X).$ Enligt \hyperlink{6.0.2}{lemma 6.0.2} så existerar det en isomorfism 
+  $\psi: F_1(\alpha) \rightarrow F_2(\beta)$ så att $\psi |_{F_1} = \varphi$ och $\psi(\alpha) = \beta.$ Genom att verka på $\psi$ på koeffcienterna i $f(X)$
+  så får vi 
+  \[f^{\varphi}(X) = (X - \beta)g^{\psi}(X)\]
+  som ger oss att $K_2$ är en splittringskropp för $g^{\psi}(X)$. Enligt induktionsantagandet får vi att (glöm inte att skriva "splittringskroppen över..." )
+\end{proof}
+
+\begin{mydef}{}{}
+  Låt $F$ vara en kropp och $K_1$ och $K_2$ kroppsutvidgningar till $F$. En \textit{F-isomorfism} från $K_1$ till $K_2$ är en isomorfism 
+  $\varphi: K_1 \rightarrow K_2$ så att $\varphi(a) = a$ för alla $a \in F.$ Vi säger då att $K_1$ och $K_2$ är $F$-\textit{isomorfa}.
+\end{mydef}
+I en $F$-isomorfism mellan två kroppsutvidgningar så blir alltså alla element i baskroppen "oberörda" och mappas till säg själva. Med denna definition 
+kan vi notera följande 
 
 % mer exempel, t.ex. Q(s2, s3) och R(i) lämnas som en övning.
 \section{Galoisteorins fundamentalsats}
