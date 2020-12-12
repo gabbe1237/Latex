@@ -1,3 +1,4 @@
+% !TEX program = pdflatex
 % 4.11   2.14  2.11 3.13  lemma 6.8    lemma 6.9 
 \documentclass{article}
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
@@ -19,6 +20,7 @@
 \usepackage{relsize}
 \usepackage{mdframed}
 \usepackage[utf8]{inputenc}
+% \usepackage[margin=1.3in]{geometry}
 \usetikzlibrary{positioning}
 
 
@@ -81,6 +83,7 @@ colback=myblue!60}}{th}
 \renewcommand{\contentsname}{Innehåll}
 \newcommand{\orbit}[0]{\mathlarger{\mathlarger{\mathcal{O}}}}
 \newcommand{\grad}[0]{\textnormal{deg}}
+\newcommand{\im}[0]{\textnormal{im}}
 \newtheorem{definition}{Definition}[section]
 \pgfplotsset{compat=1.8}
 
@@ -90,43 +93,69 @@ colback=myblue!60}}{th}
 \begin{document}
 
 
-\begin{figure}
+% \begin{figure}
 
-  % center everything in the figure
-  \centering
-  % horizontal node distance
-  \newcommand{\mydistance}{.6cm}
-  \begin{tikzpicture}[node distance=2cm, scale=1]
-    \draw[fill=myblue!60] (-6,2) rectangle (6,-8);
-  % \title{Untergruppenverband der $A_4$}
-  \node(A4)                           {$A_4$};
-  \node(V4)       [below right=2cm and 2cm of A4] {$V_4$};
-  \node(C31)      [below left=2cm and 0cm of A4]  {$C_3$};
-  \node(C32)      [left=\mydistance of C31]       {$C_3$};
-  \node(C33)      [left=\mydistance of C32]       {$C_3$};
-  \node(C34)      [left=\mydistance of C33]       {$C_3$};
-  \node(C22)      [below=2cm of V4]       {$C_2$};
-  \node(C21)      [left=\mydistance of C22]       {$C_2$};
-  \node(C23)      [right=\mydistance of C22]      {$C_2$};
-  \node(1)            [below=6cm of A4]     {$\left\{1\right\}$};
-  \draw(A4)       -- (V4);
-  \foreach \x\y in {1,2,3,4} {
-      \draw (A4) -- (C3\x);
-      \draw (C3\x) -- (1);
+%   % center everything in the figure
+%   \centering
+%   % horizontal node distance
+%   \newcommand{\mydistance}{.6cm}
+%   \begin{tikzpicture}[node distance=2cm, scale=1]
+%     \draw[fill=myblue!60] (-6,2) rectangle (6,-8);
+%   % \title{Untergruppenverband der $A_4$}
+%   \node(A4)                           {$A_4$};
+%   \node(V4)       [below right=2cm and 2cm of A4] {$V_4$};
+%   \node(C31)      [below left=2cm and 0cm of A4]  {$C_3$};
+%   \node(C32)      [left=\mydistance of C31]       {$C_3$};
+%   \node(C33)      [left=\mydistance of C32]       {$C_3$};
+%   \node(C34)      [left=\mydistance of C33]       {$C_3$};
+%   \node(C22)      [below=2cm of V4]       {$C_2$};
+%   \node(C21)      [left=\mydistance of C22]       {$C_2$};
+%   \node(C23)      [right=\mydistance of C22]      {$C_2$};
+%   \node(1)            [below=6cm of A4]     {$\left\{1\right\}$};
+%   \draw(A4)       -- (V4);
+%   \foreach \x\y in {1,2,3,4} {
+%       \draw (A4) -- (C3\x);
+%       \draw (C3\x) -- (1);
   
-  }
-  \foreach \x\y in {1/2,2/3,3/4} {
-      \draw(V4) -- (C2\x);
-  \draw (C3\x) -- (C3\y);
-  \draw (C2\x) -- (1);
-  }
-  \draw(C21)      -- (C22);
-  \draw(C22)      -- (C23);
-  \end{tikzpicture}
-  % \caption{Untergruppenverband}
-  \end{figure}
+%   }
+%   \foreach \x\y in {1/2,2/3,3/4} {
+%       \draw(V4) -- (C2\x);
+%   \draw (C3\x) -- (C3\y);
+%   \draw (C2\x) -- (1);
+%   }
+%   \draw(C21)      -- (C22);
+%   \draw(C22)      -- (C23);
+%   \end{tikzpicture}
+%   % \caption{Untergruppenverband}
+%   \end{figure}
 
-  \title{%
+\begin{figure}
+  \begin{center}
+    \newcommand{\mydistance}{.6cm}
+    \begin{tikzpicture}[node distance=2cm, scale=1]
+    \draw[fill=myblue!60] (-4,1) rectangle (4,-6);
+    \node(L) {$L$};
+    \node(Ka) [below left=1cm of L] {$K(\alpha)$};
+    \node(Kb) [below right=1cm of L] {$K(\beta)$};
+    \node(K) [below=2cm of L] {$K$};
+    \node(F) [below=2cm of K] {$F$};
+    \node(Fa) [below left=1 of K] {$F(\alpha)$};
+    \node(Fb)[below right = 1 of K] {$F(\beta)$};  
+  
+    \draw[dashed](Ka) -- (K);
+    \draw(Kb) -- (K);
+    \draw(L) -- (Ka);
+    \draw(L) -- (Kb);
+    \draw(K) -- (L);
+    \draw(F) -- (K);
+    \draw(Ka) -- (Fa);
+    \draw(Fa) -- (F);
+    \draw(Fb) -- (F);
+    \draw(Kb) -- (Fb);
+    \end{tikzpicture}
+  \end{center}  
+\end{figure}
+\title{%
   Galoisteori och de olösbara polynomen \\
   \small{En introduktion till det abstrakta - Del II}
 }
@@ -140,13 +169,17 @@ colback=myblue!60}}{th}
   Handledare: & Johan Wild
   \end{tabular}
 \end{center}
+(Denna figur är temporär. Jag ska byta ut den mot ett annat diagram när jag kommer in på Galoisteorin)
 
 \thispagestyle{empty}
   
 \clearpage
 \tableofcontents
 \section{Inledning}
+Här ska jag snabbt nämna att detta är del 2 och är en forstättning till del 1 (Banach-Tarski paradoxen). 
+(Fler övningar och exempel ska komma. Detta fixar jag efter allt annat är klart.)
 \section{Historia}
+Berätta lite om Galoisteorins historia. 
 \section{Komplement till del I}
 Denna del ägnar sig åt saker som inte togs upp i del I på grund av de inte fick plats eller som inte var nödvändiga men som kommer att komma 
 till hands i denna del.
@@ -212,6 +245,7 @@ En definerande egenskap hos normala delgrupper tas upp i följande proposition.
   Låt $N$ vara en normal delgrupp till $G$ och $g \in G$. Vänstersidoklassen till $N$ är då lika med högersidoklassen till $N$ med avseende på $g$, 
   $gN = Ng.$
 \end{myprop}
+(Väldigt kladdigt bevis. Fixar detta senare.)
 \begin{proof}
   Om $n \in N$ så är $gn \in gN$. Notera nu att 
   \begin{equation*}
@@ -377,9 +411,9 @@ En ring homomorfism är alltså en grupp homomorfism men för "både addition oc
 \begin{mydef}{Kärnan och bilden av en homomorfism}{}
   Låt $R$ och $S$ vara ringar och $\varphi: R \rightarrow S$ en homomorfism. \textit{Kärnan} av $\varphi$
   defineras som 
-  \[ker(\varphi) \equiv \{r \in R \; | \; \varphi(r) = 0\}.\]
+  \[\ker(\varphi) \equiv \{r \in R \; | \; \varphi(r) = 0\}.\]
   \textit{Bilden} av $\varphi$ defineras som 
-  \[Im(\varphi) \equiv \{\varphi(r) \; | \; r \in R\}.\]
+  \[\im(\varphi) \equiv \{\varphi(r) \; | \; r \in R\}.\]
 \end{mydef}
 Detta togs även upp i del I men bör repeteras för det nästkommande. Innan vi går vidare 
 så noterar vi att $\varphi(0) = 0$ och att $\varphi(1) = 1$ för en homomorfism $\varphi$. Om detta inte var fallet skulle $\varphi(0) = x$ för ett nollskilt $x$. 
@@ -391,44 +425,44 @@ Ett liknande argument kan användas för att visa att $\varphi(1) = 1$.
 \begin{mytheo}{"Första isomorfiska satsen"}{}
   Låt $R$ och $S$ vara ringar och $\varphi: R \rightarrow S$ en homomorfism. Kärnan av $\varphi$ är då ett ideal till $R$ och bilden av $\varphi$ är en 
   delring till $S$ och 
-  \[R/ker(\varphi) \cong Im(\varphi).\]
+  \[R/ \ker(\varphi) \cong \im(\varphi).\]
 \end{mytheo}
 \begin{proof}
-  Eftersom $\varphi$ är en homomorfism och $(R, +)$ är en grupp så är även $(ker(\varphi), +)$ en grupp. 
+  Eftersom $\varphi$ är en homomorfism och $(R, +)$ är en grupp så är även $(\ker(\varphi), +)$ en grupp. 
 
-  För $i \in ker(\varphi)$ och $r \in R$ så är $\varphi(i \cdot r) = \varphi(i) \cdot \varphi(r)$ eftersom $\varphi$ är en homomorfism. 
-  Per definition är $\varphi(i) = 0$. Detta ger att $\varphi(i) \cdot \varphi(r) = 0 \cdot \varphi(r) = 0$ vilket medför att $i \cdot r \in ker(\varphi)$.
-  Detta visar att $ker(\varphi)$ är ett ideal till $R$.
+  För $i \in \ker(\varphi)$ och $r \in R$ så är $\varphi(i \cdot r) = \varphi(i) \cdot \varphi(r)$ eftersom $\varphi$ är en homomorfism. 
+  Per definition är $\varphi(i) = 0$. Detta ger att $\varphi(i) \cdot \varphi(r) = 0 \cdot \varphi(r) = 0$ vilket medför att $i \cdot r \in \ker(\varphi)$.
+  Detta visar att $\ker(\varphi)$ är ett ideal till $R$.
 
-  Vi visar nu att $Im(\varphi)$ är både sluten under addition och multiplikation. Detta kommer då visa att $Im(\varphi)$ är en delring till $S$.
+  Vi visar nu att $\im(\varphi)$ är både sluten under addition och multiplikation. Detta kommer då visa att $\im(\varphi)$ är en delring till $S$.
   Låt $a, b \in S$. Observera att 
   \[\varphi(a) + \varphi(b) = \varphi(a + b)\]
   och att 
   \[\varphi(a) \cdot \varphi(b) = \varphi(a \cdot b).\]
-  Eftersom $+$ och $\cdot$ är \textit{binära} operationer så är $a + b \in S$ och $a \cdot b \in S$. Detta visar att $Im(\varphi)$ är en delring till $S$.
+  Eftersom $+$ och $\cdot$ är \textit{binära} operationer så är $a + b \in S$ och $a \cdot b \in S$. Detta visar att $\im(\varphi)$ är en delring till $S$.
 
-  Låt $\psi: R/ker(\varphi) \rightarrow Im(\varphi)$ vara en homomorfism definerad som $\psi: ker(\varphi) + r \mapsto \varphi(r)$ för $r \in R$ 
+  Låt $\psi: R/ \ker(\varphi) \rightarrow \im(\varphi)$ vara en homomorfism definerad som $\psi: \ker(\varphi) + r \mapsto \varphi(r)$ för $r \in R$ 
   (det är enkelt att visa att $\psi$ faktiskt är en homomorfism och läsaren får gå igenom beviset själv). Vi visar först 
-  att $\psi$ är väldefinerad, det vill säga $\psi(ker(\varphi) + r') = \varphi(r)$ för $r' \in ker(\varphi) + r.$ Omskrivningen 
+  att $\psi$ är väldefinerad, det vill säga $\psi(\ker(\varphi) + r') = \varphi(r)$ för $r' \in \ker(\varphi) + r.$ Omskrivningen 
   $r' = r_1 + r$ där $\varphi(r_1) = 0$ ger att 
-  \[\psi(ker(\varphi) + r') = \psi(ker(\varphi) + (r_1+r)).\]
+  \[\psi(\ker(\varphi) + r') = \psi(\ker(\varphi) + (r_1+r)).\]
   Vi kan utveckla detta och få
-  \[\psi(ker(\varphi) + (r_1+r)) = \psi((ker(\varphi) + r_1) + (ker(\varphi) + r))\]
+  \[\psi(\ker(\varphi) + (r_1+r)) = \psi((\ker(\varphi) + r_1) + (\ker(\varphi) + r))\]
   och eftersom $\psi$ är en homomorfism så blir 
-  \[\psi((ker(\varphi) + r_1) + (ker(\varphi) + r)) = \psi(ker(\varphi) + r_1) + \psi(ker(\varphi) + r)\]
+  \[\psi((\ker(\varphi) + r_1) + (\ker(\varphi) + r)) = \psi(\ker(\varphi) + r_1) + \psi(\ker(\varphi) + r)\]
   och per definition får vi
-  \[\psi(ker(\varphi) + r_1) + \psi(ker(\varphi) + r) = \varphi(r_1) + \varphi(r) = \varphi(r)\]
+  \[\psi(\ker(\varphi) + r_1) + \psi(\ker(\varphi) + r) = \varphi(r_1) + \varphi(r) = \varphi(r)\]
   och $\psi$ är således väldefinerad.
 
   Det är tydligt att $\psi$ är surjektiv till följd av dess konstruktion. Vi visar nu att $\psi$ är injektiv. Antag att 
-  \[\psi(ker(\varphi) + r_1) = \psi(ker(\varphi) + r_2).\]
+  \[\psi(\ker(\varphi) + r_1) = \psi(\ker(\varphi) + r_2).\]
   Detta är ekvivalent med 
   \[\varphi(r_1) = \varphi(r_2)\]
   och eftersom $\varphi$ är en homomorfism och $\varphi(0) = 0$ får vi att 
   \[\varphi(r_1 - r_2) = 0.\]
-  Vi kan konstatera att $r_1 - r_2 \in ker(\varphi)$ vilket gör att omskrivningen $r_1 = r_3 + r_2$ är lämplig för $r_3 \in ker(\varphi)$.
+  Vi kan konstatera att $r_1 - r_2 \in \ker(\varphi)$ vilket gör att omskrivningen $r_1 = r_3 + r_2$ är lämplig för $r_3 \in \ker(\varphi)$.
   Detta medför att 
-  \[ker(\varphi) + r_1 = ker(\varphi) + (r_3 + r_2) = ker(\varphi) + r_2.\]
+  \[\ker(\varphi) + r_1 = \ker(\varphi) + (r_3 + r_2) = \ker(\varphi) + r_2.\]
   Detta visar att $\psi$ är en isomorfism och beviset är slutfört.
 \end{proof}
 
@@ -437,14 +471,14 @@ I diagramet nedan är homomorfismer indikerade med pilar och en streckad pil bet
 
 \begin{center}
   \begin{tikzpicture}
-    \draw[-latex] (0, 0) -- (2, 0) node at (-0.3, 0) {$R$} node at (1, 0.3) {$\pi$} node at (2.85, 0) {$R/ker(\varphi)$};
-    \draw[-latex, dashed] (3, -0.3) -- (3, -2) node at (3, -2.3) {$Im(\varphi)$} node at (3.3, -1) {$\psi$};
+    \draw[-latex] (0, 0) -- (2, 0) node at (-0.3, 0) {$R$} node at (1, 0.3) {$\pi$} node at (2.85, 0) {$R/ \ker(\varphi)$};
+    \draw[-latex, dashed] (3, -0.3) -- (3, -2) node at (3, -2.3) {$\im(\varphi)$} node at (3.3, -1) {$\psi$};
     \draw[-latex] (0, -0.2) -- (2.4, -2.16) node at (1, -1.4) {$\varphi$};
   \end{tikzpicture}
 \end{center}
 
 Homomorfismen $\pi$ i diagramet ovan är egentligen irrelevant för oss. Poängen med den är att visa att det finns två vägar som leder oss 
-till $Im(\varphi)$. Antigen tar man den raka vägen genom $\varphi$ eller så tar man först $\pi$ och sedan $\psi$ och eftersom 
+till $\im(\varphi)$. Antigen tar man den raka vägen genom $\varphi$ eller så tar man först $\pi$ och sedan $\psi$ och eftersom 
 de båda vägarna leder oss till samma slutresultat kan vi konstatera att $\varphi = \psi \circ \pi$ och vi säger att 
 diagramet är kommutativt. Satsen ovan bevisar just 
 att det faktiskt existerar en $\psi$ som har sådana egenskaper. 
@@ -459,8 +493,8 @@ två grupper är isomorfa med denna sats.
   Definera $\varphi: \mathbb{R}^* \rightarrow \mathbb{R}^+$ genom $\varphi(x) = |x|.$
   Denna är en homomorfism eftersom 
   \[\varphi(x \cdot y) = |x \cdot y| = |x| \cdot |y| = \varphi(x) \cdot \varphi(y).\]
-  Observera att $Im(\varphi) = \mathbb{R}^+$ och att $ker(\varphi) = \{1, -1\}$ eftersom $1$ är enhetselementet i $\mathbb{R}^+$. Vi får då att 
-  \[\mathbb{R}^* / \{1, -1\} \cong Im(\varphi) = \mathbb{R}^+.\] 
+  Observera att $\im(\varphi) = \mathbb{R}^+$ och att $\ker(\varphi) = \{1, -1\}$ eftersom $1$ är enhetselementet i $\mathbb{R}^+$. Vi får då att 
+  \[\mathbb{R}^* / \{1, -1\} \cong \im(\varphi) = \mathbb{R}^+.\] 
 \end{exmp}
 
 \begin{ovning}{1}
@@ -473,9 +507,8 @@ två grupper är isomorfa med denna sats.
 Ledning: Åtgå ifrån funktionen $f: \mathbb{R}^2 \rightarrow \mathbb{R}$ som defineras av $f(x, y) = \pi x + \sqrt 5 y$. 
 Här finns även en liten genväg som man kan ta genom att skriva upp $f$ i matris form. 
 
-
 \begin{ovning}{2}
-  Visa att en homomorfism $\varphi$ är injektiv om och endast om $ker(\varphi) = \{0\}.$ Hur kan detta användas för att bevisa att 
+  Visa att en homomorfism $\varphi$ är injektiv om och endast om $\ker(\varphi) = \{0\}.$ Hur kan detta användas för att bevisa att 
   $\psi$ är injektiv i den första isomorfiska satsen?
 \end{ovning}
 
@@ -501,7 +534,7 @@ sådana strukturer.
     för $a, b, c \in F$
 \end{mydef}
 En kropp skapar alltså en abelsk grupp under addition och kroppen utom $0$ skapar en abelsk grupp under multiplikation. Alternativt kan en kropp sägas
-vara en kommutativ ring. Om $K$ är en kroppsutvidgning till $F$ så kommer vi säga att $F$ är baskroppen. 
+vara en kommutativ ring med inverser. Om $K$ är en kroppsutvidgning till $F$ så kommer vi säga att $F$ är baskroppen. 
 
 
 \begin{mydef}{Karakteristik}{}
@@ -511,13 +544,28 @@ vara en kommutativ ring. Om $K$ är en kroppsutvidgning till $F$ så kommer vi s
 Man kan göra en koppling mellan karakteristik och cykliska grupper där alla element genereras genom ett enda element. Om en kropps karakteristik inte är noll
 så kan den anses vara "cyklisk". 
 
+\begin{mytheo}{}{}
+  Om $p$ är ett primtal så är $\mathbb{Z}_p \cong \mathbb{Z}/p\mathbb{Z}$ en kropp.
+\end{mytheo}
+
+\begin{proof}
+  Det som skall visas är att $\mathbb{Z}_p$ har inverser. Låt $[a] \equiv a + p \mathbb{Z} \in \mathbb{Z}_p$. Eftersom $p$ är ett primtal och 
+  $a < p$ så måste de vara relativt prima. Då gäller 
+  \[ 1 = xa + yp  \iff xa = 1 - yp\]
+  för $x, y \in \mathbb{Z}_n$. Detta ger då att $xa \equiv 1 \mod p$, det vill säga $[x][a] = 1$. Inversen till 
+  $[x]$ är alltså $[a]$ och beviset är slutfört. 
+\end{proof}
+Eftersom $\mathbb{Z}_p$ har primtals karakteristik, nämligen $p$, så har vi visat att varje kropp antigen måste ha noll eller primtals karakteristik. 
+
+%ta upp mer om prime subfields och olika domäner.
+
 \subsection{Polynom}
 \begin{mydef}{Polynom}{}
   Låt $F$ vara en kropp. Ett \textit{polynom} över $F$ är en ekvation på följande form
   \[f(X) = a_0 + a_1X + a_2X^2 + \cdots a_nX^n\]
   där $n \in \mathbb{N}$ och där \textit{koefficienterna} $a_1, a_2, \ldots, a_n \in F$. 
-  Mängden $F[X]$ består av alla polynom vars koeffcienter tillhör $F$. \textit{Graden} för ett polynom är den högsta multipliciteten av den obestämda variablen som förekommer i  
-  polynomet och betecknas $\grad f(X)$. (För polynomet ovan är $\grad f(X) = n$.)
+  Mängden $F[X]$ består av alla polynom vars koeffcienter tillhör $F$. \textit{Graden} för ett polynom är den högsta multipliciteten av den obestämda variablen som 
+  förekommer i polynomet och betecknas $\grad f(X)$. (För polynomet ovan är $\grad f(X) = n$.)
 \end{mydef}
 Trots att $\mathbb{Z}$ inte är en kropp så kommer vi fortfarande beteckna $\mathbb{Z}[X]$ som mängden av polynom med heltals koeffcienter
 för att slippa skriva mycket. Notera att $F[X]$ bildar en ring eftersom $F$ är en kropp.
@@ -650,6 +698,7 @@ Notera att en ändlig kroppsutvidgning inte betyder att kardinaliteten av själv
 tyder endast på att kardinaliteten av basen, eller \textit{dimensionen} för vektorrumet som det också kallas, är ändlig. Nedan följer exempel på detta.
 (några bra exempel som förtydligar detta.) 
 
+\hypertarget{torn lagen}{}
 \begin{mytheo}{Torn lagen (eng. tower law)}{}
   Anta att $F, \; K$ och $L$ bildar ett "torn" av kroppsutvidgningar, $F \subseteq K \subseteq L$. Då gäller
   \[ [L:F] = [L:K] \cdot [K:F]. \]
@@ -726,7 +775,7 @@ Nedan följer några viktiga egenskaper hos minimala polynom.
 \begin{mytheo}{}{}
   Låt $F$ vara en kropp och $\alpha$ ett element i en kroppsutvidgning till $F$ så att $\alpha$ är algebraisk över $F$. Då gäller följande 
   \begin{enumerate}[(i)]
-    \item Funktionen $\varphi: F[X] \rightarrow F(\alpha)$ som ges av $\varphi: g(X) \mapsto g(\alpha)$ är en homomorfism med $ker(\varphi) = (f(X)),$
+    \item Funktionen $\varphi: F[X] \rightarrow F(\alpha)$ som ges av $\varphi: g(X) \mapsto g(\alpha)$ är en homomorfism med $\ker(\varphi) = (f(X)),$
     \item minimala polynomet $f(X)$ av $\alpha$ över $F$ existerar,
     \item det minimala polynomet $f(X)$ av $\alpha$ över $F$ är irreducibel över $F$.
     \item om $g(X) \in F[X]$ så är $g(\alpha) = 0$ om och endast om minimala polynomet $f(X)$ av $\alpha$ över $F$ delar $g(X),$
@@ -741,15 +790,15 @@ Nedan följer några viktiga egenskaper hos minimala polynom.
   \[\varphi(g_1(X) + g_2(X)) = g_1(\alpha) + g_2(\alpha) = \varphi(g_1(X)) + \varphi(g_2(X))\]
   och att 
   \[\varphi(g_1(X) g_2(X)) = g_1(\alpha) g_2(\alpha) = \varphi(g_1(X)) \varphi(g_2(X)).\]
-  Detta visar att $\varphi$ är en homomorfism. Enligt \hyperlink{isomorfiska}{den första isomorfiska satsen} vet vi då att $ker(\varphi)$ är ett ideal 
+  Detta visar att $\varphi$ är en homomorfism. Enligt \hyperlink{isomorfiska}{den första isomorfiska satsen} vet vi då att $\ker(\varphi)$ är ett ideal 
   till $F[X]$. Vidare vet vi även att $F[X]$ är en PID enligt \hyperlink{pid}{proposition 4.3.1}, vilket gör att 
-  \[ker(\varphi) = (f(X)).\]
+  \[\ker(\varphi) = (f(X)).\]
   Detta leder oss rakt in på (ii).
 
-  (ii) Eftersom $\alpha$ är algebraisk över $F$ så är $ker(\varphi) \neq \emptyset$. Från (i) har vi att $ker(\varphi) = (f(X))$
-  och i beviset av \hyperlink{pid}{proposition 4.3.1} vet vi även att $f(X)$ har den lägsta graden i $ker(\varphi)$ bland alla icke konstanta polynom. 
+  (ii) Eftersom $\alpha$ är algebraisk över $F$ så är $\ker(\varphi) \neq \emptyset$. Från (i) har vi att $\ker(\varphi) = (f(X))$
+  och i beviset av \hyperlink{pid}{proposition 4.3.1} vet vi även att $f(X)$ har den lägsta graden i $\ker(\varphi)$ bland alla icke konstanta polynom. 
   Eftersom alla element i $F$ har en invers så kan vi dela $f(X)$ med högstagradskoefficienten utan att förändra $(f(X))$. Vi vet även att 
-  $f(X) \in ker(\varphi)$, det vill säga $\varphi(f(X)) = f(\alpha) = 0$. Detta betyder att $f(X)$ är det minimala polynomet av $\alpha$.
+  $f(X) \in \ker(\varphi)$, det vill säga $\varphi(f(X)) = f(\alpha) = 0$. Detta betyder att $f(X)$ är det minimala polynomet av $\alpha$.
 
   (iii) Antag motsatsen. Då gäller $f(X) = h(X)g(X)$ där graden för $h(X)$ och $g(X)$ är mindre än graden för $f(X)$. Då gäller 
   \[0 = f(\alpha) = g(\alpha) h(\alpha)\]
@@ -757,10 +806,10 @@ Nedan följer några viktiga egenskaper hos minimala polynom.
   $ab = 0$ så måste $a = 0$ eller $b = 0$. Försök att bevisa att varje kropp är ett integritetsområde!) så måste antigen 
   $g(\alpha) = 0$ eller $h(\alpha) = 0$. Detta strider dock mot antagandet att $f(X)$ har den lägsta graden med $\alpha$ som lösning. 
 
-  (iv) Detta följer direkt från (ii): $g(\alpha) = 0 \iff g(X) \in ker(\varphi) = (f(X))$ detta gäller om och endast om $f(X) \; | \; g(X).$ 
+  (iv) Detta följer direkt från (ii): $g(\alpha) = 0 \iff g(X) \in \ker(\varphi) = (f(X))$ detta gäller om och endast om $f(X) \; | \; g(X).$ 
   
   (v) Antag motsatsen. Då existerar det ett moniskt polynom $g(X) \in F[X]$ så att $g(\alpha) = 0$ som har samma grad som $f(X)$. 
-  Eftersom $g(X) \in ker(\varphi)$ så måste 
+  Eftersom $g(X) \in \ker(\varphi)$ så måste 
   \[g(X) = q(X) f(X)\]
   och eftersom $g(X)$ och $f(X)$ har samma grad så måste $q(X)$ vara ett konstant polynom. Vidare vet vi även att $g(X)$ och $f(X)$ är moniska 
   och därför är $q(X) = 1$, det vill säga $g(X) = f(X)$.
@@ -818,8 +867,8 @@ Nedan följer några viktiga egenskaper hos minimala polynom.
   och eftersom $\grad f(X)$ är ändlig så är $F(\alpha)$ också en ändlig kroppsutvidgning. 
 
   (8) Enligt \hyperlink{minpol}{sats 5.3.1} (i) är $\varphi: F[X] \rightarrow F(\alpha)$ definerad av $\varphi: g(X) \mapsto g(\alpha)$ 
-  en homomorfism med $\ker(\varphi) = (f(X)).$ Vi visar nu att $Im(\varphi) = \{g(\alpha) \; | \; g(X) \in F[X]\}$ är en kropp, 
-  dvs. att det finns multiplikativa inverser i $Im(\varphi)$. 
+  en homomorfism med $\ker(\varphi) = (f(X)).$ Vi visar nu att $\im(\varphi) = \{g(\alpha) \; | \; g(X) \in F[X]\}$ är en kropp, 
+  dvs. att det finns multiplikativa inverser i $\im(\varphi)$. 
 
   Genom att dela $f(X)$ med $g(X) \in F[X]$ fås en kvot och rest: 
   \[g(X) = q(X)f(X) + r(X)\]
@@ -830,13 +879,13 @@ Nedan följer några viktiga egenskaper hos minimala polynom.
   \[1 = a(X)f(X) + b(X)g(X)\]
   vilket ger att 
   \[1 = b(\alpha)g(\alpha)\]
-  och därför är $b(\alpha)$ inversen till $g(\alpha)$ och $Im(\varphi)$ är således en kropp. Det är uppenbart att $Im(\varphi) = F(\alpha)$
+  och därför är $b(\alpha)$ inversen till $g(\alpha)$ och $\im(\varphi)$ är således en kropp. Det är uppenbart att $\im(\varphi) = F(\alpha)$
   och enligt \hyperlink{isomorfiska}{den första isomorfiska satsen} så gäller 
   \[F[X]/(f(X)) \cong F(\alpha)\]
   vilket slutför beviset.
 \end{proof}
-Vi minns från \hyperlink{isomorfiska}{den första isomorfiska satsen} att $\psi:R/\ker(\varphi) \rightarrow Im(\varphi)$ som definerades som 
-$\psi: \ker(\varphi) + r \mapsto \varphi(r)$ var den som skapade isomorfismen $R/\ker(\varphi) \cong Im(\varphi)$. Det är även 
+Vi minns från \hyperlink{isomorfiska}{den första isomorfiska satsen} att $\psi:R/\ker(\varphi) \rightarrow \im(\varphi)$ som definerades som 
+$\psi: \ker(\varphi) + r \mapsto \varphi(r)$ var den som skapade isomorfismen $R/\ker(\varphi) \cong \im(\varphi)$. Det är även 
 den som skapar isomorfismen $F[X]/(f(X)) \cong F(\alpha)$. Om vi använder denna får vi att
 \[\psi: \ker(\varphi) + g(X) \mapsto \varphi(g(X)) = g(\alpha)\]
 för alla $g(X) \in F[X]$. Detta ger oss följande egenskaper: 
@@ -852,6 +901,29 @@ Vi noterar följande som bevisades i satsen ovan:
   Låt $\alpha$ vara algebraisk över kroppen $F$ och $f(X)$ vara det minimala polynomet av $\alpha$ med grad $n$. 
   Då är $\{1, \alpha, \ldots, \alpha^{n-1}\}$ en bas till $F(\alpha)$ över $F$. 
 \end{mykol}
+
+\hypertarget{sats5.3.3}{}
+\begin{mytheo}{}{}
+  Låt $K$ vara en kroppsutvidgning till kroppen $F$. Då är $K$ en ändlig kroppsutvidgning till $F$ om och endast om $K = F(\alpha_1, \ldots, \alpha_n)$
+  för $\alpha_1, \ldots, \alpha_n \in K$ som är algebraiska över $F$.
+\end{mytheo}
+
+\begin{proof}
+  $\Rightarrow:$ Antag att $K$ är en ändlig kroppsutvidgning till $F$. Om vi låter
+  $B = \{\alpha_1, \ldots \alpha_n\}$ vara basen för $K$ över $F$ så är $K = F(\alpha_1, \ldots, \alpha_n)$. Enligt 
+  \hyperlink{algebraiskkropp}{lemma 5.2.1} är alla $\alpha_i$ algebraiska över $F$.
+
+  $\Leftarrow:$ Antag att $K = F(\alpha_1, \ldots, \alpha_n)$ där alla $\alpha_i \in K$ är algebraiska över $F$. Vi visar med hjälp av induktion att 
+  $[K:F]$ är ändlig. Om $n = 0$ så är $K = F$ och då är $[K:F] = [K:K] = 1$.
+
+  Vi visar nu att $[K:F]$ är ändlig för $K = F(\alpha_1 \ldots, \alpha_{n+1})$. Induktionsantagandet ger att $L = F(\alpha_1, \ldots, \alpha_n)$ 
+  är en ändlig kroppsutvidgning till $F$. Notera att $K = F(\alpha_1 \ldots, \alpha_{n+1}) = L(\alpha_{n+1})$ och att det minimala polynomet till $\alpha_n$
+  har koeffcienter i $L$. Det sistnämnda medför att $\alpha_n$ är algebraisk över $L$ och \hyperlink{5.3.2}{sats 5.3.2} säger att $[L(\alpha_n):L]$
+  är ändlig. Enligt \hyperlink{torn lagen}{torn lagen} har vi då att 
+  \[ [K:F] = [L(\alpha):F] = [L(\alpha_n): L] \cdot [L : F]\]
+  som är ändligt då $[L(\alpha_n): L]$ och $[L : F]$ är ändliga. 
+\end{proof}
+
 \begin{exmp}
   Bestäm $[\mathbb{Q}(\sqrt{2}): \mathbb{\mathbb{Q}}]$ och basen för $\mathbb{Q}(\sqrt{2})$ över $\mathbb{Q}$.
 
@@ -871,7 +943,13 @@ Vi noterar följande som bevisades i satsen ovan:
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 \end{exmp}
 
+\begin{ovning}{3}
+  Visa att $\mathbb{R}[X]/(X^2+1) \cong \mathbb{C}$ med satserna som togs upp i detta kapitel och med den första isomorfiska satsen. 
+  (En dålig övning... Trivial. Hitta något annat) 
+\end{ovning}
+
 \section{Splittringskroppar och normala utvidgningar}
+\subsection{Splittringskroppar}
 \begin{mydef}{}{}
   Låt $f(X)$ vara ett polynom över en kropp $F$. Vi säger att en kropp $K$ är en \textit{splittringskropp} för $f(X)$ över $F$ om följande villkor uppfylls. 
   \begin{enumerate}[(i)]
@@ -881,10 +959,11 @@ Vi noterar följande som bevisades i satsen ovan:
   \end{enumerate}
 \end{mydef}
 
+\hypertarget{lemma6.0.1}{}
 \begin{mylemma}{}{}
-  Låt $f(X)$ vara ett polynom över kroppen $F$ och låt $L$ vara dess splittringskropp. Då är 
+  Låt $f(X)$ vara ett polynom över kroppen $F$ som splittar över kroppen $L$. Då är 
   \[K = F(\alpha_1, \alpha_2, \ldots, \alpha_n)\]
-  en splittringskropp för $f(X)$ över $F$ där $\alpha$ är rötterna till $f(X)$.
+  en splittringskropp till $f(X)$ över $F$ där $\alpha$ är rötterna till $f(X)$.
 \end{mylemma}
 
 \begin{proof}
@@ -900,6 +979,7 @@ Vi noterar följande som bevisades i satsen ovan:
   faktum som givet.) Detta medför att $K' = K$ eftersom $K$ är den minsta kroppen med elementen $\alpha_i$.
 \end{proof}
 
+\subsection{Isomorfi mellan splittringkroppar}
 \begin{mydef}{}{}
   Låt $\varphi: F_1 \rightarrow F_2$ och $\psi: F_1(\alpha) \rightarrow F_2(\beta)$ vara isomorfismer mellan kroppar där $F_1 \subseteq F_1(\alpha)$
   och $F_2 \subseteq F_2(\beta)$. 
@@ -948,6 +1028,7 @@ Vi noterar följande som bevisades i satsen ovan:
   Isomorfismen $\psi_2 \circ \tilde{\varphi} \circ \psi_1^{-1}$ uppfyller alltså våra önskade villkor och beviset är slutfört.
 \end{proof}
 
+\hypertarget{sats6.0.1}{}
 \begin{mytheo}{}{}
   Låt $\varphi: F_1 \rightarrow F_2$ vara en isomorfism mellan två kroppar och $f(X)$ ett polynom i $F_1[X]$. Beteckna 
   $f^{\varphi}(X)$ för polynomet över $F_2[X]$ som erhållits genom att ha verkat med $\varphi$ på koeffcienterna i $f(X)$. Låt 
@@ -962,27 +1043,254 @@ Vi noterar följande som bevisades i satsen ovan:
   Vi antar att satsen gäller för ett heltal $n$. Det finns nu två fall för $f(X)$, antigen är den irreducibel över $F_1$ eller inte. Vi hanterar dessa fall separat
   med avseende på att visa att satsen gäller för $\grad f(X) = n+1$:
 
-  (i) $f(X)$ är irreducibel över $F_1$. 
+  \textbf{Fall 1:} $f(X)$ är irreducibel över $F_1$. 
 
   Eftersom $K_1$ är en splittringskropp för $f(X)$ så kan vi hitta en rot $\alpha \in K_1$ till $f(X)$. Detta gör att faktoriseringen 
   \[f(X) = (X-\alpha)g(X)\]
   går att åstadkomma för ett polynom $g(X)$ med koeffcienter från $F_1(\alpha)$ och med graden $n$. Eftersom $K_1$ har erhållits genom att ha adjungerat $\alpha$ 
-  och alla rötter till $g(X)$ så är $K_1$ en splittringskropp för $g(X).$ Enligt \hyperlink{6.0.2}{lemma 6.0.2} så existerar det en isomorfism 
+  och alla rötter till $g(X)$ så är $K_1$ en splittringskropp för $g(X)$ över $F_1(\alpha)$ enligt \hyperlink{lemma6.0.1}{lemma 6.0.1}.
+  Enligt \hyperlink{6.0.2}{lemma 6.0.2} så existerar det en isomorfism 
   $\psi: F_1(\alpha) \rightarrow F_2(\beta)$ så att $\psi |_{F_1} = \varphi$ och $\psi(\alpha) = \beta.$ Genom att verka på $\psi$ på koeffcienterna i $f(X)$
   så får vi 
   \[f^{\varphi}(X) = (X - \beta)g^{\psi}(X)\]
-  som ger oss att $K_2$ är en splittringskropp för $g^{\psi}(X)$. Enligt induktionsantagandet får vi att (glöm inte att skriva "splittringskroppen över..." )
+  som ger oss att $K_2$ är en splittringskropp för $g^{\psi}(X)$ över $F_1(\beta)$. Enligt induktionsantagandet existerar det då en isomorfism $\Psi: K_1 \rightarrow K_2$
+  så att $\Psi |_{F_1(\alpha)} = \psi$ och eftersom $F_1 \subset F_1(\alpha)$ så gäller 
+  \[\Psi |_{F_1} = \psi |_{F_1} = \varphi\]
+  dvs. $\Psi(a) = \psi(a) = \varphi(a)$ för alla $a \in F_1$
+
+  \textbf{Fall 2:} $f(X)$ är reducibel över $F_1$.
+
+Vi skriver $f(X) = g(X)h(X)$ för $g(X)h(X) \in F_1[X]$ vars grad är mindre än $n = \grad f(X)$. Vi verkar med $\varphi$ på $f(X)$ för att få 
+\[f^{\varphi}(X) = g^{\varphi}(X)h^{\varphi}(X). \]
+Låt $\alpha, \ldots, \alpha_k$ vara rötter till $g(X)$ och $\beta, \ldots, \beta_k$ vara rötter till $g^{\varphi}(X).$
+Enligt \hyperlink{lemma6.0.1}{lemma 6.0.1} så är då $L_1 = F_1(\alpha, \ldots, \alpha_k)$ splittringskroppen för $g(X)$ och 
+$L_2 = F_2(\beta, \ldots, \beta_k)$ splittringskroppen för $g^{\varphi}(X).$ Enligt induktionsantagandet existerar det en 
+isomorfism $\psi: L_1 \rightarrow L_2$ så att $\psi |_{F_1} = \varphi.$
+
+Vi noterar nu att $K_1$ har erhållits från $F_1$ genom att ha adjungerat alla rötter till $f(X)$. Därför har $K_1$ även erhållits
+från $L_1$ genom att ha adjungerat alla rötter till $h(X)$. Detta betyder att $K_1$ är splittringskroppen för $h(X)$ över $L_1$. Ett liknande 
+argument visar att $K_2$ är splittringskroppen för $h^{\varphi}(X) = h^{\psi}(X)$ över $L_2$. Enligt induktionsantagandet så existerar det 
+en isomorfism $\Psi: K_1 \rightarrow K_2$ så att $\Psi |_{L_1} = \psi$. Eftersom $F_1 \subset L_1$ så gäller 
+\[\Psi |_{F_1} = \psi |_{F_1} = \varphi\]
+dvs. $\Psi(a) = \psi(a) = \varphi(a)$ för alla $a \in F_1$. 
 \end{proof}
+
 
 \begin{mydef}{}{}
   Låt $F$ vara en kropp och $K_1$ och $K_2$ kroppsutvidgningar till $F$. En \textit{F-isomorfism} från $K_1$ till $K_2$ är en isomorfism 
   $\varphi: K_1 \rightarrow K_2$ så att $\varphi(a) = a$ för alla $a \in F.$ Vi säger då att $K_1$ och $K_2$ är $F$-\textit{isomorfa}.
 \end{mydef}
 I en $F$-isomorfism mellan två kroppsutvidgningar så blir alltså alla element i baskroppen "oberörda" och mappas till säg själva. Med denna definition 
-kan vi notera följande 
+kan vi notera följande korollarium från ovanstående sats och samtidigt dra slutsatsen att splittringskroppar är unika.
 
-% mer exempel, t.ex. Q(s2, s3) och R(i) lämnas som en övning.
+\begin{mykol}{}{}
+  Låt $f(X)$ vara ett polynom över kroppen $F$. Två splittringskroppar till $f(X)$ är $F$-isomorfa. 
+\end{mykol}
+\begin{proof}
+  Sätt $F_1 = F_2 = F$ och definiera $\varphi(a) = a$ för alla $a \in F$ i \hyperlink{sats6.0.1}{sats 6.0.1}
+\end{proof}
+
+\begin{mydef}{}{}
+  En \textit{automorfism} av en kropp $F$ är en isomorfism från $F$ till $F$. Låt $K$ vara en kroppsutvidgning till $F$. En $F$-\textit{automorfism} 
+  är en $F$-isomorfism från $K$ till $K.$
+\end{mydef}
+En automorfism kan alltså ses som en permutation av $F$ och en $F$-automorfism kan ses som en permutation där alla element i $F$ blir "oberörda".
+\begin{exmp}
+  aölskdfjölkasdjfkölasdjfölkasdjflökasdjfölksadfj
+\end{exmp}
+\begin{exmp}
+  aösldkfjöalskdfjöalksdfjöasldfjk
+\end{exmp}
+
+\subsection{Normala utvidgningar}
+\begin{mydef}{Normala utvidgningar}{}
+  En kroppsutvidgning $K$ av en kropp $F$ sägs vara \textit{normal över} $F$ om alla irreducibla polynom över $F$ som har åtminstånde en rot i $K$ splittar 
+  över $K$.
+\end{mydef}
+
+\begin{exmp}
+  Kroppen $\mathbb{C}$ är normal över $\mathbb{R}$ eftersom alla polynom över $\mathbb{R}$ splittar över $\mathbb{C}$ enligt 
+  algebrans fundamentalsats. 
+\end{exmp}
+Med hjälp av följande sats kan fler exempel tas upp. 
+
+\begin{mytheo}{}{}
+  En ändlig kroppsutvidgning $K$ av en kropp $F$ är normal om och endast om $K$ är splittringskroppen för något polynom över $F.$
+\end{mytheo}
+\begin{proof}
+  $\Rightarrow$: Antag att $K$ är en ändlig kroppsutvidgning och att den är normal över $F$. Enligt \hyperlink{sats5.3.3}{sats 5.3.3}
+  vet vi att $K = F(\alpha_1, \ldots, \alpha_n)$ för alla $\alpha_i \in K$ som är algebraiska över $F.$ Låt $f_i(X)$ vara det minimala polynomet 
+  till $\alpha_i$ över $F$ och 
+  \[g(X) = f_1(X) f_2(X) \cdots f_m(X).\] 
+  Eftersom $f_i(X)$ är irreducibel och har åtminstånde en rot i $K$ så splittar den över $K$ enligt antagandet att $K$ är normal över $F$. Det följder från detta 
+  att $g(X)$ splittar över $K$ och eftersom $K$ har erhållits genom att ha adjungerat rötter till $f_i(X)$ så är $K$ splittringskroppen till $g(X).$
+
+  $\Leftarrow:$ Antag istället att $K$ är splittringskroppen för ett polynom $g(X) \in F[X]$. Låt $f(X)$ vara ett irreducibelt polynom över $F$ och antag 
+  att $f(X)$ har en rot $\alpha \in K$. Vi skall visa att $f(X)$ splittar över $K$.
+  
+  Låt $L$ vara splittringskroppen för $f(X)$ över $F$ och $\beta \in L$ en rot till $f(X)$. Följande diagram visar alla kroppsutvidgningar/delkroppar 
+  till kropparna som vi jobbar med. 
+
+
+  \begin{center}
+    \newcommand{\mydistance}{.6cm}
+    \begin{tikzpicture}[node distance=2cm, scale=1]
+    \node(L) {$L$};
+    \node(Ka) [below left=1cm of L] {$K(\alpha)$};
+    \node(Kb) [below right=1cm of L] {$K(\beta)$};
+    \node(K) [below=2cm of L] {$K$};
+    \node(F) [below=2cm of K] {$F$};
+    \node(Fa) [below left=1 of K] {$F(\alpha)$};
+    \node(Fb)[below right = 1 of K] {$F(\beta)$};  
+
+    \draw[dashed](Ka) -- (K);
+    \draw(Kb) -- (K);
+    \draw(L) -- (Ka);
+    \draw(L) -- (Kb);
+    \draw(K) -- (L);
+    \draw(F) -- (K);
+    \draw(Ka) -- (Fa);
+    \draw(Fa) -- (F);
+    \draw(Fb) -- (F);
+    \draw(Kb) -- (Fb);
+    \end{tikzpicture}
+  \end{center}
+  Genom att "jobba oss uppåt" i diagramet hittar vi kroppsutvidgningar och jobbar vi oss ned hittar vi delkroppar. 
+  Den streckade linjen ska visa att $K(\alpha) = K$, vilket gäller eftersom $\alpha \in K.$
+  Exempelvis är $F(\alpha)$ en kroppsutvidgning 
+  till $F$. Vi skall visa att $K(\beta) = K$ som då medför att $\beta \in K$ som slutför beviset. Från diagramet och med \hyperlink{torn lagen}{torn lagen}
+  noterar vi följande:
+  \begin{align}
+    [K(\beta): K] \cdot [K:F] &= [K(\beta): F] = [K(\beta): F(\beta)] \cdot [F(\beta): F] \\
+    [K(\alpha): K] \cdot [K:F] &= [K(\alpha): F] = [K(\alpha): F(\alpha)] \cdot [F(\alpha): F].
+  \end{align}
+  Vidare vet vi även från \hyperlink{5.3.2}{sats 5.3.2} att
+  \[[F(\alpha): F] = [F(\beta):F] = \grad f(X)\]
+  och att
+  \[F(\alpha) \cong F[X]/(f(X)) \cong F(\beta)\]
+  eftersom $f(X)$ är irreducibelt och därmed det minimala polynomet till $\alpha$ och $\beta$ enligt \hyperlink{minpol}{sats 5.3.1}. Vi låter 
+  $\varphi$ vara funktionen som skapar isomorfismen mellan $F(\alpha)$ och $F(\beta)$. 
+  Vi minns att en egenskap hos $\varphi: F[X]/(f(X)) \rightarrow F(\alpha)$ var att det var en $F$-isomorfism.
+
+  Observa nu att $K(\alpha)$ kan erhållas genom att adjungera alla rötter till $g(X)$ till $F(\alpha)$. Detta betyder att 
+  $K(\alpha)$ är splittringskroppen för $g(X)$ över $F(\alpha)$ och ett liknande argument visar att $K(\beta)$ är splittringskroppen för 
+  $g(X)$ över $F(\beta)$. Enligt \hyperlink{sats6.0.1}{sats 6.0.1} existerar det då en isomorfism $\psi: K(\alpha) \rightarrow K(\beta)$ 
+  så att $\psi |_{F(\alpha)} = \varphi$. Observera att $\psi$ mappar $F(\alpha)$ till $F(\beta)$. Detta medför att basen för $K(\alpha)$
+  över $F(\alpha)$ blir mappad till basen för $K(\beta)$ över $F(\beta)$ (övertyga dig om detta!). Detta betyder i sin tur att 
+  $[K(\alpha):F(\alpha)] = [K(\beta): F(\beta)]$. Detta betyder att vänsterledet i (9) måste vara lika med vänsterledet i (10). Detta ger 
+  \[[K(\beta): K] = [K(\alpha):K]\]
+  och eftersom $\alpha \in K$ så är $[K(\beta):K] = 1$, vilket betyder att $\beta \in K$ och beviset är slutfört. 
+\end{proof}
+
+\section{Separerbarhet}
+\subsection{Separerbara polynom}
+\begin{mydef}{}{}
+  Låt $f(X)$ vara ett irreducibelt polynom över kroppen $F$. Vi säger att $f(X)$ är \textit{separerbart} över $F$ om den inte har flera 
+  rötter i dess splittringskropp $K$. Det vill säga 
+  \[f(X) = c(X-\alpha_1)c(X-\alpha_1)\cdot (X-\alpha_n)\]
+  för \textit{olika} $\alpha_1, \alpha_2, \ldots, \alpha_n \in K.$
+\end{mydef}
+Det visar sig att det finns en koppling mellan separerbara polynmom och deras första derivata. Därför görs följande definition. 
+\begin{mydef}{}{}
+  Låt $f(X) = a_0 + a_1X + a_2X^2 + \cdots + a_nX^n$ vara ett polynom över kroppen $F$. \textit{Derivatan} av $f(X)$ är polynomet 
+  \[f'(X) = Df(X) = a_1 + 2a_2X + 3a_3X^2 + \cdots na_nX^{n-1}.\]
+\end{mydef}
+Notera att vi definierar derivatan utan att ens nämna gränsvärden. Av denna anledning har derivatan i detta fall inget att göra med lutningen/tangenten 
+till ett polnom. För att kunna utnyttja derivatan måste vi först gå igenom grundläggande egenskaper hos dessa, såsom produktregeln. 
+
+\begin{mylemma}{}{}
+  Låt $f(X)$ och $g(X)$ vara polynom över kroppen $F$ och $\alpha, \beta \in F$ skalärer. Då gäller 
+  \[ D(\alpha f(X) + \beta g(X))  = \alpha Df(X) + \beta D g(X) \]
+  och
+  \[ D(f(X)g(X)) = D(f(X))g(X) + D(g(X)) f(X).\]
+  Den ovanstående egenskapen benämns \textit{produktregeln.}
+\end{mylemma}
+
+\begin{proof}
+  Antag att 
+  \[f(X) = \sum a_iX^i \quad \textnormal{och} \quad g(X) = \sum b_iX^i.\]
+  Då är 
+  \[\alpha f(X) + \beta g(X) = \sum (\alpha a_i + \beta b_i)X^i\]
+  vilket ger 
+  \begin{align*}
+    D(\alpha f(X) + \beta g(X)) &= \sum i(a_i + b_i)X^{i-1} \\
+    &= \alpha \sum ia_i X^{i-1} + \beta \sum ib_i X^{i-1} \\
+    &= \alpha D(f(X)) + \beta D(g(X)).
+  \end{align*}
+  Innan vi går vidare till produktregeln så kollar vi på ett specialfall. Antag att $f(X) = X^n$ och $g(X) = X^m$. Vi visar nu att 
+  produktregeln håller för $f(X)$ och $g(X)$. Notera att 
+  \[D(f(X)g(X)) = (n+m)X^{n+m-1}\]
+  och att 
+  \begin{align*}
+    D(f(X))g(X) + D(g(X)) f(X) &= nX^{n-1} \cdot X^m + mX^{m-1} \cdot X^n \\
+    &= (n+m)X^{n+m-1}.
+  \end{align*}
+  Vi använder nu detta specialfall och faktumet att derivatan är linjär för att härleda produktregeln. 
+  Låt oss, återigen, anta att
+  \[f(X) = \sum a_iX^i \quad \textnormal{och} \quad g(X) = \sum b_iX^i. \]
+  Vi observerar följande:
+  \begin{align*}
+    D(f(X)g(X)) &= D \biggl( \sum_{i, j} a_i b_j X^i X^j\biggr) \\
+    &= \sum_{i, j} a_i b_j D(X^iX^j) \quad \textnormal{första delen av lemmat} \\
+    &= \sum_{i, j} a_i b_j (D(X^i)X^j + D(X^j)X^i ) \quad \textnormal{specialfallet} \\
+    &= \biggl (  \sum a_i D(X^i) \biggr) \biggl (  \sum b_jX^j \biggr) + \biggl ( \sum b_j D(X^j)  \biggr) \biggl ( \sum a_iX^i  \biggr) \\
+    &= D \biggl (  \sum a_i X^i \biggr) \biggl (  \sum b_jX^j \biggr) + D \biggl ( \sum b_j X^j  \biggr) \biggl ( \sum a_iX^i  \biggr) \\
+    &= D(f(X)) g(X) + D(g(X)) f(X)
+  \end{align*}
+  som påstått.
+\end{proof}
+
+Följande lemma visar kopplingen mellan polynom och dess derivata som kommer att användas vid senare tillfällen. 
+
+\hypertarget{lemma7.2.1}{}
+\begin{mylemma}{}{}
+  Låt $f(X)$ vara ett polynom över kroppen $F[X]$. Då har $f(X)$ repeterade rötter i dess splittringskropp om och endast om $f(X)$ och $Df(X)$
+  har en gemensam faktor som har åtminstånde graden ett i $F[X]$.
+\end{mylemma}
+
+\begin{proof}
+  $\Rightarrow:$ Antag att $f(X) \in F[X]$ har repeterade rötter i dess splittringskropp $K$. Då gäller 
+  \[f(X) = (X-\alpha)^2 g(X)\]
+  där $\alpha \in K$ och $g(X) \in K[X].$ Produktregeln ger att 
+  \[D(f(X)) = 2(X- \alpha) g(X) + D(g(X)) (X - \alpha)^2\]
+  och vi noterar att $f(\alpha) = Df(\alpha) = 0.$ Enligt \hyperlink{minpol}{sats 5.3.1 (iv)} så delar det minimala polynomet till $\alpha$ både 
+  $f(X)$ och $Df(X)$. De har alltså en gemensam faktor vars grad är åtminstånde ett. 
+
+  $\Leftarrow:$ Antag att $f(X) \in F[X]$ och $Df(X)$ har en gemensam faktor vars grad är åtminstånde ett. 
+  Skriv 
+  \[f(X) = \prod_{i = 0}^{\grad f(X)} (X-\alpha_i) \quad \textnormal{och} \quad g(X) = \prod_{j = 0}^{\grad g(X)} (X-\beta_j)\]
+  för $\alpha_i$ och $\beta_i$ som tillhör splittringskropparna för $f(X)$ respektive $g(X)$. Eftersom dessa 
+  splittringkroppar är kroppsutvidgningar av $F$ så måste $(X - \alpha_a)$ = $(X - \beta_b)$ för några $\alpha_a$ och $\beta_b$ enligt vårat antagande. 
+  Vi skriver nu 
+  \begin{equation}
+    f(X) = (X-\alpha_a)g(X)
+  \end{equation}
+  för ett polynom $g(X)$ över splittringskroppen för $f(X)$. Enligt produktregeln får vi 
+  \[Df(X) = g(X) + (X - \alpha_a)Dg(X).\]
+  Vi vet att $(X - \alpha_a)$ måste dela $g(X)$ eftersom $(X - \alpha_a)$ delar $Df(X)$. Detta gör att $g(X)$ kan skrivas som
+  \[g(X) = (X - \alpha_a)h(X)\]
+  för ett polynom $h(X)$ över splittringskroppen för $f(X)$. Detta i (11) ger 
+  \[f(X) = (X - \alpha_a)^2h(X)\]
+  och $f(X)$ har således repeterade rötter.
+\end{proof}
+
+\begin{myprop}{}{}
+  Låt $f(X)$ vara ett irreducibelt polynom över kroppen $F$ som har karakteristik noll. Då är $f(X)$ separerbar. 
+\end{myprop}
+
+\begin{proof}
+  Antag motsatsen. Enligt \hyperlink{lemma7.2.1}{lemma 7.2.1} så har det irreducibla polynomet $f(X)$ och $Df(X)$ en gemensam faktor. 
+  Vi vet dock att graden för $Df(X)$ inte kan vara noll eftersom $f(X)$ inte är konstant och karakteristiken för $F$ är noll. Detta är alltså 
+  en motsägelse.
+\end{proof}
+
+\begin{mydef}{}{}
+  Låt $K$ vara en algebraisk kroppsutvidgning till kroppen $F$. Vi säger att $K$ är en \textit{separerbar utvidgning av} $F$ om 
+  det minimala polynomet till varje element i $K$ över $F$ är separerbar över $F$. 
+\end{mydef}
+
 \section{Galoisteorins fundamentalsats}
-Det är här den matematiska vackerheten och syftet med hela texten uppträder.
+Vi har nu tagt upp förkunskaperna för att börja med Galoisteori. Detta görs dock inte i detta text. Hitta en annan källa lmao f u.
+% Det är här den matematiska vackerheten och syftet med hela texten uppträder.
 \section{Lösbara grupper och lösningarna till polynom}
 \end{document}
