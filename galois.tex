@@ -347,6 +347,7 @@ Galoisteorins fundamentalsats.
     \item multiplikation är distributiv över addition, $a \cdot (b+c) = (a \cdot b) + (a \cdot c)$ och $(b + c) \cdot a = (b \cdot a) + (c \cdot a),$
   \end{enumerate}
   för alla $a, b, c \in R$. Om multiplikation är kommutativ över $R$ så säger vi att $R$ är en \textit{kommutativ ring}. 
+  Om ett element har en multipliktiv invers så kallas elementet för en \textit{enhet.}
 \end{mydef}
 Ibland definieras en ring utan axiom II b) men i denna text finns denna med och därför, om inte något annat nämns, så antas en ring ha ett multiplikativt enhetselement. 
 En ring utan detta axiom brukar kallas för en rng som uttalas \textit{rung}. Eftersom vi endast är intresserade av kommutativa ringar så kommer vi 
@@ -354,7 +355,8 @@ att benämna varje kommutativ ring för en ring.
 
 \begin{mydef}{Ideal}{}
   Låt $R$ vara en ring och $I$ vara en delmängd till denna. Vi säger att $I$ är ett \textit{ideal} till $R$ om $I$ är en additativ delgrupp till $R$
-  och om $i \in I$ samt $r \in R$ så är $i \cdot r \in I$. 
+  och om $i \in I$ samt $r \in R$ så är $i \cdot r \in I$. Ett \textit{maximalt ideal} är ett ideal $M \neq R$ så att $I \subset M$ för alla 
+  ideal $I$. Ett \textit{primideal} är ett ideal $P \neq R$ sådan att $ab \in P$ medför att $a \in P$ eller $b \in P$ för alla $a \in P$ och $b \in P$.
 \end{mydef}
 Det följer från definitionen att $ab \in I$ för alla $a, b \in I$ och $I$ är därför sluten under multiplikation. Detta faktum tillsammans 
 med att ett ideal är sluten under addition och att ett ideal är en delmängd betyder att det är en \textit{delring}.
@@ -512,12 +514,260 @@ Här finns även en liten genväg som man kan ta genom att skriva upp $f$ i matr
   $\psi$ är injektiv i den första isomorfiska satsen?
 \end{ovning}
 
+\subsubsection{Kategorisering av ringar}
+Detta avnsitt kommer att kategorisera ringar i olika \textit{domäner} som har olika egenskaper. 
+Detta är nödvändigt eftersom olika ringar har olika egenskaper. I vissa ringar gäller till exempel att 
+$ab = 0$ medför att $a = 0$ eller $b = 0$ medan andra ringar inte har denna egenskap.
+
+\begin{mydef}{Integritetsområden}{}
+  En ring $R$ är ett \textit{integritetsområde} om produkten mellan två nollskilda element i $R$ är nollskilt. Det vill säga $ab = 0$ 
+  medför att $a = 0$ eller $b = 0$. Vi säger att ett nollskilt och ett icke inverterbart $r \in R$ är \textit{irreducibelt} om 
+  faktoriseringen $r = r_1r_2$ kräven att $r_1$ eller $r_2$ är enheter. 
+\end{mydef}
+
+\begin{exmp}
+  Ringen $\mathbb{Z}_6$ är inte ett integritetsområde eftersom $[2][3] = [6] = 0$. Ringen $\mathbb{Z}$ är därimot ett integritetsområde 
+  eftersom $ab = 0$ medför att $a = 0$ eller $b = 0$.
+\end{exmp}
+
+\hypertarget{kancelleringslagen}{}
+\begin{mytheo}{}{}
+  En ring $R$ är ett integritetsområde om och endast om den uppfyller \textit{kancelleringslagen}: om $ra = rb$ för ett nollskilt $r$
+  så är $a = b$.
+\end{mytheo}
+
+\begin{proof}
+  Låt $R$ vara ett integritetsområde och $r, a, b \in R$ för ett nollskilt $r$. Då gäller $r(a -b) = 0$. Eftersom $r \neq 0$
+  så måste $a -b = 0$. Detta ger oss att $a = b$. 
+
+  Antag istället att kancelleringslagen gäller för en ring $R$ och låt $r, a$ vara nollskilda element i $R$ så att $ra = 0.$
+  Vi noterar att $ra = 0 = r0$ och eftersom kancelleringslagen gäller så är $a = 0$. Detta är dock en motsägelse eftersom $a \neq 0$. 
+\end{proof}
+
+\begin{mytheo}{}{}
+  $\mathbb{Z}_n$ är ett integritetsområde om och endast om $n$ är ett primtal.
+\end{mytheo}
+\begin{proof}
+  Antag att $\mathbb{Z}_n$ är ett integritetsområde för ett icke primtal $n > 0$. Eftersom $n$ inte är ett primtal så kan vi skriva 
+  $n = ab$. Vi vet även att $0 = [n] = [a][b]$ vilket medför att $[a] = 0$ eller $[b] = 0$ eftersom $\mathbb{Z}_n$ är ett integritetsområde. 
+  Detta är dock en motsägelse eftersom $1 < a < n$ och $1 < b < n$ och därför kan varken $a$ eller $b$ vara kongruenta med noll mod $n$. 
+
+  Antag istället att $p$ är ett primtal och $[a], [b] \in \mathbb{Z}_p$ så att $0 = [a][b] = [ab]$. Detta medför att 
+  $ab \equiv 0 \mod p$ och $p$ måste dela $a$ eller $b$. Detta betyder att $[a] = 0$ eller $[b] = 0$.
+\end{proof}
+
+\begin{mydef}{Ringar med entydig faktorisering}{}
+  En \textit{ring med entydig faktorisering}, eller EF-ring (eng. \textit{UDF}) är ett integritetsområde där varje element förutom noll och enheter
+  kan skrivas entydligt som en produkt av irreducibla element.
+\end{mydef}
+
+Denna definition är analog med aritmetikens fundamentalsats, varje heltal större än ett kan skrivas som en unik produkt av primtal. I detta fall sammanfaller 
+primtalen med det irreducibla elementen i definitionen ovan och därför är $\mathbb{Z}$ en EF-ring.
+
+\begin{mydef}{Principalidealdomän}{}
+  En \textit{principalidealdomän} (PID) är ett integritetsområde där varje ideal genereras av ett element. 
+  Det vill säga $I = (a) \equiv \{ar \; | \; r \in R\}$ för ett ideal $I$ till ringen $R$.
+\end{mydef}
+
+Vårt mål nu är att visa att varje PID är en EF-ring. För detta behöver vi följande definitioner. 
+
+\begin{mydef}{}{}
+  Ett \textit{primelement} $p \neq 0$ är ett element i en ring som inte är en enhet och om $p$ delar $ab$ så måste $p$ dela $a$ eller $b$.
+\end{mydef}
+
+Primelement försöker alltså efterlikna vanliga primtal. Notera att primelement och irreducibla element är två olika saker. Ibland kan dock dessa 
+sammanfalla med varandra. 
+I ringen av heltal $\mathbb{Z}$ är primelementen identiska med primtalen och därför sammanfaller 
+de irreducibla element med primelement. 
+
+\begin{mydef}{}{}
+  En \textit{Noethersk ring} är en ring $R$ som uppfyller \textit{kedjevillkoret} (eng. \textit{ascending chain condition}, ACC)
+  på ideal: givet en kedja av ideal i $R$
+  \[ I_1 \subseteq I_2 \subseteq I_3 \subseteq \ldots I_k\]
+  så existerar det ett $m$ så att $I_k = I_m$ för $m \leq k$.
+\end{mydef}
+Med ACC menas alltså att det inte existerar en oändlig lång kedja av ideal där den ena är en \textit{äkta} delmängd av den tidigare. 
+
+Noetherska ringar 
+är uppkallade efter den tyska matematikern Emmy Noether som gjorde många viktiga bidrag inom abstrakt algebra. Hon upptänkte bland annat 
+Noethers sats som är fundamental inom modern teoretisk fysik och expanderade även konceptet om ideal. 
+Noether har även publicerat en artikel om det inversa Galoisproblemet som är ett olösbart problem ännu än idag. Hon har beskrivits av bland annat 
+Albert Einstein och Norbert Wiener som den viktigaste kvinnan i matematikens historia. Det finns även många satser som berör Noetherska ringar
+såsom Lasker-Noether satsen och Hilberts bassats. Vårt mål är dock att visa att varje PID är EF-ring och vi hoppar därför över detaljerna. 
+(Det inversa Galoisproblemet tas dock upp senare.)
+
+\hypertarget{pidnoe}{}
+\begin{mytheo}{}{}
+  Varje PID är en Noethersk ring. 
+\end{mytheo}
+
+\begin{proof}
+  Låt $I_1 \subset I_2 \ldots$ vara en kedja av ideal av $R$. Låt $I = \cup_{i = 0}^{\infty} I_i$ och observera att $I$ är ett ideal. Eftersom 
+  $R$ är en PID så måste $I = (c)$ för $c \in R$. Eftersom $c \in I$ så måste $c$ även förekomma i ett annat ideal, säg $I_n.$ Då har vi även 
+  att $I_n(c)$ och $I_r(c)$ för $r \geq n$. Detta betyder att $I_n = I_m$ som påstått. 
+\end{proof}
+
+\hypertarget{inv}{}
+\begin{mytheo}{}{}
+  Låt $R$ vara en PID. Då är varje nollskilt och icke inverterbart element en produkt av ändligt många irreducibla element.
+\end{mytheo}
+
+\begin{proof}
+  Låt $a$ vara ett nollskilt och icke inverterbart element i en ring $R$. Vi visar först att $a$ har en irreducibel faktor. 
+  Om $a$ är irreducibel så gäller naturligtvist detta. Vi antar därför att $a$ är reducibel, det vill säga $a = a_1b_1$
+  där $a_1$ och $b_1$ inte är enheter. Då är $a \in (a_1)$ och $(a) \subset (a_1)$. Denna inneslutning är strikt då 
+  om $(a) = (a_1)$ skulle medföra att $a_1b_1n = a_1$ för $n \in R$. Eftersom $R$ är en PID och därför ett integritetsområde
+  så gäller \hyperlink{kancelleringslagen}{sats 4.1.2} (kancelleringslagen) 
+  som medför att $b_1$ är en enhet, vilket den inte får enligt vårt antagande. 
+  Om $a_1$ är reducibelt så kan det skrivas som $a_1 = a_2b_2$ där $a_2$ eller $b_2$ inte är enheter. Med ett liknande argument får vi 
+  \[(a) \subset (a_1) \subset (a_2).\]
+  Vi kan fortsätta på detta sätt och få en kedja av ideal. Enligt \hyperlink{pidnoe}{sats 4.1.4} så kan dock denna kedja inte vara oändligt lång, 
+  det vill säga $I_k = I_m$ för $m \leq k$. Det enda sättet två ideal av vår typ kan vara lika med varandra är om den ena är irreducibel. Detta är 
+  lätt att visa och lämnas därför som en övning till läsaren. Detta medför att $(a)$ är en delmängd till $(a_r)$ för ett irreducibelt $a_r \in R$. 
+  Detta betyder i sin tur att $a$ måste ha en irreducibel faktor.
+  
+  Vi visar nu att $a$ är en produkt av ändligt många irreducibla element i $R$. Om $a$ är reducibel kan vi enligt ovanstående 
+  skriva $a = p_1c_1$ för ett icke inverterbart element $c_1 \in R$ och ett irreducibelt element $p_1 \in R$. Med argument som 
+  liknande dessa i det ovanstående är $(a) \subset (c_1)$. Om $c_1$ är reducibel så kan den skrivas som $c_1 = p_2c_2$ och 
+  \[(a) \subset (c_1) \subset (c_2).\]
+  Vi kan sedan kolla om $c_2$ är reducibel eller inte osv. Enligt \hyperlink{pidnoe}{sats 4.1.4} kan denna kedja inte vara ändlig och 
+  måste sluta med $(c_r)$ för ett irreducibelt $c_r \in R$. Vi har då att $a = p_1p_2 \cdots p_rc_r$ där alla $p_i$ är irreducibla.
+\end{proof}
+
+\hypertarget{max}{}
+\begin{mylemma}{}{}
+  Låt $I$ vara ett ideal till PID'en $R$. Då är $I$ maximal om och endast om $I = (p).$
+\end{mylemma}
+
+\begin{proof}
+  Antag att $I$ är ett maximalt ideal till PID'en $R$. Då gäller $I = (n)$. Antag att $n$ är reducibel, det vill säga 
+  $n = ab$ där $a$ och $b$ inte är enheter. Då gäller $(n) \subset (a)$. Vi observerade i \hyperlink{inv}{sats 4.1.5} att denna inneslutning är strikt.
+  Vi vet även att $(a) \neq R$ eftersom $a$ inte är en enhet. Detta är dock en motsägelse eftersom vi antog att $(n)$ var det maximala idealet.
+
+  Antag istället att $p$ är irreducibelt och låt $I_1$ vara det minsta idealet så att $(p) \subset I_1$. Då gäller $I_1 = (q)$ för något $q \in R$. 
+  Detta ger oss $p = qn$ för ett $n \in R$. Eftersom $p$ är irreducibelt så måste antigen $q$ vara en enhet eller $n$ vara en enhet. 
+  I det första fallet får vi att $I_1 = (q) = R$, vilket är enkelt att visa. I det andra fallet får vi att $q = n^{-1}p$ vilket medför att 
+  $q \in (p)$ och $(q) = (p)$, vilket är enkelt att visa. Detta ger oss att $I_1 = I$.
+\end{proof}
+
+\hypertarget{maxprim}{}
+\begin{mylemma}{}{}
+  Det maximala idealet av ringen $R$ är ett primideal.
+\end{mylemma}
+
+\begin{proof}
+  Låt $M$ vara det maximala idealet av $R$. Antag att $M$ inte är ett primideal. Då existerar det $a, b \in R$ så att produkten 
+  $ab$ finns i $M$ men $a \notin M$ och $b \notin M$. Observera att $(a) + M = \{ra + m \; | \; r \in R, \; 0m \in M\}$ är ett ideal av $R$. 
+  Eftersom $M \subset (a) + M$ så måste $(a) + M = R$ eftersom $M$ är maximal. Eftersom $1 \in R = (a) + M$ så måste det finnas ett 
+  $r \in R$ och $m \in M$ så att 
+  \[1 = ra + m.\]
+  På samma sätt får vi att $R = (b) + M$ och
+  \[ 1 =  sb + n\]
+  för $s \in R$ och $n \in M$. 
+  Vi får då följande ekvation: 
+  \[1 = 1 \cdot 1 = (ra + m)(sb + n) = rasb + ran + msb + mn\]
+  och eftersom $ab, m, n \in M$ så tillhör ovanstående ekvation $M$. Detta betyder dock att $1 \in M$ vilket i sin tur betyder 
+  att $M = R$ enligt resultat som härledes direkt efter definitionen av ringar. Detta är dock en motsägelse eftersom 
+  det maximala idealet är per definition inte lika med hela ringen.
+\end{proof}
+
+\hypertarget{irprim}{}
+\begin{mylemma}{}{}
+  De irreducibla elementen sammanfaller med primelementen i en PID.
+\end{mylemma}
+
+\begin{proof}
+  Låt $a$ och $b$ vara element i en PID $R$ där $a$ eller $b$ är enheter och $p$ ett irreducibelt element i $R$ så att $p = ab$. Enligt 
+  \hyperlink{max}{lemma 4.1.1} och \hyperlink{maxprim}{lemma 4.1.2} så är $(p)$ ett primideal och eftersom $p = ab$ så är $ab \in (p)$.
+  Detta medför att $a \in (p)$ eller $b \in (p)$ vilket ger att $p$ delar $a$ eller att $p$ delar $b$. Det irreducibla elementet $p$
+  är alltså ett primelement och beviset är slutfört.
+\end{proof}
+
+\begin{mytheo}{}{}
+  Varje PID är en EF-ring.
+\end{mytheo} 
+
+\begin{proof}
+  Låt $R$ vara en PID. Enligt \hyperlink{inv}{sats 4.1.5} kan varje element skrivas som en produkt av irreducibla element i $R$. Det som 
+  återstår att visa är att denna faktorisering är unik. Antag motsatsen. Då gäller för $a \in R$ att 
+  \[ a = p_1p_2 \cdots p_r \quad \textnormal{och} \quad a = q_1q_2 \cdots q_s\]
+  för alla irreducibla $p_i$ och $q_j.$ Antag även, utan förlust av generalitet, att $s \geq r.$ Då delar $p_1$ produkten $q_1 \cdots q_s.$
+  Enligt \hyperlink{irprim}{lemma 4.1.3} är då $p_1$ ett primelement och då måste $p_1$ dela något annat element, säg $q_j.$
+  Notera nu att produkten $q_1 \cdots q_s$ är i en slumpmässig ordning och att vi alltid kan ändra ordningen. Till exempel kan vi byta ordningen 
+  så att $q_j$ blir först i denna ordning, det vill säga $q_j = q_1$. 
+  Då måste $p_1$ dela $q_1$ och då gäller att $q_1 = u_1p_1$ för en enhet $u_1 \in R.$ Vi får då att 
+  \[ p_1p_2 \cdots p_r = u_1p_1q_2 \cdots q_s \]
+  och eftersom en PID är per definition ett integritetsområde så gäller 
+  \[ p_2 \cdots p_r = u_1 q_2 \cdots q_s. \]
+  Genom att fortsätta på detta sätt fås
+  \[ 1 = u_1u_2 \cdots u_r q_{r+1} \cdots q_s. \]
+  Eftersom $1$ är irreducibelt ($1 = 1 \cdot 1$ och $1$ är en enhet) så måste alla $q_i$ vara enheter. Dessa är dock irreducibla och därför måste 
+  $r = s.$ Detta betyder att alla $u_i = 1$ som slutför beviset.
+\end{proof}
+
+\begin{mytheo}{}{}
+  Varje PID är en $gcd$ \textit{domän}, det vill säga två element har en största gemensam nämnare. 
+\end{mytheo}
+
+\begin{proof}
+  Låt $a$ och $b$ vara element i en PID $R$. Betrakta idealet som genereras av $a$ och $b$: $(a, b) \equiv \{ ac_1 + bc_2 \; | \; c_1, c_2 \in R \}$.
+  Det är enkelt att visa att detta är ett ideal. En bra övning är att visa att ett ideal av en PID som genereras av ändligt många element faktiskt 
+  är ett ideal. Eftersom $R$ är en PID så måste $(a, b) = (d)$. Notera att både $a$ och $b$ är element i $(a, b) = (d)$. Detta betyder att 
+  $d$ delar $a$ och att $d$ delar $b$. Vi visar nu att $d$ är den \textbf{största} elementet som delar både $a$ och $b$. 
+
+  Antag att $c$ delar $a$ och $b$. Då gäller $a = k_1c$ och $b = k_2c$ för $k_1, k_2 \in R$ och eftersom $(a, b) = (d)$ så är $an_1 + bn_1 = d$
+  för $n_1, n_2 \in R$. Detta ger att $d = k_1cn_1 + k_2cn_1$ och $c$ delar alltså $d$ och därför är $d$ den största gemensamma nämnaren till $a$ och $b$.
+\end{proof}
+
+\hypertarget{Bézouts identitet}{}
+\begin{mykol}{Bézouts identitet}{}
+  I en $\gcd$ domän $R$ kan den största gemensamma delaren $d$ till två element $a$ och $b$ i $R$ skrivas som $d = an_1 + bn_2$
+  för $n_1, n_2 \in R.$
+\end{mykol}
+\begin{exmp}
+  Bézouts identitet gäller för heltalen. Till exempel så är den störtsa gemensamma nämnaren till $12$ och $42$ $6$ och 
+  $6 = 12 \cdot 18 + 42 \cdot (-5).$ En bra övning är att bevisa detta mer formellt. 
+\end{exmp}
+
+\begin{mydef}{}{}
+  \begin{enumerate}[(i)]
+    \item En \textit{Euklidisk värdering} på ett integritetsområde $R$ är en funktion 
+    \[ \grad: R \setminus 0 \rightarrow \mathbb{N} \]
+    så att 
+    \begin{enumerate}
+      \item för alla $a$ och $b$ i $R$ med $b$ nollskilt finns $k$ och $r$ i $R$ så att $a = bk + r$ där $r$ antigen är noll eller $\grad (r) < \grad (b),$
+      \item för alla nollskilda $a$ och $b$ gäller att $\grad (a) \leq \grad (ab).$
+    \end{enumerate}
+    \item Ett \textit{Euklidiskt område} är ett integritetsområde som kan utrustas med åtminstånde en Euklidisk värdering.
+  \end{enumerate}
+\end{mydef}
+
+Ett Euklidiskt område generaliserar alltså den Euklidiska divisionen för heltal. I sådana ringar kan vi använda oss av Euklides algoritm för 
+att hitta den största gemensamma delaren till två tal. Den Euklidiska värderingen betecknas i denna text med $\grad$. Detta är praktiskt 
+då vi så småningom ska gå vidare till polynom. Vissa författare väljer dock att beteckna den med $f$ eller $d$ och $\grad$ är ingen fastställd beteckning.
+\begin{exmp}
+  Ringen av heltal $\mathbb{Z}$ är ett Euklidiskt område med den Euklidiska värderingen $\grad (n) = |n|.$
+\end{exmp}
+
+\begin{myprop}{}{}
+  Ett Euklidiskt område är också en PID.
+\end{myprop}
+\begin{proof}
+  Låt $R$ vara ett Euklidiskt område med ett ideal $I$. Om $I = \{0\}$ så är $I = (0)$ och propositionen gäller för detta fall. 
+  Om $I \neq \{0\}$ så finns det ett nollskilt $a$ i $I$ som har den minsta Euklidiska värderingen. För $b \in I$ gäller då 
+  $b = qa + r$ där $r$ antigen är noll eller $\grad (r)  < \grad (a).$ Notera dock att $r = q-ba \in I$ och eftersom $\grad (a)$ är minimal 
+  så måste $r = 0$. Detta medför att $b = qa$ och vi får att $I = (a).$
+\end{proof}
+Vi kan nu göra följande kedja
+
+\scalebox{0.9}{ $\textnormal{Ringar} \supset \textnormal{integritetsområden} \supset \textnormal{gcd domäner} \supset \textnormal{EF-ringar} 
+\supset \textnormal{PID} \supset \textnormal{Euklidiska områden}$}
+
 \subsection{Kroppar}
 För att börja med Galoisteori så måste vi först ha en plats där vi kan utföra vanlig aritmetik, en \textit{kropp}. Galoisteori kan ses som en studie 
 av dessa platser som tillåter grundläggande aritmetik och dess relation till polynom. Vi skall i detta delavsnitt och i avsnittet "kroppsutvidgningar" 
 presentera de huvudsakliga faktan om 
 sådana strukturer. 
-
 
 \begin{mydef}{Kroppar}{}
     En \textit{kropp} är en mängd $F$ under två binära operationer, addition ($+$) och multiplikation ($\cdot$), som uppfyller följande \textit{kroppsaxiom}.
@@ -534,8 +784,17 @@ sådana strukturer.
     för $a, b, c \in F$
 \end{mydef}
 En kropp skapar alltså en abelsk grupp under addition och kroppen utom $0$ skapar en abelsk grupp under multiplikation. Alternativt kan en kropp sägas
-vara en kommutativ ring med inverser. Om $K$ är en kroppsutvidgning till $F$ så kommer vi säga att $F$ är baskroppen. 
+vara en \textbf{kommutativ ring med inverser} (just denna definition kommer att användas i framtiden). 
+Om $K$ är en kroppsutvidgning till $F$ så kommer vi säga att $F$ är baskroppen. 
 
+\begin{myprop}{}{}
+  Varje kropp är ett integritetsområde.
+\end{myprop}
+
+\begin{proof}
+  Låt $a$ och $b$ vara element i en kropp $F$ så att $ab = 0$. Antag att, utan förlust av generalitet, att $a \neq 0.$ 
+  Då är $b = a^{-1}(ab) = 0$. 
+\end{proof}
 
 \begin{mydef}{Karakteristik}{}
   Låt $F$ vara en kropp. Om det existerar ett minsta positiva tal $n$ så att $\underbrace{1 + \cdots + 1}_{n} = 0$ så kallas $n$ för kroppens \textit{karakteristik}.
@@ -555,7 +814,6 @@ så kan den anses vara "cyklisk".
   för $x, y \in \mathbb{Z}_n$. Detta ger då att $xa \equiv 1 \mod p$, det vill säga $[x][a] = 1$. Inversen till 
   $[x]$ är alltså $[a]$ och beviset är slutfört. 
 \end{proof}
-Eftersom $\mathbb{Z}_p$ har primtals karakteristik, nämligen $p$, så har vi visat att varje kropp antigen måste ha noll eller primtals karakteristik. 
 
 %ta upp mer om prime subfields och olika domäner.
 
@@ -821,7 +1079,6 @@ Nedan följer några viktiga egenskaper hos minimala polynom.
   $q(X) = 1$ och vi har att $g(X) = f(X).$
 \end{proof}
 
-\hypertarget{Bézouts identitet}{}
 \begin{mylemma}{Bézouts identitet för polynom}{}
   Låt $F$ vara en kropp och $f(X), \; g(X) \in F[X]$. Den största gemensamma delaren till $f(X)$ och $g(X)$, dvs. gcd$(f(X), g(X)) = d(X)$, kan skrivas som 
   \[d(X) = a(X)f(X) + b(X)g(X).\]
@@ -1260,7 +1517,7 @@ Följande lemma visar kopplingen mellan polynom och dess derivata som kommer att
   Skriv 
   \[f(X) = \prod_{i = 0}^{\grad f(X)} (X-\alpha_i) \quad \textnormal{och} \quad g(X) = \prod_{j = 0}^{\grad g(X)} (X-\beta_j)\]
   för $\alpha_i$ och $\beta_i$ som tillhör splittringskropparna för $f(X)$ respektive $g(X)$. Eftersom dessa 
-  splittringkroppar är kroppsutvidgningar av $F$ så måste $(X - \alpha_a)$ = $(X - \beta_b)$ för några $\alpha_a$ och $\beta_b$ enligt vårat antagande. 
+  splittringkroppar är kroppsutvidgningar av $F$ så måste $(X - \alpha_a)$ = $(X - \beta_b)$ för några $\alpha_a$ och $\beta_b$ enligt vårt antagande. 
   Vi skriver nu 
   \begin{equation}
     f(X) = (X-\alpha_a)g(X)
