@@ -84,6 +84,7 @@ colback=myblue!60}}{th}
 \newcommand{\orbit}[0]{\mathlarger{\mathlarger{\mathcal{O}}}}
 \newcommand{\grad}[0]{\textnormal{deg}}
 \newcommand{\im}[0]{\textnormal{im}}
+\newcommand{\kar}[0]{\textnormal{char}}
 \newtheorem{definition}{Definition}[section]
 \pgfplotsset{compat=1.8}
 
@@ -155,6 +156,8 @@ colback=myblue!60}}{th}
     \end{tikzpicture}
   \end{center}  
 \end{figure}
+
+
 \title{%
   Galoisteori och de olösbara polynomen \\
   \small{En introduktion till det abstrakta - Del II}
@@ -719,7 +722,7 @@ såsom Lasker-Noether satsen och Hilberts bassats. Vårt mål är dock att visa 
   för $n_1, n_2 \in R$. Detta ger att $d = k_1cn_1 + k_2cn_1$ och $c$ delar alltså $d$ och därför är $d$ den största gemensamma nämnaren till $a$ och $b$.
 \end{proof}
 
-\hypertarget{Bézouts identitet}{}
+\hypertarget{Bezouts identitet}{}
 \begin{mykol}{Bézouts identitet}{}
   I en $\gcd$ domän $R$ kan den största gemensamma delaren $d$ till två element $a$ och $b$ i $R$ skrivas som $d = an_1 + bn_2$
   för $n_1, n_2 \in R.$
@@ -749,6 +752,7 @@ då vi så småningom ska gå vidare till polynom. Vissa författare väljer doc
   Ringen av heltal $\mathbb{Z}$ är ett Euklidiskt område med den Euklidiska värderingen $\grad (n) = |n|.$
 \end{exmp}
 
+\hypertarget{eukpid}{}
 \begin{myprop}{}{}
   Ett Euklidiskt område är också en PID.
 \end{myprop}
@@ -781,7 +785,7 @@ sådana strukturer.
         $a \cdot a^{-1} = 1.$
         \item \textbf{Distributivitet av multiplikation över addition.} $a \cdot (b + c) = (a \cdot b) + (a \cdot c)$,
     \end{enumerate}
-    för $a, b, c \in F$
+    för $a, b, c \in F.$ Vi säger att en kropp är \textit{ändlig} om kardinaliteten av kroppen är ändlig.
 \end{mydef}
 En kropp skapar alltså en abelsk grupp under addition och kroppen utom $0$ skapar en abelsk grupp under multiplikation. Alternativt kan en kropp sägas
 vara en \textbf{kommutativ ring med inverser} (just denna definition kommer att användas i framtiden). 
@@ -793,18 +797,19 @@ Om $K$ är en kroppsutvidgning till $F$ så kommer vi säga att $F$ är baskropp
 
 \begin{proof}
   Låt $a$ och $b$ vara element i en kropp $F$ så att $ab = 0$. Antag att, utan förlust av generalitet, att $a \neq 0.$ 
-  Då är $b = a^{-1}(ab) = 0$. 
+  Då är $b = a^{-1}(ab) = 0$. Om $ab = 0$ så måste alltså antigen $a = 0$ eller $b = 0$ och beviset är slutfört.
 \end{proof}
 
 \begin{mydef}{Karakteristik}{}
   Låt $F$ vara en kropp. Om det existerar ett minsta positiva tal $n$ så att $\underbrace{1 + \cdots + 1}_{n} = 0$ så kallas $n$ för kroppens \textit{karakteristik}.
-  Om $n$ inte existerar är karakteristiken för kroppen $0.$
+  Om $n$ inte existerar är karakteristiken för kroppen $0.$ Vi skriver $\kar(F)$ för karakteristiken för kroppen $F$.
 \end{mydef}
 Man kan göra en koppling mellan karakteristik och cykliska grupper där alla element genereras genom ett enda element. Om en kropps karakteristik inte är noll
 så kan den anses vara "cyklisk". 
 
+\hypertarget{zpkropp}{}
 \begin{mytheo}{}{}
-  Om $p$ är ett primtal så är $\mathbb{Z}_p \cong \mathbb{Z}/p\mathbb{Z}$ en kropp.
+  Om $p$ är ett primtal så är ringen $\mathbb{Z}_p \cong \mathbb{Z}/p\mathbb{Z}$ en kropp.
 \end{mytheo}
 
 \begin{proof}
@@ -814,38 +819,120 @@ så kan den anses vara "cyklisk".
   för $x, y \in \mathbb{Z}_n$. Detta ger då att $xa \equiv 1 \mod p$, det vill säga $[x][a] = 1$. Inversen till 
   $[x]$ är alltså $[a]$ och beviset är slutfört. 
 \end{proof}
+Vi kommer från och med nu skriva $\mathbb{F}_p$ istället för $\mathbb{Z}_p$ för att understrycka att det faktiskt är en kropp vi jobbar med.
+Detta resultat generaliseras i nästkommande övning. 
 
-%ta upp mer om prime subfields och olika domäner.
+\begin{ovning}{3}
+  Visa att en kropp antigen har noll eller ett primtal som karakteristik. 
+\end{ovning}
+
+\begin{ovning}{4}
+  Visa att snittet av alla delkroppar till en kropp också är en kropp. 
+\end{ovning}
+
+\begin{mydef}{}{}
+  \textit{Primkroppen} för en kropp är kroppen som genereras av det multiplikativa enhetselementet, 1, i $F$.
+\end{mydef}
+En primkropp är alltså en \textbf{kropp} som genereras av $1$ och därför måste det finnas multiplikativa inverser.
+
+Vissa författare väljer att definiera primkroppen för $F$ som snittet av alla delkroppar till $F$. Denna definition är dock ekvivalent med 
+definitionen ovan. Om vi låter $S$ vara snittet av alla delkroppar till $F$ och $K$ vara kroppen som genereras av $1$ så ser vi att $S \subseteq K$. 
+Detta eftersom 
+kroppen som genereras av $1$ är en delkropp till $F$ och bygger alltså upp $S$. Vi vet även att $K \subseteq S$ eftersom alla delkroppar 
+måste ha $1$ och $S$ är även sluten under addition enligt ovanstående övning. 
+
+En till ekvivalent definition av primkroppar är att dessa är 
+den minsta delkroppen som innehåller $1.$
+
+\begin{mytheo}{}{}
+  \begin{enumerate}[(i)]
+    \item Om $F$ har karakteristiken $0$ så är primkroppen isomorfisk med $\mathbb{Q}$. 
+    \item Om $F$ istället har karakteristiken $p$ för ett primtal $p$ så 
+    är primkroppen isomorfisk med $\mathbb{F}_p.$
+  \end{enumerate}
+\end{mytheo}
+
+\begin{proof}
+  (1) Låt $F$ vara en kropp med karakteristik 0. Vi noterar att en \textbf{ring} som genereras av $1$ måste vara $A = \{1n \; | \: n \in \mathbb{Z}\}$. 
+  En \textbf{kropp} som genereras av $1$, det vill säga primkroppen, måste innehålla inverser till elementen i $A$. 
+  Detta ger att $Q = \{ \frac{1m}{1n} \; | \; m, n \in \mathbb{Z} \wedge  n \neq 0\}$ måste vara primkroppen till $F$. 
+  Definiera $\varphi: \mathbb{Q} \rightarrow Q$ genom $\varphi(m/n) = 1m/1n$. Detta är en isomorfism, det vill säga $\mathbb{Q} \cong Q.$
+
+  (2) Låt $F$ vara en kropp med karakteristik $p$ för ett primtal $p.$ I detta fall är ringen som genereras av $1$ lika med 
+  kroppen som genereras av 1, det vill säga primkroppen, enligt \hyperlink{zpkropp}{sats 4.2.1}. Ringen som genereras av $1$ är 
+  $\mathbb{F}_p$ eftersom karakteristiken för $F$ är $p$.
+\end{proof}
+
+Vi återkommer till ändliga kroppar senare i texten.
 
 \subsection{Polynom}
 \begin{mydef}{Polynom}{}
   Låt $F$ vara en kropp. Ett \textit{polynom} över $F$ är en ekvation på följande form
   \[f(X) = a_0 + a_1X + a_2X^2 + \cdots a_nX^n\]
   där $n \in \mathbb{N}$ och där \textit{koefficienterna} $a_1, a_2, \ldots, a_n \in F$. 
-  Mängden $F[X]$ består av alla polynom vars koeffcienter tillhör $F$. \textit{Graden} för ett polynom är den högsta multipliciteten av den obestämda variablen som 
-  förekommer i polynomet och betecknas $\grad f(X)$. (För polynomet ovan är $\grad f(X) = n$.)
+  Mängden $F[X]$ består av alla polynom vars koeffcienter tillhör $F$.
 \end{mydef}
 Trots att $\mathbb{Z}$ inte är en kropp så kommer vi fortfarande beteckna $\mathbb{Z}[X]$ som mängden av polynom med heltals koeffcienter
-för att slippa skriva mycket. Notera att $F[X]$ bildar en ring eftersom $F$ är en kropp.
+för att slippa skriva mycket. Vi adderar två polynom genom att 
+helt enkelt addera koeffcienterna:
+\[ \sum a_iX^i + \sum b_iX^i = \sum (a_i + b_i)X^i \]
+och vi multiplicerar två polynom genom att använda oss av den distributiva lagen: 
+\[ \biggl( \sum a_iX^i \biggr) \biggl( \sum b_iX^i \biggr) = \sum c_iX^i \]
+där $c_k = \sum_{i = 1}^k a_ib_{k-i}.$ Det som gör det klokt att använda polynom vars koeffienter tillhör en kropp är att vi kan 
+räkna med polynom på ett "vanligt sätt". En till fördel är att $F[X]$ faktiskt är ett integritetsområde eftersom kroppen $F$ är ett integritetsområde. 
+Vi kan därför "jobba oss upp" i kedjan som visades i avsnittet "kategorisering av ringar". 
+
+\begin{myprop}{}{}
+  Om $F$ är en kropp så är $F[X]$ ett Euklidiskt område. 
+\end{myprop}
+\begin{proof}
+  Låt $F$ vara en kropp och definiera $\grad f(X)$ till den högsta multipliciteten av den obestämda variablen som förekommer i polynomet. Exempelvis är 
+  $\grad (10X^2 + X + 1) = 2.$ Vi kallar detta för \textit{graden för polynomet.} Det är enkelt att visa att 
+  $\grad (fg) = \grad f + \grad g \geq \grad f$ för två polynom över en kropp. Vi vill nu visa att $g(X) = q(X)f(X) + r(X)$ för polynom över $F$
+  där $\grad r$ antigen är noll eller $\grad r < \grad f.$ Vi vill alltså dela $f(X)$ med $g(X)$ och få en kvot och en rest. Vi gör detta med 
+  induktion. Antag att $\grad g(X) < \grad f(X)$. Då är $q = 0$ och $r = g$ och basfallet gäller. Antag att påståendet gäller för alla 
+  polynom vars grad är mindre än $g(X)$. Antag att 
+  \[g(X) = bx^n + g_1(X) \quad \textnormal{och} \quad f(X) = ax^m + f_1(X)\]
+  där $\grad f_1(X) < \grad f(X) = m$ och $\grad g_1(X) < \grad g(X) = n.$ Låt $q_0 = \frac{b}{a} cx^{n-m}$ och $h(X) = g(X) - q_0f(X)$. 
+  Graden för $h(X)$ är nu mindre än $g(X)$ och enligt induktionsantagandet får vi då att 
+  \[h(X) = q_1f(X) + r\]
+  där $\grad r < \grad f$. Vi får att 
+  \begin{align*}
+    g(X) &= h(X) + q_0f(X) \\
+    &= (q_0 + q_1)f(X) + r \\
+    &= qf(X) + r
+  \end{align*}
+  där $q = q_0 + q_1.$ Beviset är slutfört.
+\end{proof}
+Notera att $q_0, q_1, q$ och $r$ i beviset ovan är polynom och inte konstanter. Vanligtvist skriver man $q_0(X), q_1(X), \ldots$ 
+men eftersom detta sätt att skriva på tar mycket plats så har detta utelämnats.
 
 \hypertarget{pid}{}
 \begin{myprop}{}{}
-  Om $F$ är en kropp så är $F[X]$ ett \textit{principalidealdomän} (PID), dvs. varje ideal $I$ till $F[X]$ är på formen 
+  Om $F$ är en kropp så är $F[X]$ en PID, dvs. varje ideal $I$ till $F[X]$ är på formen 
   $I = (f(X)) \equiv \{f(X)g(X) \; | \; g(X) \in F[X]\}$ för $f(X) \in F[X].$
 \end{myprop}
 \begin{proof}
-  Låt $I$ vara ett ideal till $F[X]$. Om $I = \{0\}$ så är $I = (0)$ och propositionen gäller för detta fall. Låt $I \neq \{0\}$.
-  Då måste det finnas ett polynom i $I$ så att graden för denna är minimal bland alla icke konstanta polynom. Vi kallar detta polynom 
-  för $f(X).$ Uppenbarligen är $(f(X)) \subseteq I$ eftersom $I$ är sluten under multiplikation. Låt $g(X) \in I$. 
-  Genom att dela $f(X)$ med $g(X)$ fås en kvot och rest: 
-  \[g(X) = q(X)f(X) + r(X) \iff r(X) = g(X) - q(X)f(X).\]
-  Notera att $r(X) \in I$ och eftersom $\grad f(X)$ är minimal i $I$ så måste $r(X) = 0.$ Detta betyder att $I \subseteq (f(X))$, vilket 
-  slutför beviset.
+  Detta följer från ovanstående proposition enligt 
+  \hyperlink{eukpid}{proposition 4.1.1}.
+  I beviset av \hyperlink{eukpid}{proposition 4.1.1} såg vi att ett ideal alltid måste genereras av det element som har den 
+  minsta Euklidiska värderingen. I detta fall betyder detta att ett ideal till $F[X]$ måste genereras av ett polynom med \textbf{lägst grad} bland 
+  alla icke konstanta polynom. Detta blir viktigt vid senare tillfällen.
 \end{proof}
 
+% \begin{proof}
+%   Låt $I$ vara ett ideal till $F[X]$. Om $I = \{0\}$ så är $I = (0)$ och propositionen gäller för detta fall. Låt $I \neq \{0\}$.
+%   Då måste det finnas ett polynom i $I$ så att graden för denna är minimal bland alla icke konstanta polynom. Vi kallar detta polynom 
+%   för $f(X).$ Uppenbarligen är $(f(X)) \subseteq I$ eftersom $I$ är sluten under multiplikation. Låt $g(X) \in I$. 
+%   Genom att dela $f(X)$ med $g(X)$ fås en kvot och rest: 
+%   \[g(X) = q(X)f(X) + r(X) \iff r(X) = g(X) - q(X)f(X).\]
+%   Notera att $r(X) \in I$ och eftersom $\grad f(X)$ är minimal i $I$ så måste $r(X) = 0.$ Detta betyder att $I \subseteq (f(X))$, vilket 
+%   slutför beviset.
+% \end{proof}
+
 \begin{mydef}{Irreducibla polynom}{}
-  Låt $f(X)$ vara ett polynom över kroppen $F$. Vi säger att $f(X)$ är \textit{irreducibelt} över $F$ om det inte kan faktoriseras som $f(X) = g(X)h(X)$
-  för $g(X), h(X) \in F[X]$ vars grad är mindre än $f(X)$. Om faktoriseringen går att åstadkomma säger vi att $f(X)$ är \textit{reducibelt} över $F.$
+  Låt $f(X)$ vara ett polynom över kroppen $F$. Vi säger att $f(X)$ är \textit{irreducibel} över $F$ om det inte kan faktoriseras som $f(X) = g(X)h(X)$
+  för $g(X), h(X) \in F[X]$ vars grad är mindre än $f(X)$. Om faktoriseringen går att åstadkomma säger vi att $f(X)$ är \textit{reducibel} över $F.$
 \end{mydef}
 Notera att denna faktorisering beror starkt på vilken kropp en jobbar med. I till exempel $\mathbb{Q}[X]$ finns det endast några "få" polynom som är reducibla
 över $\mathbb{Q}[X]$, medan alla polynom över $\mathbb{C}[X]$ är reducibla över $\mathbb{C}[X]$. Det sistnämnda är algebrans fundemental sats och 
@@ -868,7 +955,7 @@ Låt $f(X)$ vara ett polynom med heltals koeffcienter. Då är $f(X)$ irreducibe
     f(X) \textnormal{ är reducibel över } \mathbb{Q} &\Rightarrow f(X) \textnormal{ är reducibel över } \mathbb{Z}, \\
     f(X) \textnormal{ är reducibel över } \mathbb{Z} &\Rightarrow f(X) \textnormal{ är reducibel över } \mathbb{Q}.
   \end{align}
-  Påstående (2) är trivial, då $\mathbb{Z}[X]$ är en delmängd till $\mathbb{Q}[X]$ (ett heltal är även ett rationellt tal). Vi bevisar påstående (2),
+  Påstående (2) är trivial, då $\mathbb{Z}[X]$ är en delmängd till $\mathbb{Q}[X]$ (ett heltal är även ett rationellt tal). Vi bevisar påstående (1),
   att om $f(X)$ är reducibel över $\mathbb{Q}$ så medför detta att den också är reducibel över $\mathbb{Z}$. Anta att
   \begin{equation}
     f(X) = g_1(X)g_2(X)
@@ -1060,8 +1147,7 @@ Nedan följer några viktiga egenskaper hos minimala polynom.
 
   (iii) Antag motsatsen. Då gäller $f(X) = h(X)g(X)$ där graden för $h(X)$ och $g(X)$ är mindre än graden för $f(X)$. Då gäller 
   \[0 = f(\alpha) = g(\alpha) h(\alpha)\]
-  och eftersom $F$ är en kropp (mer specifikt är varje kropp ett \textit{integritetsområde}, för $a$ och $b$ tillhörande detta område och 
-  $ab = 0$ så måste $a = 0$ eller $b = 0$. Försök att bevisa att varje kropp är ett integritetsområde!) så måste antigen 
+  och eftersom $F$ är ett integritetsområde så måste antigen 
   $g(\alpha) = 0$ eller $h(\alpha) = 0$. Detta strider dock mot antagandet att $f(X)$ har den lägsta graden med $\alpha$ som lösning. 
 
   (iv) Detta följer direkt från (ii): $g(\alpha) = 0 \iff g(X) \in \ker(\varphi) = (f(X))$ detta gäller om och endast om $f(X) \; | \; g(X).$ 
@@ -1077,22 +1163,6 @@ Nedan följer några viktiga egenskaper hos minimala polynom.
   \[g(X) = q(X)f(X)\]
   och eftersom $g(X)$ är irreducibel och $f(X)$ inte konstant så måste $q(X)$ vara konstant. Faktumet att $g(X)$ är monisk leder till att 
   $q(X) = 1$ och vi har att $g(X) = f(X).$
-\end{proof}
-
-\begin{mylemma}{Bézouts identitet för polynom}{}
-  Låt $F$ vara en kropp och $f(X), \; g(X) \in F[X]$. Den största gemensamma delaren till $f(X)$ och $g(X)$, dvs. gcd$(f(X), g(X)) = d(X)$, kan skrivas som 
-  \[d(X) = a(X)f(X) + b(X)g(X).\]
-\end{mylemma}
-
-\begin{proof}
-  Notera först att 
-  \[A = \{ a(X)f(X) + b(X)g(X) \; | \; a(X), b(X) \in F[X] \}\]
-  är ett ideal till $F[X]$ och $A$ kan således skrivas som $A = (d(X)),$ ty $F[X]$ är en PID. Detta betyder i sin tur att 
-  $d(X) = a(X)f(X) + b(X)g(X)$. Vi visar nu att $d(X)$ faktiskt är den största gemensamma delaren till $f(X)$ och $g(X)$.
-  
-  Om $c(X)$ delar både $f(X)$ och $g(X)$ så gäller $f(X) = n(X)c(X)$ och $g(X) = m(X)c(X)$ vilket betyder att 
-  $d(X) = a(X)n(X)c(X) + b(X)m(X)c(X)$ och $c(X)$ delar alltså $d(X)$. Vi konstaterar att $d(X)$ är den största gemensamma delaren som 
-  slutför beviset.
 \end{proof}
 
 \hypertarget{5.3.2}{}
@@ -1131,7 +1201,7 @@ Nedan följer några viktiga egenskaper hos minimala polynom.
   \[g(X) = q(X)f(X) + r(X)\]
   vilket ger att 
   \[g(\alpha) = r(\alpha)\]
-  och eftersom $\grad \; r(X) < \grad f(X)$ så måste $g(X)$ och $f(X)$ vara relativt prima. Enligt \hyperlink{Bézouts identitet}{Bézouts identitet}
+  och eftersom $\grad \; r(X) < \grad f(X)$ så måste $g(X)$ och $f(X)$ vara relativt prima. Enligt \hyperlink{Bezouts identitet}{Bézouts identitet}
   får vi därför 
   \[1 = a(X)f(X) + b(X)g(X)\]
   vilket ger att 
@@ -1200,7 +1270,7 @@ Vi noterar följande som bevisades i satsen ovan:
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 \end{exmp}
 
-\begin{ovning}{3}
+\begin{ovning}{4}
   Visa att $\mathbb{R}[X]/(X^2+1) \cong \mathbb{C}$ med satserna som togs upp i detta kapitel och med den första isomorfiska satsen. 
   (En dålig övning... Trivial. Hitta något annat) 
 \end{ovning}
@@ -1231,9 +1301,9 @@ Vi noterar följande som bevisades i satsen ovan:
 
   Antag att $F \subseteq K' \subseteq K$ så att $f(X)$ splittar över $K'$. Då gäller 
   \[f(X) = c(X- \beta_1)(X - \beta_2)\cdots (X - \beta_2)\]
-  för $\beta_i \in K'.$ Men eftersom $K' \subseteq K$ så måste $\alpha_i = \beta_i$ eftersom det endast existerar en faktorisering för polynom 
-  (detta gäller eftersom alla polynom ringar är EF-ringar. Mer specifikt är en PID (och Euklidiska domäner) EF-ringar. Vi hoppar dock över detaljerna och tar detta 
-  faktum som givet.) Detta medför att $K' = K$ eftersom $K$ är den minsta kroppen med elementen $\alpha_i$.
+  för $\beta_i \in K'.$ 
+  Men eftersom $K' \subseteq K$ så måste $\alpha_i = \beta_i$ eftersom det endast existerar en faktorisering för polynom ($F[X]$ är en EF-ring). 
+  Detta medför att $K' = K$ eftersom $K$ är den minsta kroppen med elementen $\alpha_i$.
 \end{proof}
 
 \subsection{Isomorfi mellan splittringkroppar}
@@ -1531,6 +1601,7 @@ Följande lemma visar kopplingen mellan polynom och dess derivata som kommer att
   och $f(X)$ har således repeterade rötter.
 \end{proof}
 
+\hypertarget{irrsep}{}
 \begin{myprop}{}{}
   Låt $f(X)$ vara ett irreducibelt polynom över kroppen $F$ som har karakteristik noll. Då är $f(X)$ separerbar. 
 \end{myprop}
@@ -1545,6 +1616,52 @@ Följande lemma visar kopplingen mellan polynom och dess derivata som kommer att
   Låt $K$ vara en algebraisk kroppsutvidgning till kroppen $F$. Vi säger att $K$ är en \textit{separerbar utvidgning av} $F$ om 
   det minimala polynomet till varje element i $K$ över $F$ är separerbar över $F$. 
 \end{mydef}
+
+Enligt \hyperlink{irrsep}{proposition 7.1.1} så har vi följande. 
+\begin{myprop}{}{}
+  Varje algebraisk kroppsutvidgning av en kropp med karakteristik 0 är en separerbar utvidgning. 
+\end{myprop}
+
+\begin{mylemma}{}{}
+  Låt $L$ vara en separerbar utvidgning av en kropp $F$ med karakteristik 0 och $\beta, \gamma \in L$. Då existerar det 
+  något $\alpha \in F(\beta, \gamma)$ så att $F(\beta, \gamma) = F(\alpha)$.
+\end{mylemma}
+
+\begin{proof}
+  Låt $f(X)$ vara det minimala polynomet till $\beta$ över $F$ och $g(X)$ det minimala polynomet till $\gamma$ över $F$. Låt $K$ vara 
+  splittringskroppen till $g(X)f(X)$ över $F$. Notera att vi kan hitta $f(X)$ och $g(X)$ eftersom en separerbar utvidgning också är algebraisk. 
+  Låt även $\beta_1, \ldots, \beta_m$ och $\alpha_1, \ldots, \alpha_n$ vara rötter till $f(X)$ respektive $g(X)$ i $K$. Antag, 
+  utan förlust av generalitet, att $\beta = \beta_1$ och $\gamma = \gamma_1.$ Vi vet att alla $\beta_i$ och alla $\gamma_i$ är olika 
+  eftersom $L$ är en separerbar utvidgning. 
+  Eftersom $F$ har karakteristik 0, och är därför oändlig, så kan vi 
+  hitta ett nollskilt $c \in F$ så att 
+  \[c \neq \frac{\beta_1 - \beta_i}{\gamma_1 - \gamma_j}\]
+  för alla $i > 1$ och $j > 1.$ Sätt $\alpha = \beta_1 - c\gamma_1.$ Vi påstår att $i = j = 1$ är det enda värdet på $i$ och $j$ då detta är sant. 
+  Antag motsatsen, att $\beta_i - c \gamma_j = \beta_1 - c\gamma_1 = \alpha.$ Om $j \neq 1$ fås
+  \[ c = \frac{\beta_1 - \beta_i}{\gamma_1 - \gamma_j}. \]
+  Om nu $i = 1$ så blir $c = 0,$ vilket strider mot vårt antagande. Om $i > 1$ så strider även detta mot definitionen av $c$. Vi kan alltså 
+  dra slutsatsen att $j = 1,$ vilket ger att $\beta_1 = \beta_i$ men eftersom alla $\beta_i$ är olika så måste $i = 1.$ Påståendet gäller alltså.
+
+  Låt $E = F(\alpha)$ som är en delmängd av $F(\beta, \gamma)$ eftersom $\alpha = \beta_1-c\gamma_1 \in F(\beta, \gamma).$
+  Betrakta nu 
+  \[h(X) = f(cX + \alpha) \quad \textnormal{och} \quad g(X)\]
+  som är polynom över $E = F(\alpha)$. Vi vill nu beräkna den största gemensamma nämnaren till $h(X)$ och $g(X)$ i $E[X].$ I $K[X]$
+  gäller
+  \[ g(X) = \prod_{j = 1}^{n}(X-\gamma_j). \]
+  Den största gemensamma nämnaren $k(X)$ för $h(X)$ och $g(X)$ i $K[X]$ måste alltså innehålla en $(X-\gamma_j)$ faktor. Om $(X - \gamma_j)$ delar 
+  $h(X)$ så är $f(c\gamma_j + \alpha) = 0.$ Enligt vårt påstående så kan $c\gamma_j + \alpha = b_i$ endast gälla då $i = j = 1.$ Vi 
+  drar alltså slutsatsen att den största gemensamma nämnaren $k(X)$ för $h(X)$ och $g(X)$ är $(X - \gamma_1)$. Detta är förvisso en faktor 
+  då $h(\gamma_1) = g(\gamma_1) = 0.$ 
+
+  Den enda faktorn som delar $g(X)$ och $h(X)$ är alltså $(X - \gamma_1)$. Denna finns dock i $K[X]$ och inte i $E[X]$. Detta betyder att 
+  $\gamma_1$ antigen tillhör $K$ eller så är $g(X)$ och $h(X)$ relativt prima. Om $g(X)$ och $h(X)$ är relativt prima så måste 
+  det existera $u(X), v(X) \in E[X]$ så att
+  \[1 = u(X)h(X) + v(X)g(X).\]
+  Detta är dock en motsägelse eftersom den högra sidan av ekvationen blir noll då $X = \gamma_1.$ Detta betyder att $\gamma_1 \in K.$ Då är även 
+  \[\beta = \beta_1 = \alpha + c\gamma_1 \in E = F(\alpha)\]
+  och vi vår att $F(\beta, \gamma) \subseteq F(\alpha)$. Eftersom $F(\beta, \gamma) \subseteq F(\alpha)$ och $F(\alpha) \subseteq F(\beta, \gamma)$
+  så måste $F(\alpha) = F(\beta, \gamma)$ som påstått.
+\end{proof}
 
 \section{Galoisteorins fundamentalsats}
 Vi har nu tagt upp förkunskaperna för att börja med Galoisteori. Detta görs dock inte i detta text. Hitta en annan källa lmao f u.
