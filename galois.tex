@@ -85,6 +85,8 @@ colback=myblue!60}}{th}
 \newcommand{\grad}[0]{\textnormal{deg}}
 \newcommand{\im}[0]{\textnormal{im}}
 \newcommand{\kar}[0]{\textnormal{char}}
+\newcommand{\gal}[0]{\textnormal{Gal}}
+\newcommand{\fix}[0]{\textnormal{Fix}}
 \newtheorem{definition}{Definition}[section]
 \pgfplotsset{compat=1.8}
 
@@ -844,6 +846,7 @@ måste ha $1$ och $S$ är även sluten under addition enligt ovanstående övnin
 En till ekvivalent definition av primkroppar är att dessa är 
 den minsta delkroppen som innehåller $1.$
 
+\hypertarget{primkropp}{}
 \begin{mytheo}{}{}
   \begin{enumerate}[(i)]
     \item Om $F$ har karakteristiken $0$ så är primkroppen isomorfisk med $\mathbb{Q}$. 
@@ -1040,7 +1043,9 @@ En kroppsutvidgning kan alltså ses som ett vektorrum över baskroppen.
   säger vi att $K$ är en \textit{ändlig kroppsutvidgning} till $F$. 
 \end{mydef}
 Notera att en ändlig kroppsutvidgning inte betyder att kardinaliteten av själva kroppsutvidgningen är ändlig. En ändlig kroppsutvidgning
-tyder endast på att kardinaliteten av basen, eller \textit{dimensionen} för vektorrumet som det också kallas, är ändlig. Nedan följer exempel på detta.
+tyder endast på att kardinaliteten av basen, eller \textit{dimensionen} för vektorrumet som det också kallas, är ändlig. En ändlig 
+\textbf{kroppsutvidgning} skiljer sig alltså från en ändlig \textbf{kropp.}
+Nedan följer exempel på detta.
 (några bra exempel som förtydligar detta.) 
 
 \hypertarget{torn lagen}{}
@@ -1270,7 +1275,7 @@ Vi noterar följande som bevisades i satsen ovan:
   !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 \end{exmp}
 
-\begin{ovning}{4}
+\begin{ovning}{5}
   Visa att $\mathbb{R}[X]/(X^2+1) \cong \mathbb{C}$ med satserna som togs upp i detta kapitel och med den första isomorfiska satsen. 
   (En dålig övning... Trivial. Hitta något annat) 
 \end{ovning}
@@ -1305,6 +1310,10 @@ Vi noterar följande som bevisades i satsen ovan:
   Men eftersom $K' \subseteq K$ så måste $\alpha_i = \beta_i$ eftersom det endast existerar en faktorisering för polynom ($F[X]$ är en EF-ring). 
   Detta medför att $K' = K$ eftersom $K$ är den minsta kroppen med elementen $\alpha_i$.
 \end{proof}
+
+\begin{ovning}{6}
+  Visa att det existerar en splittringkropp för ett polynom.
+\end{ovning}
 
 \subsection{Isomorfi mellan splittringkroppar}
 \begin{mydef}{}{}
@@ -1410,6 +1419,7 @@ dvs. $\Psi(a) = \psi(a) = \varphi(a)$ för alla $a \in F_1$.
 I en $F$-isomorfism mellan två kroppsutvidgningar så blir alltså alla element i baskroppen "oberörda" och mappas till säg själva. Med denna definition 
 kan vi notera följande korollarium från ovanstående sats och samtidigt dra slutsatsen att splittringskroppar är unika.
 
+\hypertarget{kol6.2.1}{}
 \begin{mykol}{}{}
   Låt $f(X)$ vara ett polynom över kroppen $F$. Två splittringskroppar till $f(X)$ är $F$-isomorfa. 
 \end{mykol}
@@ -1441,6 +1451,7 @@ En automorfism kan alltså ses som en permutation av $F$ och en $F$-automorfism 
 \end{exmp}
 Med hjälp av följande sats kan fler exempel tas upp. 
 
+\hypertarget{sats6.3.1}{}
 \begin{mytheo}{}{}
   En ändlig kroppsutvidgning $K$ av en kropp $F$ är normal om och endast om $K$ är splittringskroppen för något polynom över $F.$
 \end{mytheo}
@@ -1569,7 +1580,7 @@ till ett polnom. För att kunna utnyttja derivatan måste vi först gå igenom g
 
 Följande lemma visar kopplingen mellan polynom och dess derivata som kommer att användas vid senare tillfällen. 
 
-\hypertarget{lemma7.2.1}{}
+\hypertarget{lemma7.1.2}{}
 \begin{mylemma}{}{}
   Låt $f(X)$ vara ett polynom över kroppen $F[X]$. Då har $f(X)$ repeterade rötter i dess splittringskropp om och endast om $f(X)$ och $Df(X)$
   har en gemensam faktor som har åtminstånde graden ett i $F[X]$.
@@ -1607,7 +1618,7 @@ Följande lemma visar kopplingen mellan polynom och dess derivata som kommer att
 \end{myprop}
 
 \begin{proof}
-  Antag motsatsen. Enligt \hyperlink{lemma7.2.1}{lemma 7.2.1} så har det irreducibla polynomet $f(X)$ och $Df(X)$ en gemensam faktor. 
+  Antag motsatsen. Enligt \hyperlink{lemma7.1.2}{lemma 7.1.2} så har det irreducibla polynomet $f(X)$ och $Df(X)$ en gemensam faktor. 
   Vi vet dock att graden för $Df(X)$ inte kan vara noll eftersom $f(X)$ inte är konstant och karakteristiken för $F$ är noll. Detta är alltså 
   en motsägelse.
 \end{proof}
@@ -1618,10 +1629,12 @@ Följande lemma visar kopplingen mellan polynom och dess derivata som kommer att
 \end{mydef}
 
 Enligt \hyperlink{irrsep}{proposition 7.1.1} så har vi följande. 
+\hypertarget{prop7.1.2}{}
 \begin{myprop}{}{}
   Varje algebraisk kroppsutvidgning av en kropp med karakteristik 0 är en separerbar utvidgning. 
 \end{myprop}
 
+\hypertarget{lemma7.1.3}{}
 \begin{mylemma}{}{}
   Låt $L$ vara en separerbar utvidgning av en kropp $F$ med karakteristik 0 och $\beta, \gamma \in L$. Då existerar det 
   något $\alpha \in F(\beta, \gamma)$ så att $F(\beta, \gamma) = F(\alpha)$.
@@ -1663,8 +1676,307 @@ Enligt \hyperlink{irrsep}{proposition 7.1.1} så har vi följande.
   så måste $F(\alpha) = F(\beta, \gamma)$ som påstått.
 \end{proof}
 
+\begin{mytheo}{Satsen om primitiva element}{}
+  Låt $K$ vara en ändlig separerbar utvidgning av en kropp $F$ med karakteristik 0. Då är $K = F(\alpha)$ för något $\alpha \in K$ som kallas 
+  för det \textit{primitiva elementet för} $K$.
+\end{mytheo}
+
+\begin{proof}
+  Låt $K$ vara en ändlig separerbar utvidgning av en kropp $F$ med karakteristik 0. Enligt \hyperlink{sats5.3.3}{sats 5.3.3} så är 
+  \[K = F(\beta_1, \ldots, \beta_n)\]
+  för alla $\beta_i \in K.$ Vi fortsätter med induktion. Om $n = 1$ så är $K = (\beta_1)$ och satsen gäller för detta fall. Om $n > 1$ 
+  så är $F(\beta_1, \ldots, \beta_{n-1})$ en ändlig kroppsutvidgning enligt \hyperlink{sats5.3.3}{sats 5.3.3}. Induktionsantagandet ger att 
+  \[ F(\beta_1, \ldots, \beta_{n-1}) = F(\gamma) \]
+  för $\gamma \in K$. Notera nu att $K = F(\gamma, \beta_n)$ och enligt \hyperlink{lemma7.1.3}{lemma 7.1.3} så är $K = F(\alpha)$ för något $\alpha \in K$
+  som slutför beviset.
+\end{proof}
+
+Med \hyperlink{algebraiskkropp}{lemma 5.2.1} och \hyperlink{prop7.1.2}{proposition 7.1.2} så fås följande.
+\begin{mykol}{}{}
+  Varje ändlig kroppsutvidgning av en kropp med karakteristik 0 kan skrivas som en enkel kroppsutvidgning.
+\end{mykol}
+För att kunna härleda ett liknande resultat för ändliga kroppar måste vi ta upp lite mer om ändliga kroppar. Dessa resultat blir nämligen viktiga 
+vid senare tillfällen. 
+
+\section{Ändliga kroppar}
+Grundläggande faktan om ändliga kroppar har tagits upp i avsnittet "kroppar". I detta avsnitt fördjupar vi oss lite mer. Vi börjar med 
+följande proposition. 
+\begin{myprop}{}{}
+  En ändlig kropp $F$ har kardinaliteten $p^n$ för ett primtal $p = \kar(F)$ och där $n$ är graden för $F$ över dess primkropp.
+\end{myprop}
+
+\begin{proof}
+  Låt $F$ vara en ändlig kropp. Eftersom $F$ är ändlig så är dess karakteristik ett primtal, säg $p$. Då är primkroppen isomorfisk med 
+  $\mathbb{F}_p$ enligt \hyperlink{primkropp}{sats 4.2.2}. Låt $n = [F:\mathbb{F}_p].$ Eftersom $F$ är ändlig så är dimensionen för $F$ sätt som ett 
+  vektorrum över $\mathbb{F}_p$ ändlig. Låt $\{x_1, \ldots, x_n\}$ vara basen för $F$ över $\mathbb{F}_p.$
+  Varje element i $F$ kan nu uttryckas entydligt som en linjär kombination av $x_i$. Eftersom $|\mathbb{F}_p| = p$ så 
+  kan vi kombinera dessa linjära kombinationer på $p^n$ olika sätt, det vill säga $|F| = p^n.$
+\end{proof}
+Denna sats hjälper oss att identifiera ändliga kroppar. Vi vill dock visa att det faktiskt existerar kroppar med en sådan kardinalitet. 
+Vi behöver följande för att bevisa detta.
+
+\hypertarget{lemma8.0.1}{}
+\begin{mylemma}{}{}
+  Låt $F$ vara en ändlig kropp med kardinaliteten $q = p^n$ med karakteristik $p$. Då är 
+  \begin{enumerate}[(i)]
+    \item $a^{p^n} = a$ för alla $a \in F \ \{0\}$,
+    \item $(a + b)^{p^k} = a^{p^k} + b^{p^k}$
+  \end{enumerate}
+  för alla $a, b \in F$ och icke negativa heltal $k$.
+\end{mylemma}
+\begin{proof}
+  (1) Mängden av alla nollskilda element i $F$ skapar en grupp under multiplikation $F^*$ med ordningen $q-1$. Betrakta 
+  gruppen $\langle a \rangle$ som genereras av $a \in F^*$. Denna är en delgrupp till $F^*$ och ordningen av $\langle a \rangle = k$ måste dela 
+  ordningen av $F^*$ enligt Lagranges sats, det vill säga $q-1 = cn$ för ett heltal $c$. Detta ger att $a^{q-1} = a^{cn} = 1$ 
+  vilket är ekvivalent med $a^{p^n} = a$.
+
+  (2) Vi visar detta med induktion. För $k = 0$ så gäller påståendet. Vi noterar att 
+  \[(c + d)^p = \sum^p_{i = 0} \binom{p}{i}c^id^{p-i} \]
+  för $c, d \in F$. För $i = 1, 2, \ldots, p-1$ så är 
+  \[ \binom{p}{i} = \frac{p!}{i!(p-i)!} = \frac{p(p-1)(p-2)\cdots(p-i+1)}{i!} \]
+  och eftersom $p$ är större än alla faktorer i $i!$ (eftersom $i = 1, \ldots, p-1$) och binomialkoefficienten alltid är ett heltal så måste 
+  $p$ dela binomialkoefficienten för $i = 1, 2, \ldots, p-1$. Detta betyder att 
+  \[(c + d)^p = c^p + d^p\]
+  eftersom karakteristiken för $F$ är $p$ och därför blir alla termer noll förutom den första och den sista, då $i = 0$ och $i = p$.
+  Detta fenomen när det "klassiska misstaget" med exponenter faktiskt fungerar kallas för Freshman's dream. 
+
+  Med detta ur vägen fortsätter vi med induktionsbeviset. För $k + 1$ så gäller 
+  \[ (a + b)^{p^{k+1}} = ((a + b)^{p^{k}})^p \]
+  och enligt induktionsantagandet fås
+  \[((a + b)^{p^{k}})^p = (a^{p^k} + b^{p^k})^p\]
+  som enligt resultat som härledes ovanför blir 
+  \[(a^{p^k} + b^{p^k})^p = (a^{p^k})^p + (b^{p^k})^p = a^{p^{k+1}} + b^{p^{k+1}}\]
+  som slutför beviset.
+\end{proof}
+
+\begin{mytheo}{}{}
+  Låt $p$ vara ett primtal och $n$ ett positivt heltal. Då existerar det en ändlig kropp med kardinalitet $p^n$ och två sådana är isomorfa. 
+\end{mytheo}
+
+\begin{proof}
+  Låt $f(X) = X^{p^n} -X$ vara ett polynom över $\mathbb{F}_p$ och $F$ dess splittringkropp över $\mathbb{F}_p.$ Låt $S$ vara mängden 
+  av alla rötter till $f(X)$ i $F$. Vi vet att $0, 1 \in S$. Om $a, b \in S$ så är $a^{p^n} = a$ och $b^{p^n} = a$ genom definitionen av $f(X).$ 
+  Med detta får vi att 
+  \begin{align*}
+    (ab)^{p^n} &= a^{p^n}b^{p^n} = ab, \\
+    (a + b)^{p^n} &= a^{p^n} + b^{p^n} \quad \textnormal{enligt \hyperlink{lemma8.0.1}{lemma 8.0.1} (ii)} \\
+    (-a)^{p^n} &= (-1)^{p^n}a^{p^n} = -a \quad \textnormal{(*)} \\
+    (1/a)^{p^n} &= 1/a^{p^n} = 1/a.
+  \end{align*}
+  Notera att den tredje ekvationen (*) gäller eftersom för udda $p$ så är $(-1)^{p^n} = -1$ och för $p = 2$ så är $(-1)^{p^n} = 1$
+  men i $\mathbb{F}_2$ så är $-1 = 1$ ($-1$ är kongruent med 1 mod 2). Detta ger att 
+  $f(a + b) = f(ab) = f(-a) = f(1/a) = 0$ för $a, b \in S$ och vi drar slutsatsen att $S$ är en kropp. Mer specifikt är $S$ en delkropp till $F$, 
+  men eftersom $F$ är per definition den minsta kroppen innehållande rötterna till $F$ så är $S = F.$
+
+  Vi noterar att 
+  \[Df(X) = p^nX^{p^n-1} - 1 = -1\]
+  eftersom $p^n = 0$ i $\mathbb{F}_p$ ($p^n$ är kongruent med 0 mod $p$) och därför har $f(X)$ och $Df(X)$ ingen gemensam faktor. Enligt 
+  \hyperlink{lemma7.1.2}{lemma 7.1.2} så har $f(X)$ inga repeterade rötter. Enligt algebrans fundamentalsats så splittar 
+  alla polynom i $\mathbb{C}$. I detta fall splittar $f(X)$ i $p^n$ linjära faktorer i $\mathbb{C}$ eftersom graden för $f(X)$ är $p^n$. 
+  Detta betyder att det finns exakt $p^n$ olika rötter, det vill säga $|F| = p^n$. 
+
+  Vi måste nu visa att två kroppar vars kardinalitet är $p^n$ är isomorfa. Detta kommer att visa unikhet bland sådana kroppar. Låt $K$ vara
+  en kropp med kardinalitet $p^n$ som är en utvidgning av $\mathbb{F}_p$. Från \hyperlink{lemma8.0.1}{lemma 8.0.1} (i) så har vi att
+  $a^{p^n} = a$ som är ekvivalent med $a^{p^n} - a = 0$. Vi ser alltså att $f(X)$ har $p^n$ olika rötter i $K$ och 
+  $K$ är därför splittringkroppen till $K$. Men enligt \hyperlink{kol6.2.1}{korollarium 6.2.1} så är $F$ och $K$ $\mathbb{F}_p$-isomorfa.
+\end{proof}
+
+\begin{mydef}{}{}
+  Den ändliga kroppen med kardinalitet $p^n$ för ett primtal $p$ och ett heltal $n$ kallas för en \textit{Galoiskropp} och betecknas 
+  med $\mathbb{F}_{p^n}$.
+\end{mydef}
+
+(exempel)
+
+Vi går vidare och visar att den multiplikativa gruppen av en ändlig kropp alltid är cyklisk. För detta behövs följande.
+\begin{mydef}{}{}
+  \textit{Exponentent} av en ändlig grupp är den minsta gemensamma multipeln av ordningarna av elementen i $G$.
+\end{mydef}
+Lagranges sats säger att ordningen av ett element i en ändlig grupp $G$ delar ordningen av $G$ och därför delar även 
+exponenten av $G$ ordningen av $G$.
+
+\hypertarget{lemma8.0.2}{}
+\begin{mylemma}{}{}
+  Låt $G$ vara en ändlig abelsk grupp med exponenten $\mathcal{V}$. Då existerar det ett $g \in G$ med ordningen $\mathcal{V}$. 
+\end{mylemma}
+
+\begin{proof}
+  Faktorisera $\mathcal{V}$ till dess primtalsfaktorer: 
+  \[\mathcal{V} = p_1^{\alpha_1}p_2^{\alpha_2} \cdots p_k^{\alpha_k}.\]
+  Låt $q = p_2^{\alpha_2} \cdots p_k^{\alpha_k}$.
+  Vi kommer från och med nu skriva $o(x)$ för ordningen av ett element. Betrakta ett element $x_1 \in G$ så att $o(x_1) = p_1^\beta$ där $\beta$ 
+  är så stor som möjligt.
+  (Notera att vi alltid kan hitta ett sådant element eftersom $o(x)$ alltid är ett heltal och $o(x)$ delar $\mathcal{V}$ och delar därför en 
+  av dess primtalsfaktorer).
+  Vi påstår att $\beta = \alpha_1$. Eftersom $\mathcal{V}$ är den minsta gemensamma multipeln av elementens ordningar 
+  så måste $p_1^\beta$ dela $\mathcal{V}$. Då gäller $\beta \leq \alpha_1$. Antag att $\beta < \alpha_1$. För ett $h \in G$ så gäller då 
+  \[1 = h^\mathcal{V} = (h^q)^{p_1^{\alpha_1}}\]
+  och $h^q$ har alltså ordningen $p_1^{\alpha_1}$. Men $x_1$ har ju den den största $p_1$-exponent ordningen. Detta betyder att
+  att $(h^q)^{p_1^{\beta_1}} = 1$ vilket ger 
+  \[h^{p_1^{\beta_1}q} = 1.\]
+  Detta gäller alla element i $G$ och exponenten måste alltså vara
+  \[p_1^{\beta_1}q = p_1^{\beta_1} p_2^{\alpha_2} \cdots p_k^{\alpha_k}\]
+  detta är dock en motsägelse eftersom $p_1^{\beta_1}q < \mathcal{V}$ eftersom $\beta < \alpha_1$.
+
+  Vi drar alltså slutsatsen att $\beta = \alpha_1$ och att det finns ett element i $G$ med ordning $p_i^{\alpha_1}$. På ett liknande sätt 
+  ser vi att $x_1, x_2, \ldots, x_k \in G$ har ordningar $p_1^{\alpha_i}$. Vi noterar att 
+  \[o(x_1x_2 \cdots x_k) = o(x_1)o(x_2) \cdots o(x_k) = \mathcal{V}\]
+  eftersom $x_1x_2 \cdots x_k$ har relativt prima ordningar.
+\end{proof}
+
+\begin{mytheo}{}{}
+  Den multiplikativa gruppen av en ändlig kropp är cyklisk. 
+\end{mytheo}
+
+\begin{proof}
+  Låt $F$ vara en kropp med kardinaliteten $p^n$. Låt $\mathcal{V}$ vara exponenten för den multiplikativa gruppen av $F$. Vi vet att 
+  för alla $a \in F^*$ så gäller $a^\mathcal{V} = 1$ som medför att $a^{\mathcal{V} + 1} -a = 0$. Vi ser alltså att polynomet $X^{\mathcal{V} + 1} -X$
+  har $p^n$ rötter i $F$ eftersom $|F| = p^n$. Detta polynom kan max ha $\mathcal{V} + 1$ olika rötter och då måste $\mathcal{V} + 1 \geq p^n.$
+  Vi vet även att $\mathcal{V}$ måste dela $|F^*|$ enligt Lagranges sats (enligt tidigare argument) och då måste $\mathcal{V} \leq p^n - 1$.
+  Detta betyder att $\mathcal{V} = p^n - 1.$ Enligt \hyperlink{lemma8.0.2}{lemma 8.0.2} så finns det ett element $g$ i $F^*$ med ordning $p^n -1$
+  och eftersom $|F^*| = p^n -1$ så är $F^* = \langle g \rangle$.
+\end{proof}
+
+\begin{mykol}{}{}
+  Låt $F \subset K$ vara en utvidgning av ändliga kroppar. Då är $K = F(\alpha)$ för något $\alpha \in K$.
+\end{mykol}
+
+\begin{proof}
+  Välj $\alpha$ till en generator av $K^*$. Då är $K = F(\alpha)$ eftersom $\alpha$ genererar $K^*$ och då är $K$ den minsta kroppen innehållande 
+  $\alpha$.
+\end{proof}
+
 \section{Galoisteorins fundamentalsats}
-Vi har nu tagt upp förkunskaperna för att börja med Galoisteori. Detta görs dock inte i detta text. Hitta en annan källa lmao f u.
 % Det är här den matematiska vackerheten och syftet med hela texten uppträder.
+Vi är nu tillräckligt matematiskt mogna för att gå vidare till Galosteori. Vi börjar med följande definition. 
+
+\begin{mydef}{}{}
+  Låt $K$ vara en utvidgning av kroppen $F$. \textit{Galoisgruppen} $\gal(K/F)$ av $K$ över $F$ är mängden av alla $F$-automorfismer av $K$
+  under komposition ($f(g(x)) \equiv (g \circ f)(x)$ för två funktioner $f, g$).
+\end{mydef}
+
+Det är enkelt att visa att en Galoisgrupp faktiskt är en grupp.
+
+\begin{exmp}
+  Bestäm $\gal(\mathbb{Q}(i)/\mathbb{Q})$.
+\end{exmp}
+
+Vi kommer att använda oss av delar från \hyperlink{minpol}{sats 5.3.1} för att hitta $\gal(\mathbb{Q}(i)/\mathbb{Q})$. 
+Notera först att $X^2 + 1$ irreducibel över $\mathbb{Q}$ och är därför det minimala polynomet till $i$ över $\mathbb{Q}$.
+Eftersom graden för polynomet är $2$ så är basen för $\mathbb{Q}(i)$ över $\mathbb{Q}$ mängden $\{1, i\}$. Varje element i $\mathbb{Q}(i)$
+kan alltså skrivas som $a + bi$ för $a, b \in \mathbb{Q}$. Låt $\varphi$ vara en $\mathbb{Q}$-automorfism. Vi ser att $\varphi(a + bi) = a + b\varphi(i)$
+och därför är $\varphi$ endast påverkad av $\varphi(i)$. Men $i^2 = -1$ och då är $\varphi^2(i) = -1$, det vill säga $\varphi(i) = \pm i.$
+Detta betyder att det endast finns två olika $\mathbb{Q}$-automorfismer, det vill säga $|\gal(\mathbb{Q}(i)/\mathbb{Q})| = 2$
+och eftersom $2$ är ett primtal så är $\gal(\mathbb{Q}(i)/\mathbb{Q}) \cong C_2$ enligt Lagranges sats. Notera att 
+$|\gal(\mathbb{Q}(i)/\mathbb{Q})| = [\mathbb{Q}(i) : \mathbb{Q}]$. Vi kommer att se att detta inte är någon slump!
+
+För att göra livet enklare för oss så görs följande definition.
+\begin{mydef}{}{}
+  Låt $K$ vara en utvidgning till kroppen $F$ och $G \equiv \gal(K/F)$. 
+  \begin{enumerate}[(i)]
+    \item Låt $\mathcal{G}$ vara mängen av alla delgrupper till $G$, 
+    \item låt $\mathcal{F}$ vara mängden av alla \textit{intermediära kroppar}, det vill säga 
+    \[ \mathcal{F} \equiv \{L \; | \; L \textnormal{ är en kropp så att } F \subseteq L \subseteq K\}, \]
+    \item om $H \in \mathcal{G}$ så är 
+    \[ H^* \equiv \{ x \in K \; | \; \varphi(x) = x \; \forall \: \varphi  \in H \} \equiv \fix_K(H), \]
+    \item om $L \in \mathcal{F}$  så är 
+    \[ L^* \equiv \{ \varphi \in G \; | \; \varphi(x) = x \; \forall x \in L \} \equiv \gal(K/L). \]
+  \end{enumerate}
+\end{mydef}
+Följande lemma visar att det existerar funktioner $\mathcal{F} \rightarrow \mathcal{G}$ med $L \mapsto L^*$ och
+$\mathcal{G} \rightarrow \mathcal{F}$ med $H \mapsto H^*$ som \textit{omvänder inkludering} (eng. \textit{reverse inclusions}). En sådan funktion 
+har egenskaperna att om $A \subseteq B$ så är $f(B) \subseteq f(A)$.
+
+\begin{mylemma}{}{}
+  Låt $K$ vara en utvidgning av kroppen $F$ och $G = \gal(K/F)$.
+  \begin{enumerate}[(i)]
+    \item Om $H \in \mathcal{G}$ så är $H^* \in \mathcal{F}$,
+    \item om $L \in \mathcal{F}$ så är $L^* \in \mathcal{G}$,
+    \item om $H_1, H_2 \in \mathcal{G}$ och $H_1 \leq H_2$ så är $H_2^* \subseteq H_1^*$,
+    \item om $L_1, L_2 \in \mathcal{F}$ och $L_1 \subseteq L_2$ så är $L_2^* \leq L_1^*$.
+  \end{enumerate}
+\end{mylemma}
+
+\begin{proof}
+  (i) Vi observerar att 
+  \[F \subseteq H^* \subseteq K.\]
+  Låt $x, y \in H^*$. För $\varphi \in H$ så gäller 
+  \begin{align*}
+    \varphi(x + y) &= x + y, \\
+    \varphi(xy) &= xy, \\
+    \varphi(-x) &= -x, \\
+    \varphi(1/x) &= 1/x. \\
+  \end{align*}
+  Detta betyder att $H^*$ är en intermediär kropp.
+
+  (ii) Låt $\varphi, \psi \in L^*$. Då gäller $\varphi(\psi(x)) = x$ vilket medför att $\psi \circ \varphi \in L^*$. 
+  Notera även att $x = \varphi^{-1}(\varphi(x)) = \varphi^{-1}(x)$ vilket betyder att $\varphi^{-1}(x) \in L^*$. Detta visar att $L^*$ är en delgrupp till $G$.
+  (Vi har visar att $L^*$ är sluten och att den har inverser. De resterande två gruppaxiomen, associativitet och enhetselementet, uppfylls automatiskt
+  eftersom $L^*$ innehåller isomorfismer).
+
+  (iii) Antag att $H_1 \leq H_2$. Om $x \in H_2^*$ så är $\varphi(x) = x$ för alla $\varphi \in H_2.$ Detta betyder att $\varphi(x) = x$ för alla $\varphi \in H_1$
+  vilket betyder att $x \in H_1^*.$
+
+  (iv) Antag att $L_1 \subseteq L_2$. Om $\varphi \in L_2^*$ så är $\varphi(x) = x$ för alla $x \in L_2$. Detta betyder att $\varphi(x) = x$ för alla $x \in L_1$
+  vilket betyder att $\varphi \in L_1^*.$
+\end{proof}
+
+(ta kanske upp posets (partially ordered sets))
+
+\begin{mydef}{}{}
+  En \textit{Galoisutvidgning} är en ändlig kroppsutvidgning som är normal och separerbar.
+\end{mydef}
+En Galoisutvidgning $K$ av $F$ är alltså splittringskroppen för alla minimala polynom till varje element i $K$ över $F$. Dessa polynom ska 
+dessutom vara separerbara över $F$, det vill säga alla polynom ska ha distinkta rötter i $K$. Denna 
+definition är ekvivalent med den ovanför men kan ibland underlätta förståelsen av Galoisutvidgningar.
+
+\begin{mylemma}{}{}
+  Låt $K$ vara en Galoisutvidgning av en kropp $F$ och $L$ en intermediär kropp, det vill säga $F \subseteq L \subseteq K$. Då är $K$ en 
+  Galoisutvidgning av $L$.
+\end{mylemma}
+
+\begin{proof}
+  Vi vet att $K$ är en normal utvidgning av $F$ och därför, enligt \hyperlink{sats6.3.1}{sats 6.3.1}, så måste $K$ vara en splittringskropp till 
+  ett polynom $g(X) \in F[X]$. Eftersom $F \subseteq L$ så kan vi även se $g(X)$ över $L$ och $K$ kommer då vara en splittringskropp för $g(X)$ över $L$. 
+  Enligt \hyperlink{sats6.3.1}{sats 6.3.1} så är $K$ en normal utvidgning till $L$.
+
+  Vi vet även att $K$ är en separerbar utvidgning av $F$. Om $\alpha \in K$ så måste alltså det minimala polynomet $f(X)$ av $\alpha$ över $F$ 
+  ha olika rötter i $K$. Från \hyperlink{minpol}{sats 5.3.1} (iv) så måste det minimala polynomet $g(X)$ till $\alpha$ över $L$ dela $f(X)$.
+  Detta betyder att $g(X)$ också har olika rötter i $K$.
+\end{proof}
+
+\begin{mytheo}{Galoisteorins fundamentalsats}{}
+  Låt $K$ vara en en Galoisutvidgning av en kropp $F$ och $G = \gal(K/F)$. Då gäller följande.
+  \begin{enumerate}[(i)]
+    \item $|G| = [K:F]$,
+    \item $H \mapsto H^*$ och $L \mapsto L^*$ är inverser till varandra som omvänder inkludering mellan $\mathcal{G}$ och $\mathcal{F}$,
+    \item om $L$ är en intermediär kropp så är 
+    \[ [K:F] = |L^*| \quad \textnormal{och} \quad [L:F] = \frac{|G|}{|L^*|}, \]
+    \item En intermediär kropp $L$ är en normal utvidgning av $F$ om och endast om $L^*$ är en normal delgrupp av $G$. Då gäller även 
+    \[ \gal(L/F) \cong G/L^*. \]
+  \end{enumerate}
+\end{mytheo}
+
+\begin{proof}
+  (i) Låt $n = [K:F]$. Enligt satsen om primitiva element så är $K = F(\alpha)$ för något $\alpha \in K.$ Låt $f(X)$ vara det minimala polynomet 
+  till $\alpha$ över $F$. Då är $\grad f(X) = [F(\alpha):F] = n$ enligt \hyperlink{5.3.2}{sats 5.3.2} och enligt \hyperlink{kol5.3.1}{korollarium 5.3.1} så är 
+  $\{1, \alpha, \alpha^2, \ldots, \alpha^{n-1}\}$ en bas för $F(\alpha)$ över $F$. Detta betyder att varje element i 
+  $F(\alpha)$ kan skrivas som 
+  \[ x = a_0 + a_1 \alpha + \cdots + a_{n-1} \alpha^{n-1}\]
+  för $x \in F(\alpha)$ och $a_i \in F$. För en $F$-automorfism $\varphi \in G$ så gäller 
+  \[ \varphi(x) = a_0 + a_1 \varphi(\alpha) + \cdots + a_{n-1} + \varphi^{n-1}(\alpha)\]
+  och vi ser att $\varphi(x)$ är helt beroende på vad $\varphi(\alpha)$ är. Om vi 
+  verkar med $\varphi$ på $f(\alpha) = 0$ så fås $f(\varphi(\alpha)) = 0$ och $\varphi(\alpha)$ måste därför vara en rot till $f(X)$.
+  Eftersom graden för $f(X)$ är $n$ så måste det som högst finnas $n$ olika värden på $\varphi(\alpha)$, det vill säga
+  $|G| \leq n$.
+
+  Vi visar nu att $|G| \geq n$ som slutför beviset. Vi vet att $f(X)$ har $n$ distinkta rötter i $K$. Låt $\beta$ vara en av dessa.
+  Då måste $F(\alpha) = F(\beta)$. Enligt \hyperlink{6.0.2}{lemma 6.2.1} så existerar det då en isomorfism $\psi: F(\alpha) \rightarrow F(\beta)$
+  som förlänger $\varphi: F \rightarrow F$ definierad som $\varphi(x) = x$ så att $\psi(\alpha) = \beta.$ Vi har alltså en $F$-automorfism $\psi \in G$
+  med $\psi(\alpha) = \beta$. Det finns alltså åtminstone $n$ $F$-automorfismer i $G$. 
+
+  (ii)
+\end{proof}
+
 \section{Lösbara grupper och lösningarna till polynom}
 \end{document}
