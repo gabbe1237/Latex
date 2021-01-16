@@ -20,6 +20,7 @@
 \usepackage{relsize}
 \usepackage{mdframed}
 \usepackage[utf8]{inputenc}
+
 % \usepackage[margin=1.3in]{geometry}
 \usetikzlibrary{positioning}
 
@@ -232,9 +233,9 @@ brukar kallas för vektorer.
 \end{mydef}
 
 \subsection{Gruppteori}
-Detta avsnitt kommer ägna sig åt normala delgrupper och kvotgrupper. Dessa blir mycket nödvändiga för oss när vi ska bevisa textens viktigaste sats. 
-Mer specifikt kommer vi vara intresserade av kedjor av normala delgrupper och om deras kvotgrupp är abelsk eller icke. Denna 
-del kommer även underlätta senare koncept inom ringteori.
+Detta avsnitt kommer ägna sig åt normala delgrupper, kvotgrupper och lösbara grupper. 
+Dessa blir mycket nödvändiga för oss när vi ska bevisa textens viktigaste sats. 
+Denna del kommer även underlätta senare koncept inom ringteori.
 
 \begin{mydef}{Normala delgrupper}{}
   Låt $N$ vara en delgrupp till $G$. Vi säger att $N$ är 
@@ -335,7 +336,130 @@ Man kan alltså tänka sig att en kvotgrupp $G/N$ delar upp $G$ i mindre delar v
   \end{center}
   Till exempel så är $[2] + [1] = (3 \mathbb{Z} + 2) + (3 \mathbb{Z} + 1) = 3\mathbb{Z} + 3 = 3 \mathbb{Z} = [0].$
 \end{exmp}
-Man kan enkelt visa att en kvotgrupp faktiskt bildar en grupp och därför lämnas detta som en övning till läsaren.
+Man kan enkelt visa att en kvotgrupp faktiskt bildar en grupp och därför lämnas detta som en övning till läsaren. Ibland kan den 
+algebraiska strukturer hos en grupp $G$ brytas ned genom att studera en "mindre" grupp såsom kvotgruppen $G/N$. Denna "nedbrytning"
+av grupper tas upp i följande definition.
+
+NOTERA!!!!!!!!!!!!!!!!!!!111111!!!!!!!!!!!!!!!!!!!!!!!!!!NOTERA!!!!!!!!!!!!!!!!!!!111111!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+TA UPP JORDAN HÖLDER OM JAG HAR TID! ANNARS TAR JAG BORT DETTA
+
+% \begin{mydef}{}{}
+%   En \textit{kompositionsserie} av en grupp $G$ är en \textit{delnormal serie} (eng. \textit{subnormal series}) av 
+%   ändlig längd. Det vill säga 
+%   \[1 = H_0 \triangleleft H_1 \triangleleft \cdots \triangleleft H_n = G\]
+%   så att varje $H_{i+1}/H_i$ är \textit{enkel}, det vill säga $H_{i+1}/H_i$ endast har $\{e\}$ och sig själv som normala delgrupper.
+% \end{mydef}
+% Man kan dra en liten parallel mellan denna definition och faktorisering av heltal. Notera dock att en kompositionsserie inte faktoriserar 
+% en grupp utan är ett sätt att bryta ned en grupp i mindre "delar". Faktorisering och kompositionsserier delar dock några egenskaper. För att presentera 
+% dessa egenskaper behövs dock några fler satser. 
+
+\begin{mytheo}{Tredje isomorfiska satsen}{}
+  Låt $N \subset K$ vara två normala delgrupper till gruppen $G$. Då gäller 
+  \[G/K \cong (G/N)/(K/N).\]
+\end{mytheo}
+\textbf{Notera:} Beviset av denna sats kommer använda sig av den första isomorfiska satsen. Beviset av den första isomorfiska satsen 
+hittas under avsnittet "Ringar" pga. att den främst kommer att användas på ringar. Eftersom en ring i princip är en grupp med två binära operationer 
+så kan satsen även användas i grupp sammanhang. 
+
+\begin{proof}
+  Betrakta 
+  \[\varphi: G/N \rightarrow G/K\]
+  definierad som 
+  \[\varphi: gN \mapsto gK.\]
+  Denna är väldefinierad då om $g' \in gN$ så är $g' = gn$ för något $n \in N$ som ger 
+  \[\varphi(g'N) = \varphi((gn)N) = \varphi( (gN)(nN) ) = \varphi(gN)\]
+  enligt resultat som härledes i del I. Notera att 
+  \[\ker(\varphi) = \{gN \in G/N \; | \; gK = K \}.\]
+  Om $gK = K$ så måste $g$ vara ett element i $K$ enligt resultat som härledes i del I. 
+  Om $gK = K$ så måste $g \in K$ vilket betyder att $gN \in K/N$ som in sin tur betyder att $\ker(\varphi) \subseteq K/N$.
+  Om $kN \in K/N$ så är $k \in G$ eftersom $K \subseteq G$ som betyder att $kN \in G/N$ och $\varphi(kN) = kK$. 
+  Detta visar att $\ker(\varphi) = K/N.$ Eftersom $\varphi$ är surjektiv så är $\im(\varphi) = G/K$. Enligt 
+  den första isomorfiska satsen (se avsnittet "Ringar") så är 
+  \[G/K \cong (G/N)/(K/N)\]
+  som påstått.
+\end{proof}
+
+Vi går nu in på lösbara grupper. 
+\begin{mydef}{}{}
+  En grupp $G$ sägs vara \textit{lösbar} om det existerar delgrupper 
+  \[ \{e\} = G_0 \leq G_1 \leq \cdots \leq G_k = G \]
+  så att $G_{i-1}$ är en normal delgrupp till $G_i$ och $G_i/G_{i-1}$ är en abelsk grupp.
+\end{mydef}
+
+Denna definition kan endast motiveras längre fram i texten då vi tar upp rotutvidgningar (eng. radical extensions). 
+Det är dock ingen slump att dessa grupper kallas för \textit{lösbara} grupper. Notera att en abelsk grupp $G$ är lösbar
+då $G/\{e\} = G$ är abelsk. En \textit{enkel grupp}, en grupp som endast har $\{e\}$ som en normal äkta delgrupp, som inte är abelsk är inte lösbar.  
+
+\begin{mytheo}{}{}
+  \begin{enumerate}[(i)]
+    \item Om gruppen $G$ är lösbar så är varje delgrupp till $G$ lösbar,
+    \item om gruppen $G$ är lösbar så är varje kvot av $G$ också lösbar, 
+    \item om $N$ är en normal delgrupp till $G$ så att $G/N$ och $N$ är lösbara så är $G$ lösbar.
+  \end{enumerate}
+\end{mytheo}
+
+\textbf{Notera:} Beviset av denna sats kommer använda sig av den första isomorfiska satsen. Beviset av den första isomorfiska satsen 
+hittas under avsnittet "Ringar" pga. att den främst kommer att användas på ringar. Eftersom en ring i princip är en grupp med två binära operationer 
+så kan satsen även användas i grupp sammanhang. 
+
+\begin{proof}
+  (i) Låt $H$ vara någon delgrupp till en lösbar grupp $G$. 
+  Antag att 
+  \[\{e\} = G_0 \triangleleft G_1 \triangleleft \cdots \triangleleft G_r = G\]
+  så att $G_{i+1}/G_i$ är abelsk. Låt $H_i = G_i \cap H$. Nu har vi följande kedja 
+  \[\{e\} = H_0 \triangleleft \cdots \triangleleft H_r = H.\]
+  Vi måste visa att $H_{i+1}/H_i$ är abelsk. Notera att 
+  \[H_{i+1}/H_i = (G_{i+1} \cap H)/(G_i \cap H) = (G_{i+1} \cap H)/(G_i \cap (G_{i+1} \cap H)).\]
+  Enligt den första isomorfiska satsen (se avsnittet "Ringar") så är då 
+  \[H_{i+1}/H_i = (G_{i+1} \cap H)/(G_i \cap (G_{i+1} \cap H)) \cong G_i(G_{i+1} \cap H)/G_i.\]
+  Läsaren får som övning att verifiera denna isomorfism (ledning: utgå ifrån $\varphi: G_{i+1} \cap H \rightarrow G_i(G_{i+1} \cap H)/G_i$).
+
+  (ii) Detta lämnas som en övning till läsaren. Ledning: visa först att om $\varphi: G \rightarrow H$ är en homomorfism
+  mellan två grupper där $G$ är lösbar så är $\im(\varphi)$ också lösbar. Använd detta faktum för att visa (ii).
+
+  (iii) Vi har följande kedjor: 
+  \[1 = N_0 \triangleleft N_1 \triangleleft \cdots \triangleleft N_r = N\]
+  och 
+  \[\{e\} \cong N/N = G_0/N \triangleleft G_1/N \triangleleft \cdots \triangleleft G_s/N = G/N\]
+  där kvoterna i båda kedjorna är abelska. Genom att kombinera dessa fås 
+  \[1 = N_0 \triangleleft N_1 \triangleleft \cdots \triangleleft N_r = N = G_0 \triangleleft \cdots \triangleleft G_s = G.\]
+  Kvoterna i denna kedja är antigen på på formen $N_{i+1}/N_i$, som är abelsk, $G_i/N_{i-1}$, som är abelsk, eller $G_{i+1}/G_i$. Vi noterar 
+  dock att 
+  \[G_{i+1}/G_i \cong \frac{G_{i+1}/N}{G_i/N}\]
+  som är abelsk och beviset är slutfört. Läsaren får verifiera denna isomorfism (ledning: använd den första isomorfiska satsen, se avsnittet "Ringar").
+\end{proof}
+
+\begin{mylemma}{}{}
+  Alla enkla abelska grupper är cykliska med primtalsordning.
+\end{mylemma}
+
+\textbf{Notera:} detta är en bra övning. Försök att bevisa detta på din egen hand och använd det nedanstående beviset 
+som facit.
+
+\begin{proof}
+  Låt $G$ vara en enkel abelsk grupp med ordning större än ett. Eftersom $G$ är abelsk så är varje delgrupp till $G$ normal. Låt $x$ vara 
+  ett element i $G$ som är skilt från enhetselement. Eftersom $\langle x \rangle$ är en delgrupp till $G$ samtidigt som $G$ är enkel så måste 
+  $\langle x \rangle = G$. Om $|G|$ är oändlig så skulle $\langle x^2 \rangle$ också vara en delgrupp till $G$. Detta är dock en motsägelse
+  eftersom $G$ är enkel. Detta betyder att $G$ är ändlig. Antag att $|G| = mn$ för heltal $m$ och $n$. Enligt Lagranges sats så 
+  är isåfall $\langle x^m \rangle$ och $\langle x^n \rangle$ delgrupper till $G$. Detta är en motsägelse då $G$ är enkel. Detta slutför beviset.
+\end{proof}
+
+\begin{myprop}{}{}
+  Låt $G$ vara en ändlig lösbar grupp. Då har $G$ en kedja av delgrupper 
+  \[\{e\} \triangleleft H_0 \triangleleft H_1 \triangleleft \cdots \triangleleft H_n = G\]
+  så att $H_{i+1}/H_i$ är cyklisk med primtalsordning.  
+\end{myprop}
+
+\begin{proof}
+  Låt $G$ vara en lösbar grupp och låt 
+  \[ \{e\} = G_0 \triangleleft G_1 \triangleleft \cdots \triangleleft G_n = G \]
+  så att $G_{i+1}/G$ är abelsk. Antag att $G_{i+1}/G_i$ inte är enkel. Då finns det
+\end{proof}
+
 \section{Ringar, kroppar och polynom}
 \subsection{Ringar}
 Precis som vektorrum så går det att använda ringar till våran fördel genom hela texten, speciellt då vi kommer till
@@ -418,7 +542,8 @@ En ring homomorfism är alltså en grupp homomorfism men för "både addition oc
 \begin{mydef}{Kärnan och bilden av en homomorfism}{}
   Låt $R$ och $S$ vara ringar och $\varphi: R \rightarrow S$ en homomorfism. \textit{Kärnan} av $\varphi$
   defineras som 
-  \[\ker(\varphi) \equiv \{r \in R \; | \; \varphi(r) = 0\}.\]
+  \[\ker(\varphi) \equiv \{r \in R \; | \; \varphi(r) = 0_s\}\]
+  där $0_s$ är det additativa enhetselement i $S$.
   \textit{Bilden} av $\varphi$ defineras som 
   \[\im(\varphi) \equiv \{\varphi(r) \; | \; r \in R\}.\]
 \end{mydef}
@@ -1317,10 +1442,14 @@ Vi noterar följande som bevisades i satsen ovan:
 
 \subsection{Isomorfi mellan splittringkroppar}
 \begin{mydef}{}{}
-  Låt $\varphi: F_1 \rightarrow F_2$ och $\psi: F_1(\alpha) \rightarrow F_2(\beta)$ vara isomorfismer mellan kroppar där $F_1 \subseteq F_1(\alpha)$
-  och $F_2 \subseteq F_2(\beta)$. 
-  Vi säger att $\psi$ \textit{förlänger} (eng. \textit{extends})
-  $\varphi$ om $\psi(a) = \varphi(a)$ för alla $a \in F_1$ och vi skriver $\psi |_{F_1} = \varphi.$
+  \begin{enumerate}[(i)]
+    \item   Låt $\varphi: F_1 \rightarrow F_2$ vara en funktion. Om $F$ är en delmängd av $F_1$ så är \textit{restriktionen av} $\varphi$ \textit{till} $F$
+    en funktion $\varphi|_F: F \rightarrow F_2$ så att $\varphi|_F(x) = \varphi(x)$ för alla $x \in F.$
+    \item   Låt $\varphi: F_1 \rightarrow F_2$ och $\psi: K_1 \rightarrow K_2$ vara funktioner där $F_1 \subseteq K_1$
+    och $F_2 \subseteq K_2$. 
+    Vi säger att $\psi$ \textit{förlänger} (eng. \textit{extends})
+    $\varphi$ om $\psi(a) = \varphi(a)$ för alla $a \in F_1$, det vill säga $\psi |_{F_1} = \varphi.$
+  \end{enumerate}
 \end{mydef}
 
 \hypertarget{6.0.2}{}
@@ -1399,7 +1528,7 @@ Vi noterar följande som bevisades i satsen ovan:
 Vi skriver $f(X) = g(X)h(X)$ för $g(X)h(X) \in F_1[X]$ vars grad är mindre än $n = \grad f(X)$. Vi verkar med $\varphi$ på $f(X)$ för att få 
 \[f^{\varphi}(X) = g^{\varphi}(X)h^{\varphi}(X). \]
 Låt $\alpha, \ldots, \alpha_k$ vara rötter till $g(X)$ och $\beta, \ldots, \beta_k$ vara rötter till $g^{\varphi}(X).$
-Enligt \hyperlink{lemma6.0.1}{lemma 6.0.1} så är då $L_1 = F_1(\alpha, \ldots, \alpha_k)$ splittringskroppen för $g(X)$ och 
+Enligt \hyperlink{lemma6.0.1}{lemma 6.1.1} så är då $L_1 = F_1(\alpha, \ldots, \alpha_k)$ splittringskroppen för $g(X)$ och 
 $L_2 = F_2(\beta, \ldots, \beta_k)$ splittringskroppen för $g^{\varphi}(X).$ Enligt induktionsantagandet existerar det en 
 isomorfism $\psi: L_1 \rightarrow L_2$ så att $\psi |_{F_1} = \varphi.$
 
@@ -1887,6 +2016,7 @@ Följande lemma visar att det existerar funktioner $\mathcal{F} \rightarrow \mat
 $\mathcal{G} \rightarrow \mathcal{F}$ med $H \mapsto H^*$ som \textit{omvänder inkludering} (eng. \textit{reverse inclusions}). En sådan funktion 
 har egenskaperna att om $A \subseteq B$ så är $f(B) \subseteq f(A)$.
 
+\hypertarget{lemma9.0.1}{}
 \begin{mylemma}{}{}
   Låt $K$ vara en utvidgning av kroppen $F$ och $G = \gal(K/F)$.
   \begin{enumerate}[(i)]
@@ -1930,6 +2060,7 @@ En Galoisutvidgning $K$ av $F$ är alltså splittringskroppen för alla minimala
 dessutom vara separerbara över $F$, det vill säga alla polynom ska ha distinkta rötter i $K$. Denna 
 definition är ekvivalent med den ovanför men kan ibland underlätta förståelsen av Galoisutvidgningar.
 
+\hypertarget{lemma9.0.2}{}
 \begin{mylemma}{}{}
   Låt $K$ vara en Galoisutvidgning av en kropp $F$ och $L$ en intermediär kropp, det vill säga $F \subseteq L \subseteq K$. Då är $K$ en 
   Galoisutvidgning av $L$.
@@ -1945,18 +2076,48 @@ definition är ekvivalent med den ovanför men kan ibland underlätta förståel
   Detta betyder att $g(X)$ också har olika rötter i $K$.
 \end{proof}
 
+\hypertarget{lemma9.0.3}{}
+\begin{mylemma}{}{}
+  Låt $K$ vara en Galoisutvidgning av en kropp $F$ och $G = \gal(K/F)$. Då är 
+  \[G^* \equiv \{x \in K \; | \; \varphi(x) = x \; \forall \varphi \in G\} = F.\]
+\end{mylemma}
+
+\begin{proof}
+  Låt $F_1 \equiv G^*.$ Från \hyperlink{lemma9.0.1}{lemma 9.0.1} (i) så är $F_1$ en intermediär kropp, $F \subseteq F_1 \subseteq K$.
+  Vi vet att $K = F(\alpha)$ för något $\alpha \in K$ från satsen om det primitiva elementet. Låt $f(X)$ vara det minimala polynomet till $\alpha$ över $F$
+  och $g(X)$ det minimala polynomet till $\alpha$ över $F_1$. Notera att eftersom $F \subseteq F_1$ så kan $f(X)$ ses som ett polynom över $F_1$. 
+  Från \hyperlink{minpol}{sats 5.3.1} (iv) så måste $g(X)$ dela $f(X)$. Vi vet att splittringskroppen för $f(X)$ är $K$ och att rötterna i $K$ måste vara olika. 
+  Låt $\beta$ vara en av dessa rötter. Notera att 
+  \[ [F(\beta): F] = \grad f(X) = [F(\alpha):F] = [K:F] \]
+  enligt \hyperlink{5.3.2}{sats 5.3.2}. Från \hyperlink{lemma6.0.1}{lemma 6.1.1} så är $F(\alpha, \beta, \cdots, \alpha_n)$
+  en splittringskropp för $f(X)$ där $\alpha, \beta$ och $\alpha_n$ är rötter till $f(X)$. Men $F(\alpha, \beta, \cdots, \alpha_n) = K = F(\alpha)$
+  vilket betyder att alla rötter till $f(X)$ måste vara kombinationer av $\alpha$ eftersom alla rötter är olika. Detta betyder att $F(\beta) = F(\alpha)$.
+  Man kan även tänka att basen $B_\beta$ för $F(\beta)$ över $F$ är en delmängd till basen $B_\alpha$ för $F(\alpha)$ över $F$ och eftersom 
+  $|B_\beta| = |B_\alpha|$ så måste $B_\beta = B_\alpha$. Detta medför också att $F(\alpha) = F(\beta)$.
+  Enligt \hyperlink{6.0.2}{lemma 6.2.1} så 
+  existerar det då en isomorfism $\psi: F(\alpha) \rightarrow F(\beta)$
+  som förlänger $\varphi: F \rightarrow F$ definierad som $\varphi(x) = x$ så att $\psi(\alpha) = \beta.$
+  Vi ser att 
+  \[g(\beta) = g(\psi(\alpha)) = \psi(g(\alpha))\]
+  eftersom koeffcienterna i $g(X)$ är element i $F_1$ och då är $\psi(x) = x$ för $x \in F_1$ per definition av $F_1.$ Detta betyder 
+  att varje rot till $f(X)$ är också en rot till $g(X)$ och vi drar slutsatsen att $\grad f(X) = \grad g(X)$ eftersom $g(X)$ delar $f(X)$. 
+  Med torn lagen och från \hyperlink{5.3.2}{sats 5.3.2} fås då följande.
+  \[ [K:F_1] = \grad g(X) = \grad f(X) = [K:F] = [K:F_1] \cdot [F_1: F]. \]
+  Detta medför att $[F_1:F] = 1$ och då blir $F_1 \equiv G^* = F.$
+\end{proof}
+
 \begin{mytheo}{Galoisteorins fundamentalsats}{}
   Låt $K$ vara en en Galoisutvidgning av en kropp $F$ och $G = \gal(K/F)$. Då gäller följande.
   \begin{enumerate}[(i)]
     \item $|G| = [K:F]$,
     \item $H \mapsto H^*$ och $L \mapsto L^*$ är inverser till varandra som omvänder inkludering mellan $\mathcal{G}$ och $\mathcal{F}$,
     \item om $L$ är en intermediär kropp så är 
-    \[ [K:F] = |L^*| \quad \textnormal{och} \quad [L:F] = \frac{|G|}{|L^*|}, \]
+    \[ [K:L] = |L^*| \quad \textnormal{och} \quad [L:F] = \frac{|G|}{|L^*|}, \]
     \item En intermediär kropp $L$ är en normal utvidgning av $F$ om och endast om $L^*$ är en normal delgrupp av $G$. Då gäller även 
     \[ \gal(L/F) \cong G/L^*. \]
   \end{enumerate}
 \end{mytheo}
-
+Vi kommer att bevisa dessa punkter med avseende på svårighetsgrad och utan hänseende på den numeriska ordningen. 
 \begin{proof}
   (i) Låt $n = [K:F]$. Enligt satsen om primitiva element så är $K = F(\alpha)$ för något $\alpha \in K.$ Låt $f(X)$ vara det minimala polynomet 
   till $\alpha$ över $F$. Då är $\grad f(X) = [F(\alpha):F] = n$ enligt \hyperlink{5.3.2}{sats 5.3.2} och enligt \hyperlink{kol5.3.1}{korollarium 5.3.1} så är 
@@ -1971,12 +2132,370 @@ definition är ekvivalent med den ovanför men kan ibland underlätta förståel
   $|G| \leq n$.
 
   Vi visar nu att $|G| \geq n$ som slutför beviset. Vi vet att $f(X)$ har $n$ distinkta rötter i $K$. Låt $\beta$ vara en av dessa.
-  Då måste $F(\alpha) = F(\beta)$. Enligt \hyperlink{6.0.2}{lemma 6.2.1} så existerar det då en isomorfism $\psi: F(\alpha) \rightarrow F(\beta)$
-  som förlänger $\varphi: F \rightarrow F$ definierad som $\varphi(x) = x$ så att $\psi(\alpha) = \beta.$ Vi har alltså en $F$-automorfism $\psi \in G$
-  med $\psi(\alpha) = \beta$. Det finns alltså åtminstone $n$ $F$-automorfismer i $G$. 
+  I beviset av \hyperlink{lemma9.0.3}{lemma 9.0.3} så observerade vi att det fanns ett $\psi \in G$ så att $\psi(\alpha) = \beta.$
+  % Då måste $F(\alpha) = F(\beta)$. Enligt \hyperlink{6.0.2}{lemma 6.2.1} så existerar det då en isomorfism $\psi: F(\alpha) \rightarrow F(\beta)$
+  % som förlänger $\varphi: F \rightarrow F$ definierad som $\varphi(x) = x$ så att $\psi(\alpha) = \beta.$ Vi har alltså en $F$-automorfism $\psi \in G$
+  % med $\psi(\alpha) = \beta$. 
+  Det finns alltså åtminstone $n$ $F$-automorfismer i $G$. 
 
-  (ii)
+  (iii) Låt $L$ vara en intermediär kropp. Då är $L^* = \gal(K/L)$ och enligt \hyperlink{lemma9.0.2}{lemma 9.0.2} så är $K$ en Galoisutvidgning av $L$.
+  Enligt (i) fås 
+  \[|L^*| = |\gal(K/L)| = [K:L]. \]
+  Med torn lagen fås även
+  \[ [K:F] = [K:L] \cdot [L:F] \iff [L:F] = \frac{ [K:F] }{ [K:L] } = \frac{|G|}{|L^*|}. \]
+
+  (ii) Enligt \hyperlink{lemma9.0.1}{lemma 9.0.1} så omvänder funktionerna $\mathcal{F} \rightarrow \mathcal{G}$ med $L \mapsto L^*$ och
+  $\mathcal{G} \rightarrow \mathcal{F}$ med $H \mapsto H^*$ inkludering. Vi behöver visa att dessa är inverser till varandra.
+  För detta så räcker det med att visa att $H^{**} = H$ och att $L^{**} = L$ för alla $H \in \mathcal{G}, \; L \in \mathcal{F}$.
+  Vi behöver följande lemma.
+
+  \hypertarget{lemma9.0.4}{}
+  \begin{mylemma}{}{}
+    Låt $K$ vara en ändlig separerbar utvidgning av kroppen $F$ och $H$ en delgrupp till $\gal(K/F)$. Då är $[K:H^*] = |H|.$
+  \end{mylemma}
+  
+  \begin{proof}
+    Låt $L \equiv H^*$. Från satsen om det primitiva elementen så är $K = F(\alpha)$ för något $\alpha \in K$. Låt 
+    \[g(X) \equiv \prod_{\varphi \in H} (X - \varphi(\alpha)).  \]
+    Detta är ett polynom över $K$. Definiera $\overline{\psi}$ som automorfismen av $K[X]$ genom att verka med $\psi \in H$ på koeffcienterna i polynomen över $K$.
+    Om vi verkar med $\overline{\psi}$ på en faktor i $g(X)$ så fås $X - \psi(\varphi(x))$. Vi vet att $\varphi \circ \psi$ är en bijektion $H \rightarrow H$ 
+    och permuterar därför faktorerna i $g(X)$, det vill säga 
+    \[\psi(g(X)) = \prod_{\varphi \in H} (X - \psi(\varphi(x))) = g(X)  \]
+    för alla $\psi \in H$. Vi drar slutsatsen att $g(X) \in L[X] \equiv H^*[X]$ eftersom koeffcienterna tillhör $L$. Om 
+    $\{\alpha_1, \ldots, \alpha_n\}$ är mängden innehållande alla rötter till $g(X)$ så är $\{\alpha_1, \ldots, \alpha_n\} \subseteq K.$ 
+    Från \hyperlink{lemma9.0.1}{lemma 9.0.1} (i) så är $F \subseteq L \subseteq K$ och därför är $L(\alpha_1, \ldots, \alpha_n) \subseteq K$.
+    Vi vet även att $F \subseteq L$ och då måste $K = F(\alpha) \subseteq L(\alpha) \subseteq L(\alpha_1, \ldots, \alpha_n)$. Detta betyder att 
+    $K = L(\alpha_1, \ldots, \alpha_n)$ och enligt \hyperlink{lemma6.0.1}{lemma 6.1.1} så är $K$ splittringkroppen till $g(X)$ över $L$.
+    Enligt \hyperlink{sats6.3.1}{sats 6.3.1} så är $K$ en normal utvidgning av $L$. Argumentet som användes i beviset av \hyperlink{lemma9.0.2}{lemma 9.0.2}
+    kan tillämpas här för att visa att $K$ är en separerbar utvidgning av $L$. Detta betyder att $K$ är en Galoisutvidgning av $L$
+    och Galoisteorins fundamentalsats (i) kan användas för att få 
+    \[ [K:L] = |\gal(K/L)| \geq |H|.\]
+    Olikheten i ekvationen ovan gäller eftersom $H$ är en delgrupp till $\gal(K/L).$ Å andra sidan så är $\grad g(X) = |H|$ så graden för det minimala 
+    polynomet av $\alpha$ över $L$ kan högst vara $|H|$. Enligt \hyperlink{5.3.2}{sats 5.3.2} så är 
+    \[ [K:L] = [F(\alpha):L] = [L(\alpha):L] \leq |H| \]
+    eftersom $F(\alpha) \subseteq L(\alpha)$.
+  \end{proof}
+  Vi fortsätter att bevisa (ii). Låt $L \in \mathcal{F}$. Från \hyperlink{lemma9.0.2}{lemma 9.0.2} så är $K$ en Galoisutvidgning av $L$. 
+  Per definition så är $L^* = \gal(K/L)$. Vi ser att $L^{**} = (L^*)^* = L$ enligt \hyperlink{lemma9.0.3}{lemma 9.0.3}. 
+  Låt nu $H \in \mathcal{G}$ och $H_1 = H^{**}$ som tillhör $\mathcal{G}$ enligt \hyperlink{lemma9.0.1}{lemma 9.0.1}. Notera att 
+  \[ H^{**} = H_1 = \{\varphi \in G \; | \; \varphi(x) = x \; \forall x \in H^*\} \]
+  och därför är $H \leq H_1.$ Låt $L = H^*$ i steget ovan för att härleda
+  \[H_1^* = H^{***} = L^{**} = L = H^*.\]
+  \hyperlink{lemma9.0.4}{lemma 9.0.4} säger att 
+  \[ [K:H^*] = |H| \quad \textnormal{och} \quad [K:H_1^*] = |H_1| \]
+  det vill säga $|H| = |H_1|$ samtidigt som $H \leq H_1$ vilket betyder att $H = H_1 = H^{**}$.
+
+  (iv) Låt $L \in \mathcal{F}$. Observera att 
+  \begin{align*}
+    L^* \trianglelefteq G \quad &\textnormal{om och endast om} \quad \varphi \circ \psi \circ \varphi^{-1} \in L^* 
+    \quad  \psi \in L^*, \; \varphi \in G \\
+    &\textnormal{om och endast om} \quad (\varphi \circ \psi \circ \varphi^{-1})(x) = x 
+    \quad  \psi \in L^*, \; \varphi \in G, \; x \in L \\
+    &\textnormal{om och endast om} \quad (\varphi \circ \psi) (x) = \varphi(x) 
+    \quad  \psi \in L^*, \; \varphi \in G, \; x \in L \\
+    &\textnormal{om och endast om} \quad \varphi(x) \in L^{**}
+    \quad  \varphi \in G, \; x \in L \\
+    &\textnormal{om och endast om} \quad \varphi(x) \in L
+    \quad  \varphi \in G, \; x \in L.
+  \end{align*}
+  Den sista punkten använde sig av faktumet att $L^{**} = L$ som bevisades i (ii). Med detta drar vi slutsatsen att 
+  \begin{align*}
+    L^* \trianglelefteq G \quad \textnormal{om och endast om} \quad \varphi(L) \subseteq L \textnormal{ för alla } \varphi \in G.
+  \end{align*}
+  Med detta fastställt så kan vi nu bevisa första delen av (iv). 
+
+  $\Rightarrow:$ Antag att $\varphi(L) \subseteq L$ för alla $\varphi \in G$ och låt $g(X)$ vara det minimala polynomet till $\beta$ i $L$ över $F$. Låt 
+  \[h(X) = \prod_{\varphi \in G} (X - \varphi(\beta)).\]
+  Ett liknande argument som fördes i \hyperlink{lemma9.0.4}{lemma 9.0.4} kan användes för att visa att $h(X)$ har sina koeffcienter i $G^*$
+  som är lika med $F$ enligt \hyperlink{lemma9.0.3}{lemma 9.0.3}. Eftersom $h(\beta) = 0$ så måste $g(X)$ dela $h(X)$ enligt \hyperlink{minpol}{sats 5.3.1} (iv).
+  Eftersom $\varphi(L) \subseteq L$ så måste $h(X)$ ha sina rötter i $L$ och därför måste $g(X)$ splitta över $L$ eftersom $g(X)$ delar $h(X)$. 
+  Detta betyder att $L$ är en normal utvidgning av $F$
+
+  $\Leftarrow:$ Antag att $L$ är en normal utvidgning av $F$. Låt $\varphi \in G$ och $f(X)$ vara det minimala polynomet till $\alpha \in L$ över $F$. Då är 
+  $f(\alpha) = 0$ och om vi verkar med $\varphi$ på denna ekvation så ser vi att $f(\varphi(\alpha)) = 0$ och $\varphi(\alpha)$ måste alltså vara 
+  en rot till $f(X)$. Men eftersom $L$ är en normal utvidgning av $F$ så måste alla rötter till $f(X)$ tillhöra $L$, det vill säga $\varphi(\alpha) \in L$. 
+  Detta betyder att $\varphi(L) = L$.
+
+  Vi går vidare och visar den sista delen av (iv). Låt $L$ vara en normal utvidgning av $F$. Notera att $L$ måste vara separerbar eftersom 
+  den större kroppen $K$ är separerbar. Detta betyder att $L$ är en Galoisutvidgning av $F$. Från det ovanstående vet vi även att 
+  $L^* \trianglelefteq G$ och att $\varphi(L) \subseteq L$ för alla $\varphi \in G$, det vill säga $\varphi(x) \in L$ för alla $x \in L$.
+  Vi kan nu skapa funktionen
+  \[\psi: G \rightarrow \gal(L/F)\]
+  som ges av 
+  \[\psi: \varphi \mapsto \varphi|_L.\]
+  Notera att $\varphi|_L$ går från $L$ till $L$ eftersom $\varphi(L) \subseteq L$. Detta är även en bijektion då inversen till $\varphi|_L$
+  existerar och är $\varphi^{-1}|_L$ och därför är $\varphi|_L \in \gal(L/F)$. 
+  Vi ser att 
+  \[\ker (\psi) = \{\varphi \in G \; | \; \varphi|_L(x) = x \; \forall x \in L\}\]
+  men eftersom $\varphi|_L(x) = \varphi(x)$ för alla $x \in L$ så är 
+  \[\ker (\psi) = \{\varphi \in G \; | \; \varphi(x) = x \; \forall x \in L\} = L^*.\]
+  Notera även att $\im(\varphi) = \gal(L/F)$ och enligt \hyperlink{isomorfiska}{den första isomorfiska satsen} så måste 
+  \[\gal(L/F) \cong G/L^*.\]
+  Detta slutför beviset för Galoisteorins fundamentalsats. 
+\end{proof}
+
+\begin{mydef}{}{}
+  Om $K$ är en ändlig Galoisutvidgning av kroppen $F$ så är $H \mapsto H^*$ och $L \mapsto L^*$ kallade för \textit{Galois korrespondensen} 
+  (eng. \textit{Galois correspondence}) mellan $\mathcal{G}$ och $\mathcal{F}$. 
+\end{mydef}
+
+För att utvidga detta koncept om Galoisgrupper och Galoisutvidgningar till polynom så görs följande definition.
+\begin{mydef}{}{}
+  Låt $K$ vara splittringkroppen för polynomet $f(X)$ över kroppen $F$. \textit{Galoisgruppen} $\gal_F(f(X))$ av $f(X)$ är Galoisgruppen 
+  $\gal(K/F)$ av splittringkroppen för $f(X)$ över $F$. 
+\end{mydef}
+Notera att från \hyperlink{sats6.3.1}{sats 6.3.1} och \hyperlink{irrsep}{proposition 7.1.1} så är splittringkroppen för något polynom över en kropp med 
+karakteristik noll en Galoisutvidgning. Vi kan därför använda oss av Galoisteorins fundamentalsats i dessa sammanhang. 
+\begin{exmp}
+  Vi kommer att ta upp det klassiska exemplet där man beräknar Galoisgruppen för $f(X) = X^4 -2$ över $\mathbb{Q}$. Vi kommer även att 
+  utforska Galois korrespondensen. Notera först att rötterna till $f(X)$ är 
+  \[ \sqrt[4]{2}, -\sqrt[4]{2}, i\sqrt[4]{2}, -i\sqrt[4]{2}.  \]
+  För en läsare som för tillfället läser matematik 4 kan det vara en bra övning att verifiera detta.
+  Det första steget är att \textbf{hitta splittringskroppen} för $f(X)$. I detta fall ser vi att 
+  $K = \mathbb{Q}(\sqrt[4]{2}, -\sqrt[4]{2}, i\sqrt[4]{2}, -i\sqrt[4]{2}) = \mathbb{Q}(\sqrt[4]{2}, i)$
+  är splittringkroppen för $f(X)$ enligt \hyperlink{lemma6.0.1}{lemma 6.0.1}. Det nästa steget är att \textbf{beräkna dimensionen för 
+  splittringkroppen över kroppen}, det vill säga $[K:\mathbb{Q}]$. I detta fall kan vi först hitta en intermediär kropp 
+  och sedan använda torn lagen. En passande intermediär kropp är $\mathbb{Q}(\sqrt[4]{2})$. Med torn lagen fås nu 
+  \[ [K:\mathbb{Q}] = [K: \mathbb{Q}(\sqrt[4]{2})] \cdot [\mathbb{Q}(\sqrt[4]{2}): \mathbb{Q}]. \]
+  Enligt \hyperlink{minpol}{sats 5.3.1} så är $f(X)$ det minimala polynomet till $\sqrt[4]{2}$ och enligt \hyperlink{5.3.2}{sats 5.3.2} 
+  så är $[\mathbb{Q}(\sqrt[4]{2}): \mathbb{Q}] = 4$. Låt nu $F = \mathbb{Q}(\sqrt[4]{2})$. Då är $K = F(i)$ och 
+  $[K: \mathbb{Q}(\sqrt[4]{2})] = [F(i): F]$. Enligt \hyperlink{minpol}{sats 5.3.1} så är det minimala polynomet till $i$ över $F$ är $X^2 - 1$ och enligt 
+  \hyperlink{5.3.2}{sats 5.3.2} så är $[F(i): F] = [K: \mathbb{Q}(\sqrt[4]{2})] = 2$. Detta ger att $[K:\mathbb{Q}] = 8$.
+  Enligt Galoisteorins fundamentalsats (i) så är alltså 
+  \[|\gal(K/\mathbb{Q})| = 8.\]
+  Nu vet vi hur många element $\gal(K/\mathbb{Q})$ har. Vidare har vi även observerat i tidigare bevis att alla dessa automorfismer 
+  måste vara rötter till $f(X)$. Om $\varphi \in \gal(K/\mathbb{Q})$ så är således $\varphi(\sqrt[4]{2})$ en rot till $f(X)$. Detta betyder att 
+  $\varphi(i) = i$ eller $\varphi(i) = -i$ eftersom $\varphi(i \sqrt[4]{2}) = \varphi(i) \varphi(\sqrt[4]{2})$ måste vara en rot till $f(X)$. Detta ger 
+  oss totalt åtta styckna automorfismer.
+
+  Låt till exempel 
+  $\sigma: \sqrt[4]{2} \mapsto i \sqrt[4]{2}$ med $\sigma: i \mapsto i$ och $\tau: \sqrt[4]{2} \mapsto \sqrt[4]{2}$ med $\sigma: i \mapsto -i$.
+  Det nästa steget är att \textbf{uttrycka de resterande automorfismer med de kända}. Till exempel så är $\sqrt[4]{2} \mapsto -i\sqrt[4]{2}$ med 
+  $\sigma: i \mapsto -i$ en automorfism. Vi kan dock uttrycka denna med som $\sigma \circ\tau$. Om vi kombinerar $\sigma$ och $\tau$ så fås 
+  åtta möjliga automorfismer: 
+  \begin{align*}
+    \sigma &: \sqrt[4]{2} \mapsto i\sqrt[4]{2}        & i \mapsto i \\
+    \sigma^2 &: \sqrt[4]{2} \mapsto -\sqrt[4]{2}  & i \mapsto i \\
+    \sigma^3 &: \sqrt[4]{2} \mapsto -i\sqrt[4]{2}  & i \mapsto i \\
+    \sigma^4  = e &: \sqrt[4]{2} \mapsto \sqrt[4]{2}        & i \mapsto i \\
+    \tau &: \sqrt[4]{2} \mapsto \sqrt[4]{2}                 & i \mapsto -i \\
+    \sigma \circ \tau &: \sqrt[4]{2} \mapsto -i\sqrt[4]{2}  & i \mapsto -i \\
+    \sigma^2 \circ \tau &: \sqrt[4]{2} \mapsto -\sqrt[4]{2} & i \mapsto -i \\
+    \sigma^3 \circ \tau &: \sqrt[4]{2} \mapsto i\sqrt[4]{2} & i \mapsto -i
+  \end{align*}
+  Det finns inga fler $\mathbb{Q}$-automorfismer av $K$ och vi drar slutsatsen att dessa tillhör $\gal(K/\mathbb{Q})$. 
+  Det finns nu ett element med ordningen fyra och ett annat med två i $\gal(K/\mathbb{Q})$. Vidare så kan vi observera att 
+  \[\tau^{-1} \circ \sigma \circ \tau: \sqrt[4]{2} \mapsto -i\sqrt[4]{2} \quad i \mapsto i = \sigma^3 = \sigma^{-1}\]
+  och därför måste 
+  \[\gal(K/\mathbb{Q}) \cong D_8.\]
+  Vi kollar nu på Galois korrespondensen. Det ska alltså finnas en bijektion mellan delgrupperna till $\gal(K/\mathbb{Q})$ och intermediära kroppar till $k$
+  och $\mathbb{Q}$. Vi vet att $\langle \sigma \rangle$ är en delgrupp till $\gal(K/\mathbb{Q})$ och då måste  $\langle \sigma \rangle^*$ vara en 
+  intermediär kropp. Genom Galoisteorins fundamentalsats (iii) så är 
+  \[ [\langle \sigma \rangle^*: \mathbb{Q}] = 2 \]
+  eftersom $|\langle \sigma \rangle^*| = 4$. Per definition av $\sigma$ så fixar den $i$, det vill säga $\sigma: i \mapsto i$, och därför måste
+  $i \in \langle \sigma \rangle^*$ och då blir 
+  \[\langle \sigma \rangle^* = \mathbb{Q}(i)\]
+  vilket faktiskt är en intermediär kropp.
+  Notera även att $\langle \sigma \rangle \trianglelefteq \gal(K/\mathbb{Q})$ och att $\mathbb{Q}(i)$ är normal över $\mathbb{Q}$ eftersom 
+  det är en splittringkroppen för $X^2 + 1$ över $\mathbb{Q}$. Detta är Galoisteorins fundamentalsats (iv)! Vi kan göra följande diagram som 
+  illustrerar alla delgrupper till $\gal(K/\mathbb{Q})$ och alla intermediära kroppar till $K$.
+
+  \begin{center}
+    \newcommand{\mydistance}{.6cm}
+    \begin{tikzpicture}[node distance=2cm, scale=1]
+      \node(g) {$\gal(K/\mathbb{Q})$};
+      \node(s) [below=1cm of g] {$\langle \sigma \rangle$};
+      \node(s2) [below=1cm of s] {$\langle \sigma^2 \rangle$};
+      \node(e) [below=1.5cm of s2] {$\{e\}$};
+      \node(s2ct) [above left=1cm of s2] {$\langle \sigma^2, \tau \rangle$};
+      \node(s2st) [above right=1cm of s2] {$\langle \sigma^2, \sigma \tau \rangle$};
+      \node(st) [below=1.5cm of s2st] {$\langle \sigma \tau \rangle$};
+      \node(t) [below=1.5cm of s2ct] {$\langle \tau \rangle$};
+      \node(s2t) [left=1cm of t] {$\langle \sigma^2 \tau \rangle$};
+      \node(s3t) [right=1cm of st] {$\langle \sigma^3 \tau \rangle$};
+    
+      \draw(g) -- (s);
+      \draw(s) -- (s2);
+      \draw(s2) -- (e);
+      \draw(s2) -- (s2ct);
+      \draw(g) -- (s2ct);
+      \draw(g) -- (s2st);
+      \draw(s2) -- (s2st);
+      \draw(s2st) -- (st);
+      \draw(s2ct) -- (t);
+      \draw(t) -- (e);
+      \draw(st) -- (e);
+      \draw(s2ct) -- (s2t);
+      \draw(s2t) -- (e);
+      \draw(s2st) -- (s3t);
+      \draw(s3t) -- (e);
+    \end{tikzpicture}
+  \end{center}  
+
+  \begin{center}
+    \newcommand{\mydistance}{.6cm}
+    \begin{tikzpicture}[node distance=2cm, scale=1]
+      % \draw[fill=myblue!60] (-4,1) rectangle (4,-6);
+      \node(k) {$K$};
+      \node(ic2) [below = 1.5cm of k] {$\mathbb{Q}(i, \sqrt{2})$};
+      \node(i) [below =1cm of ic2] {$\mathbb{Q}(i)$};
+      \node(q) [below = 1cm of i] {$\mathbb{Q}$};
+      \node(2) [below left=1cm of ic2] {$\mathbb{Q}(\sqrt{2})$};
+      \node(i2) [below right=1cm of ic2] {$\mathbb{Q}(i\sqrt{2})$};
+      \node(4) [above=1.5cm of 2] {$\mathbb{Q}(\sqrt[4]{2})$};
+      \node(1mi4) [above=1.5cm of i2] {$\mathbb{Q}((1-i)i\sqrt[4]{2})$};
+      \node(i4) [left=1cm of 4] {$\mathbb{Q}(i \sqrt[4]{2})$};
+      \node(1pi4) [right=0cm of 1mi4] {$\mathbb{Q}((1+i)i\sqrt[4]{2})$};
+
+      \draw(k) -- (ic2);
+      \draw(ic2) -- (i);
+      \draw(i) -- (q);
+      \draw(k) -- (1mi4);
+      \draw(1mi4) -- (i2);
+      \draw(i2) -- (ic2);
+      \draw(i2) -- (q);
+      \draw(k) -- (4);
+      \draw(4) -- (2);
+      \draw(2) -- (ic2);
+      \draw(2) -- (q);
+      \draw(k) -- (i4);
+      \draw(i4) -- (2);
+      \draw(k) -- (1pi4);
+      \draw(1pi4) -- (i2);
+    \end{tikzpicture}
+  \end{center}  
+  Till exempel så är $\sqrt{2} = (\sqrt[4]{2})^2$ fixad under alla element 
+  i $\langle \sigma^2, \tau \rangle$, den minsta gruppen innehållande $\sigma^2$ och $\tau$, och då måste 
+  $\langle \sigma^2, \tau \rangle = \mathbb{Q}(\sqrt{2})$.
+  Diagramet för $K$ är alltså en roterad version av diagramet för $\gal(K/\mathbb{Q})$. Detta kan vi förstå med Galois korrespondensen
+  där funktionerna $H \mapsto H^*$ och $L \mapsto L^*$ omvänder inkludering. Om $H_1$ är en delgrupp till $H_2$ så måste alltså den intermediära
+  kroppen $H_2^*$ vara en delkropp till $H_1^*$.
+\end{exmp}
+
+(övning)
+
+\begin{mylemma}{}{}
+  Låt $K$ vara splittringkroppen för ett polynom $f(X)$ över kroppen $F$ med graden $n$ och $\mathcal{U}$ mängden av alla rötter till $f(X)$ i $K$. 
+  Då är Galoisgruppen till $f(X)$ isomorfisk med en delgrupp till $S_n.$
+\end{mylemma}
+
+\begin{proof}
+  Låt $\mathcal{U} = \{\alpha_1, \ldots, \alpha_n\}$. Om $\varphi \in \gal_F(f(X)) \equiv \gal(K/F)$ så har vi observerat i tidigare bevis 
+  att $\varphi(\alpha_i)$ är en rot till $f(X)$. Eftersom $\varphi$ är en bijektion så permuterar den $\mathcal{U}$. Vi får därför funktionen 
+  \[ \psi: \gal_F(f(X)) \rightarrow \textnormal{Sym}(\mathcal{U}) = S_n \]
+  definierad som 
+  \[\psi: \varphi \mapsto \varphi|_{\mathcal{U}}.\]
+  Det följder att $\psi$ är en homomorfism då operationen i båda grupperna är komposition. Enligt den första isomorfiska satsen fås då 
+  \[ \gal_F(f(X))/\ker(\psi) \cong \im(\psi). \]
+  Om $\varphi \in \ker(\psi)$ så måste $\psi(\alpha_i) = \alpha_i$ och eftersom alla $F$-automorfismer av $K$ bestäms 
+  av $\varphi(\alpha_i)$ så måste $\varphi$ vara enhetselement i $\gal_F(f(X))$. Vi drar slutsatsen att $\ker(\psi) = \{e\}$ och får 
+  $\gal_F(f(X))\cong \im(\psi)$. Detta slutför beviset då bilden av $\psi$ är en delgrupp till $S_n$.
 \end{proof}
 
 \section{Lösbara grupper och lösningarna till polynom}
+Det är i just detta avsnitt vi analyserar när det finns en "formell" för lösningarna till polynom och när det inte finns. 
+Om vi vill komma vidare behöver vi förstås uttrycka oss mer rigoröst så att vi har någonting att utgå ifrån.
+
+\begin{mydef}{}{}
+  En kroppsutvidgning $K$ av kroppen $F$ är en \textit{enkel rotutvidgning} (eng. \textit{simple radical extension}) om 
+  $K = F(\alpha)$ för något $\alpha \in K$ så att $\alpha^p \in F$ för något primtal $p$. 
+  Utvidgningen $K$ sägs vara en \textit{rotutvidgning} av $F$ om 
+  \[F = K_0 \subseteq K_1 \subseteq \cdots \subseteq K_n = K \]
+  där $K_i$ är en enkel rotutvidgning av $K_{i-1}$.
+\end{mydef}
+Det följer att om $K$ är en rotutvidgning av $F$ så är 
+\[K = F(\alpha_1, \ldots, \alpha_n)\]
+fär $\alpha_i \in K$ så att $\alpha_i$ upphöjt till ett primtal finns i $F(\alpha_1, \ldots, \alpha_n)$. Detta betyder 
+att varje element i $K$ kan skrivas som en "formell" innehållande rottecken och kropps operationer. Man kanske kan 
+gissa sig fram till hur man kan utvidga detta koncept till polynom. Innan vi går in på detta så observeras följande. 
+
+\begin{mylemma}{}{}
+  \begin{enumerate}[(i)]
+    \item Om $K$ är en rotutvidgning av $F$ och $L$ en rotutvidgning av $K$ ($F \subseteq K \subseteq L$) så är $L$ en rotutvidgning av $F$,
+    \item om $K = F(\alpha)$ där $\alpha \in K$ så att $\alpha^m \in F$ för $m > 1$ så är $K$ en rotutvidgning av $F$,
+    \item en rotutvidgning är en ändlig kroppsutvidgning.
+  \end{enumerate}
+\end{mylemma}
+\begin{proof}
+  (i) Detta härstammar direkt från definitionen:
+  \[F = K_0 \subseteq K_1 \cdots \subseteq K_n = K = L_0 \subseteq \cdots \subseteq L.\]
+  (ii) Om $m$ är ett primtal så är $K$ per definition en enkel rotutvidgning av $F$. Antag motsatsen. 
+  Vi fortsätter med induktion och antar att påståendet gäller för alla delkroppar till $F(\alpha)$. Låt $m = kp$ där $p$ är ett primtal 
+  och $k$ ett heltal. Låt $\beta = \alpha^p$. Vi ser att 
+  \[F \subseteq F(\beta) \subseteq F(\alpha).\]
+  Enligt induktionsantagandet så är $F(\beta)$ en rotutvidgning av $F$ eftersom $\beta^k = \alpha^{kp} = \alpha^m \in \beta$. Enligt (i) så är 
+  alltså $F(\alpha)$ en rotutvidgning av $F$. 
+  
+  (iii) Om $F(\alpha)$ är en enkel rotutvidgning av $F$ så är $\alpha$ en rot till polynomet $X^p - \alpha^p \in F[X]$ för något primtal $p$. 
+  Då är $\alpha$ algebraisk över $F$ och enligt \hyperlink{5.3.2}{sats 5.3.2} så måste $F(\alpha)$ vara en ändlig kroppsutvidgning. Om 
+  $K$ är en rotutvidgning av $F$ så gäller 
+  \[F = K_0 \subseteq K_1 \subseteq \cdots \subseteq K_n = K\]
+  där $K_i$ är en enkel rotutvidgning av $K_{i-1}$. Eftersom dessa är ändliga kroppsutvidgningar så är $K$ en ändlig kroppsutvidgning 
+  enligt torn lagen. 
+\end{proof}
+
+\begin{mydef}{}{}
+  Låt $f(X)$ vara ett polynom över en kropp $F$ med karakteristik noll. Vi säger att $f(X)$ är \textit{lösbar med rottecken} 
+  (eng. \textit{soluble/solvable by radicals}) om det existerar 
+  en rotutvidgning av $F$ där $f(X)$ splittar. 
+\end{mydef}
+Om $f(X)$ är lösbar med rottecken så kan vi alltså hitta en "formell" för rötterna till $f(X)$. 
+
+\begin{mylemma}{}{}
+  Låt $K$ vara en rotutvidgning av kroppen $F$. Då existerar det en utvidgning $L$ av $K$ så att $L$ är en normal rotutvidgning av $F$.
+\end{mylemma}
+
+\begin{proof}
+  Låt
+  \begin{equation}
+    F = K_0 \subseteq K_1 \subseteq \cdots \subseteq K_n = K
+  \end{equation}
+  så att $K_i$ är en enkel rotutvidgning av $K_{i-1}$, det vill säga $K_i = K_{i-1}(\alpha_i)$ för något $\alpha_i \in K_i$ 
+  så att  $\alpha_i^p \in K_{i-i}$ för något primtal $p$. Låt $f_i(X)$ vara det minimala polynomet av $\alpha_i$ över $F$. 
+  Definiera $L_0 \equiv F$ och låt $L_i$ vara splittringkroppen för $f_i(X)$ över $L_{i-1}$. 
+  Vi visar först att varje $L_i$ är en normal utvidgning av $F$.
+  
+  Vi påstår att varje $L_i$ innehåller en delmängd $K_i'$ så att kedjan
+  \[F = K_0' \subseteq K_1' \subseteq \cdots \subseteq K_n'\]
+  är avbildningen av (12) under en $F$-automorfism $K_n \rightarrow K_n'$. Vi forstätter med induktion på antalet termer i 
+  kedjan. Om $i = 0$ så är $K_0 = F = K_0'$ och vi får en $F-$isomorfism $K_0 \rightarrow K_0'$.
+  Antag, för något $m$, att varje $L_i$ med $0 \leq i \leq m -1$ har en delkropp $K_i'$ så att 
+  \[F = K_0' \subseteq K_1' \subseteq \cdots \subseteq K_{m-1}'\]
+  är avbildningen av de $m$ första termerna i (12) under någon $F$-isomorfism $\varphi: K_{m-1} \rightarrow K_{m-1}'$.
+  Låt $g(X)$ vara det minimala polynomet till $\alpha_m$ över $K_{m-1}$. Enligt \hyperlink{minpol}{sats 5.3.1} (iv) så måste $g(X)$ dela 
+  $f(X)$ i $K_{m-1}[X]$. Om vi verkar med $\varphi$ på koeffcienterna i $g(X)$ och $f(X)$ så ser vi att $g^\varphi(X)$ delar $f(X)$ i $K_{m-1}'$ och 
+  då måste $g^\varphi(X)$ splitta i $L_{m}$. Låt $\beta$ vara en rot till $g^\varphi(X)$ i $L_m$. 
+  Enligt \hyperlink{6.0.2}{lemma 6.2.1} så existerar det en isomorfism $\psi: K_{m-1}(\alpha_m) \rightarrow K_{m-1}'(\beta)$ som 
+  förlänger $\varphi$. Eftersom $\psi$ förlänger $\varphi$ så är det en $F$-isomorfism. Vidare vet vi även att $K_{m-1}(\alpha_m) = K_m$. 
+  Det är uppenbart att $K_{m-1}'(\beta)$ är en utvidgning av $K'_{m-1}$ och därför är det lämplig att sätta $K_{m-1}'(\beta) \equiv K'_{m}$. 
+  Då blir $\psi$ är $F$-isomorfism från $K_{m}$ till $K'_{m}$ som mappar de $m+1$ första termerna i (12) till delkropparna $K_i'$ för $0 \leq i \leq m$. 
+  Vi drar slutsatsen att påståendet gäller. Vi nu verka med denna isomorfism på (12) för att få 
+  \[F = L_0 \subseteq L_1 \subseteq \cdots \subseteq L_n\]
+  med $K_i \subseteq L_i$. Nu kan $L_i$ konstrueras genom att adjungera rötter till $f_i(X)$ till $L_{i-1}$
+  och varje $L_i$ är därför splittringkroppen för $f_1(X)f_2(X)\cdots  f_i(X)$ över $F$. Enligt \hyperlink{sats6.3.1}{sats 6.3.1}
+  så är varje $L_i$ en normal utvidgning av $F$.
+
+  Vi visar nu att varje $L_i$ är en rotutvidgning av $F$. Vi forstätter ännu än gång med induktion. Om $i = 0$ så är $L_0 = F$
+  och påståendet gäller för detta fall. Antag att $L_{i-1}$ är en rotutvidgning av $F$ för något $i \geq 1$. Låt $\beta_1, \beta_2, \ldots, \beta_k$
+  vara rötterna till $f_i(X)$ i $L_i$. Antag, utan förlust av generalitet, att $\beta_1 = \alpha_i$. Nu är 
+  \[L_i = L_{i-1}(\beta_1, \ldots, \beta_k).\]
+  Enligt \hyperlink{6.0.2}{lemma 6.2.1} så existerar det en isomorfism $\psi: F(\beta_1) \rightarrow F(\beta_j)$ som förlänger 
+  identitetsfunktionen $F \rightarrow F$ och $\psi(\alpha_1) = \beta_j$
+  där $\beta_j$ är en rot till $f_i(X)$. Vi noterar att $L_i$ är splittringkroppen för $f_1(X)f_2(X) \cdots f_i(X)$
+  då $L_i$ kan konstrueras genom att adjungera rötterna till produkten. Enligt \hyperlink{sats6.0.1}{sats 6.0.1} så existerar det då 
+  en isomorfism $\Psi: L_i \rightarrow L_i$ som förlänger $\psi$. Följaktligen är $\Psi$ en $F$-isomorfism och därför ett element i $\gal(L_i/F)$.
+  Vi noterar att 
+  \[\Psi(\alpha_i) = \Psi(\beta_1) = \psi(\beta_1) = \beta_j.\]
+  Då $L_{i-1}$ är en intermediär kropp $F \subseteq L_{i-1} \subseteq L_i$ så fås 
+  \[\Psi(L_{i-1}) \subseteq L_{i-1}\]
+  enligt resultat som härledes i beviset av Galoisteorins fundamentalsats (iv). Vi ser att 
+  \[\beta_j^p = \Psi(\alpha_i^p) \in L_{i-1}\]
+  som betyder att vi har en kedja av enkla rotutvidgningar 
+  \[L_{i-1} \subseteq L_{i-1} (\beta_1) \subseteq \cdots \subseteq L_{i-1}(\beta_1, \beta_2, \ldots, \beta_k) = L_i\]
+  som i sin tur betyder, per definition, att $L_{i}$ är en enkel rotutvidgning av $L_{i-1}$. Enligt induktionsantagandet så 
+  gäller det då att $L_i$ är en rotutvidgning av $F$. Omskrivningen $L = L_n$ slutför beviset. 
+\end{proof}
+
+
+
 \end{document}
